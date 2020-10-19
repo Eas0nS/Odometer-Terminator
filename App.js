@@ -5,7 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
 import Dashboard from './Dashboard';
-
+import Register1 from './Register1';
+import Register2 from './Register2';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,16 @@ class App extends React.Component {
             name="Dashboard"
             component={Dashboard}
           />
+
+          <Stack.Screen
+            name="Register1"
+            component={Register1}
+          />
           
+          <Stack.Screen
+            name="Register2"
+            component={Register2}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       

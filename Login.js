@@ -53,7 +53,7 @@ class Login extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+             this.props.navigation.navigate('Register1')}
         >
         <Text style={styles.buttonText}> Register </Text>
         </TouchableOpacity>
