@@ -23,7 +23,7 @@ class Register1 extends React.Component {
           >
             <Image 
               style= {styles.backgroundImage}
-              source= {require('./assets/bg4.png')}
+              source= {require('./assets/bg2.png')}
             />
             <Image
               style= {styles.logo}
@@ -33,9 +33,7 @@ class Register1 extends React.Component {
               style={styles.container2}
               behavior="padding"
             >
-            <Text style={styles.titleText}>Signup for Odometer Terminator</Text>
-            <Text style={styles.contact_info}>Contact Info:</Text>
-
+            <Text style={styles.titleText}>Register</Text>
             <Text style={styles.other_info}>Email Address*</Text>
             <TextInput
               value = {this.state.email}
@@ -90,7 +88,7 @@ class Register1 extends React.Component {
                   <TouchableOpacity
                     style={styles.button}
                     onPress={() =>
-                    this.props.navigation.navigate('Login')}
+                    this.props.navigation.navigate('Register0')}
                   >
                     <Text style={styles.buttonText}> BACK </Text>
                   </TouchableOpacity>
@@ -143,7 +141,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleText:{
-    paddingTop: 15,
     fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
@@ -172,7 +169,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginLeft: 35, 
     marginRight: 5,
-    marginTop: 15,
+    marginTop: 5,
   },
   buttonText:{
     fontSize: 17,
