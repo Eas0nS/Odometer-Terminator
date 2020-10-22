@@ -10,11 +10,15 @@ class Dashboard extends React.Component {
             style= {styles.backgroundImage}
             source= {require('./assets/bg2.png')}
         />
-        <Text style={styles.titleText}>Welcome, Casey</Text>
+        <View style ={styles.middle}>
+        <Image
+          style={styles.logo}
+          source={require('./assets/logo.png')}
+        />
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+            Alert.alert('Cannot press this one')}
         >
         <Text style={styles.buttonText}> Personal Account </Text>
         </TouchableOpacity>
@@ -37,14 +41,32 @@ class Dashboard extends React.Component {
           onPress={() =>
              this.props.navigation.navigate('Dashboard')}
         >
-        <Text style={styles.buttonText}> Services </Text>
+        <Text style={styles.buttonText}> Schedule Appointment </Text>
         </TouchableOpacity>
-        <Button
-          title="Logout"
+        <TouchableOpacity
+          style={styles.button}
           onPress={() =>
-            this.props.navigation.navigate('Login')
-          }
-        />
+             this.props.navigation.navigate('Dashboard')}
+        >
+        <Text style={styles.buttonText}> Report Accident </Text>
+        </TouchableOpacity>
+        <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={styles.button_bot}
+          onPress={() =>
+             this.props.navigation.navigate('Login')}
+        >
+        <Text style={styles.buttonText}> Logout </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button_contact}
+          onPress={() =>
+             this.props.navigation.navigate('Login')}
+        >
+        <Text style={styles.buttonText}> Contact Us </Text>
+        </TouchableOpacity>
+       </View> 
+       </View>  
       </View>
     );
   }
@@ -60,7 +82,7 @@ const styles = StyleSheet.create({
     opacity: 0.8
   },
   container: {
-    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -73,7 +95,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
-    width: 200,
+    width: 300,
     height: 44,
     padding: 10,
     borderWidth: 1,
@@ -81,11 +103,44 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 10,
   },
+  button_bot: {
+    alignItems: 'center',
+    backgroundColor: 'powderblue',
+    width: 100,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginRight: 15,
+    marginTop: 100,
+  },
+  button_contact: {
+    alignItems: 'center',
+    backgroundColor: 'powderblue',
+    width: 150,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginLeft: 35, 
+    marginRight: 5,
+    marginTop: 100,
+  },
   buttonText:{
     fontFamily: 'Courier',
     fontSize: 15,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logo:{
+    width: 300,
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 100,
+  },
+  middle:{
+    flex: 2,
   },
 });
 
