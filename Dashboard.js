@@ -1,11 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput } from 'react-native';
 
 class Dashboard extends React.Component {
   render() {
     return (
-      <View >
-        <Text>Dashboard</Text>
+
+      <View style={styles.container}>
+        <Image 
+            style= {styles.backgroundImage}
+            source= {require('./assets/bg2.png')}
+        />
+        <Text style={styles.titleText}>Welcome, Casey</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+             this.props.navigation.navigate('PersonalAcc')}
+        >
+        <Text style={styles.buttonText}> Personal Account </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+             this.props.navigation.navigate('PersonalAcc')}
+        >
+        <Text style={styles.buttonText}> Car Status </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+             this.props.navigation.navigate('PersonalAcc')}
+        >
+        <Text style={styles.buttonText}> Insurance Plan </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+             this.props.navigation.navigate('PersonalAcc')}
+        >
+        <Text style={styles.buttonText}> Services </Text>
+        </TouchableOpacity>
         <Button
           title="Logout"
           onPress={() =>
@@ -16,5 +49,44 @@ class Dashboard extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.8
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleText:{
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'powderblue',
+    width: 200,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 25,
+    marginBottom: 10,
+  },
+  buttonText:{
+    fontFamily: 'Courier',
+    fontSize: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Dashboard;
