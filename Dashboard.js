@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     height: 150,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 100,
+    marginBottom: 50,
+    marginTop: 60,
   },
   middle:{
     flex: 2,
