@@ -14,28 +14,28 @@ class Dashboard extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('PersonalAcc')}
+             this.props.navigation.navigate('Dashboard')}
         >
         <Text style={styles.buttonText}> Personal Account </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('PersonalAcc')}
+             this.props.navigation.navigate('Dashboard')}
         >
         <Text style={styles.buttonText}> Car Status </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('PersonalAcc')}
+             this.props.navigation.navigate('Dashboard')}
         >
         <Text style={styles.buttonText}> Insurance Plan </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('PersonalAcc')}
+             this.props.navigation.navigate('Dashboard')}
         >
         <Text style={styles.buttonText}> Services </Text>
         </TouchableOpacity>
