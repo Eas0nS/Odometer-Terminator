@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import Register0 from './Register0';
 import Register1 from './Register1';
 import Register2 from './Register2';
+import Personal from './Personal';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,11 @@ class App extends React.Component {
           <Stack.Screen
             name="Register2"
             component={Register2}
+          />
+
+          <Stack.Screen
+            name="Personal"
+            component={Personal}
           />
         </Stack.Navigator>
       </NavigationContainer>
