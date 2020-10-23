@@ -9,6 +9,11 @@ import Register0 from './Register0';
 import Register1 from './Register1';
 import Register2 from './Register2';
 import Personal from './Personal';
+import Appointment from './Appointment';
+import CarStatus from './CarStatus';
+import Contact from './Contact';
+import InsurancePlan from './InsurancePlan';
+import ReportAccident from './ReportAccident';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +51,31 @@ class App extends React.Component {
           <Stack.Screen
             name="Personal"
             component={Personal}
+          />
+
+          <Stack.Screen
+            name="Appointment"
+            component={Appointment}
+          />
+
+          <Stack.Screen
+            name="CarStatus"
+            component={CarStatus}
+          />
+
+          <Stack.Screen
+            name="Contact"
+            component={Contact}
+          />
+
+          <Stack.Screen
+            name="InsurancePlan"
+            component={InsurancePlan}
+          />
+
+          <Stack.Screen
+            name="ReportAccident"
+            component={ReportAccident}
           />
         </Stack.Navigator>
       </NavigationContainer>

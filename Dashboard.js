@@ -18,35 +18,35 @@ class Dashboard extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-            Alert.alert('Cannot press this one')}
+            this.props.navigation.navigate('Personal')}
         >
         <Text style={styles.buttonText}> Personal Account </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+             this.props.navigation.navigate('CarStatus')}
         >
         <Text style={styles.buttonText}> Car Status </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Personal')}
+             this.props.navigation.navigate('InsurrancePlan')}
         >
         <Text style={styles.buttonText}> Insurance Plan </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+             this.props.navigation.navigate('Appointment')}
         >
         <Text style={styles.buttonText}> Schedule Appointment </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+             this.props.navigation.navigate('ReportAccident')}
         >
         <Text style={styles.buttonText}> Report Accident </Text>
         </TouchableOpacity>
@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
         <TouchableOpacity
           style={styles.button_contact}
           onPress={() =>
-             this.props.navigation.navigate('Login')}
+             this.props.navigation.navigate('Contact')}
         >
         <Text style={styles.buttonText}> Contact Us </Text>
         </TouchableOpacity>
