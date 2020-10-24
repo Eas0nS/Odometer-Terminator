@@ -17,7 +17,7 @@ class Register0 extends React.Component {
     const {username} = this.state;
     const {password} = this.state;   
 
-    fetch('http://192.168.64.2:8080/odometer_terminator/user_registration.php', {
+    fetch('http://localhost:8080/odometer_terminator/user_registration.php', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
