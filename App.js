@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import Register0 from './Register0';
 import Register1 from './Register1';
 import Register2 from './Register2';
+import Register3 from './Register3';
 import Personal from './Personal';
 import Appointment from './Appointment';
 import CarStatus from './CarStatus';
@@ -49,6 +50,11 @@ class App extends React.Component {
           />
 
           <Stack.Screen
+            name="Register3"
+            component={Register3}
+          />
+
+          <Stack.Screen
             name="Personal"
             component={Personal}
           />
@@ -79,7 +85,6 @@ class App extends React.Component {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      
     );
   }
 }
