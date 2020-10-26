@@ -1,18 +1,8 @@
 
-<?php
+<?php 
 
 // Put this file under /Iampp/htdocs
-
-$HostName = "localhost";
- 
-//Define your database name here.
-$DatabaseName = "odometer_terminator";
- 
-//Define your database username here.
-$HostUser = "root";
- 
-//Define your database password here.
-$HostPass = "";
+include('DBconfig.php');
 
 // Creating connection.
 $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
@@ -23,8 +13,6 @@ $json = file_get_contents('php://input');
 // decoding the received JSON and store into $obj variable.
 $obj = json_decode($json,true);
   
-//if (isset($obj) && $obj != "") {
-
 // Populate User name from JSON $obj array and store into $name.
 $username = $obj['username'];
   
@@ -32,7 +20,7 @@ $username = $obj['username'];
 $password = $obj['password'];
  
 //Checking username is already exist or not using SQL query.
-$CheckSQL = "SELECT * FROM UserRegistrationTable WHERE username='$username'";
+$CheckSQL = "SELECT * FROM User WHERE username='$username'";
  
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
@@ -49,7 +37,7 @@ if(isset($check)){
 
 } else{
     // Creating SQL query and insert the record into MySQL database table.
-    $Sql_Query = "insert into UserRegistrationTable (username,password) values ('$username','$password')";
+    $Sql_Query = "insert into User (username,password) values ('$username','$password')";
   
     if(mysqli_query($con,$Sql_Query)){
   
@@ -67,8 +55,6 @@ if(isset($check)){
   
     }
 }
-
-//}
 
 mysqli_close($con);
 

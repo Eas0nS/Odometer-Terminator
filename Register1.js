@@ -23,20 +23,16 @@ class Register1 extends React.Component {
           >
             <Image 
               style= {styles.backgroundImage}
-              source= {require('./assets/bg2.png')}
+              source= {require('./assets/bg.png')}
             />
-            <Image
-              style= {styles.logo}
-              source={require('./assets/logo.png')}
-            />
+            <Text style={styles.titleText}>Your Basic Info</Text>
             <KeyboardAvoidingView
               style={styles.container2}
               behavior="padding"
             >
-            <Text style={styles.titleText}>Register</Text>
-            <Text style={styles.other_info}>Email Address*</Text>
-            <TextInput
-              value = {this.state.email}
+                <Text style={styles.other_info}>Email Address*</Text>
+                <TextInput
+                    value = {this.state.email}
                     keyboardType = 'default'
                     onChangeText={(email) => this.setState({ email })}
                     placeholder='12345@gmail.com'
@@ -83,25 +79,23 @@ class Register1 extends React.Component {
                     placeholderTextColor = 'black'
                     style={styles.input}
                 />
+            </KeyboardAvoidingView>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() =>
+                  this.props.navigation.navigate('Register0')}
+                >
+                  <Text style={styles.buttonText}> Back </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() =>
+                  this.props.navigation.navigate('Register2')}
+                >
+                  <Text style={styles.buttonText}> Next </Text>
+                </TouchableOpacity>
 
-                <View style={{ flexDirection: 'row' }}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() =>
-                    this.props.navigation.navigate('Register0')}
-                  >
-                    <Text style={styles.buttonText}> BACK </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() =>
-                    this.props.navigation.navigate('Register2')}
-                  >
-                    <Text style={styles.buttonText}> NEXT </Text>
-                  </TouchableOpacity>
-                </View>
-                </KeyboardAvoidingView>
-              </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
 
         );
     }
@@ -118,12 +112,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: 'white',
     //alignItems: 'center',
-    //justifyContent: 'center',
+    justifyContent: 'center',
     opacity: 0.9,
     width: 330,
-    height: 500,
+    height: 390,
     borderRadius:10,
     borderWidth: 1,
+    marginBottom: 15,
   },
   backgroundImage:{
     position: 'absolute',
@@ -141,14 +136,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleText:{
+    fontFamily: 'Courier',
     fontWeight: 'bold',
     fontSize: 20,
-    textAlign: 'center',
+    marginTop: -10,
+    textAlign: 'left',
+    marginBottom: 20,
+    marginRight: 140
   },
   contact_info:{
     paddingLeft: 40,
     paddingTop: 10,
     paddingBottom: 5,
+    fontFamily: 'Courier',
     fontWeight: 'bold',
     fontSize: 18,
   },
@@ -158,22 +158,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   button: {
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5A8FC8',
-    borderColor: '#5A8FC8',
-    width: 110,
-    height: 40,
+    backgroundColor: 'powderblue',
+    width: 200,
+    height: 44,
     padding: 10,
     borderWidth: 1,
-    borderRadius: 7,
-    marginLeft: 35, 
-    marginRight: 5,
-    marginTop: 5,
+    borderColor: 'white',
+    borderRadius: 25,
+    marginBottom: 10,
   },
   buttonText:{
-    fontSize: 17,
-    color: 'white',
+    fontFamily: 'Courier',
+    fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -188,7 +185,6 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     marginBottom: 7,
     marginTop: 7,
-    opacity: 0.6,
   },
 });
 

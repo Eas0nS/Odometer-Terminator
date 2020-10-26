@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    fontFamily: 'Courier',
     alignItems: 'center',
     justifyContent: 'center',
   },
