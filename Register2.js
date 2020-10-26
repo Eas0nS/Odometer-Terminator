@@ -10,12 +10,6 @@ class Register2 extends React.Component {
     cvv: '',
     billing_addr:'',
   };
-  updateCN = (card_num) => {
-    this.setState({ card_num: card_num })
-  }
-  showCN = (card_num) => {
-    alert('card num is: '+ this.state.card_num)
-  }
   updateCT = (card_type) => {
     console.log(card_type),
     this.setState({ card_type: card_type });
@@ -32,24 +26,19 @@ class Register2 extends React.Component {
       >
         <Image 
           style= {styles.backgroundImage}
-          source= {require('./assets/bg2.png')}
+          source={require('./assets/bg.png')}
         />
-        <Image
-          style= {styles.logo}
-          source={require('./assets/logo.png')}
-        />
+        <Text style={styles.titleText}>Your Billing Info</Text>
         <KeyboardAvoidingView
           style={styles.container2}
           behavior="padding"
         >
-          <Text style={styles.titleText}>Register</Text>
           <Text style={styles.other_info}>Credit or Debit Card Number*</Text>
           <TextInput
-            //value = {this.state.card_num}
+            value = {this.state.card_num}
             keyboardType = 'default'
-            onChangeText={this.updateCN}
+            onChangeText={(card_num) => this.setState({ card_num })}
             placeholder='123456789000'
-            placeholderTextColor = 'black'
             style={styles.input}
           />
           <Text style={styles.other_info}>Card Type*</Text>
@@ -70,7 +59,6 @@ class Register2 extends React.Component {
             keyboardType = 'default'
             onChangeText={(exp) => this.setState({ exp })}
             placeholder='12/12/2020'
-            placeholderTextColor = 'black'
             style={styles.input}
           />
           <Text style={styles.other_info}>Security Code*</Text>
@@ -79,7 +67,6 @@ class Register2 extends React.Component {
             keyboardType = 'default'
             onChangeText={(cvv) => this.setState({ cvv })}
             placeholder='123'
-            placeholderTextColor = 'black'
             style={styles.input}
           />
           <Text style={styles.other_info}>Billing Address*</Text>
@@ -88,32 +75,25 @@ class Register2 extends React.Component {
             keyboardType = 'default'
             onChangeText={(billing_addr) => this.setState({ billing_addr })}
             placeholder='123 Badger St, Madison, WI'
-            placeholderTextColor = 'black'
             style={styles.input}
           />
 
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate('Register1')}
-            >
-              <Text style={styles.buttonText}> BACK </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate('Register3')}
-            >
-              <Text style={styles.buttonText}> NEXT </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              
-              onPress={this.showCN}
-            >
-              <Text style={styles.buttonText}> showCN </Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() =>
+                  this.props.navigation.navigate('Register1')}
+                >
+                  <Text style={styles.buttonText}> Back </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() =>
+                  this.props.navigation.navigate('Register3')}
+                >
+                  <Text style={styles.buttonText}> Next </Text>
+                </TouchableOpacity>
+          </KeyboardAvoidingView>
     );
   }
 }
@@ -125,14 +105,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container2: {
+    //flex: 1,
     backgroundColor: 'white',
     borderColor: 'white',
+    //alignItems: 'center',
+    justifyContent: 'center',
     opacity: 0.9,
     width: 330,
-    height: 450,
+    height: 390,
     borderRadius:30,
     borderWidth: 1,
-    paddingTop: 10
+    marginBottom: 15,
   },
   backgroundImage:{
     position: 'absolute',
@@ -149,12 +132,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   titleText:{
+    fontFamily: 'Courier',
     fontWeight: 'bold',
     fontSize: 20,
-    textAlign: 'center',
-    paddingBottom: 10
+    marginTop: -10,
+    textAlign: 'left',
+    marginBottom: 20,
+    marginRight: 140
+  },
+  contact_info:{
+    paddingLeft: 40,
+    paddingTop: 10,
+    paddingBottom: 5,
+    fontFamily: 'Courier',
+    fontWeight: 'bold',
+    fontSize: 18,
   },
   other_info:{
     paddingLeft: 40,
@@ -162,22 +155,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   button: {
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5A8FC8',
-    borderColor: '#5A8FC8',
-    width: 110,
-    height: 40,
+    backgroundColor: 'powderblue',
+    width: 200,
+    height: 44,
     padding: 10,
     borderWidth: 1,
-    borderRadius: 7,
-    marginLeft: 35, 
-    marginRight: 5,
-    marginTop: 5,
+    borderColor: 'white',
+    borderRadius: 25,
+    marginBottom: 10,
   },
   buttonText:{
-    fontSize: 17,
-    color: 'white',
+    fontFamily: 'Courier',
+    fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -192,7 +182,6 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     marginBottom: 7,
     marginTop: 7,
-    opacity: 0.6,
   },
 });
 

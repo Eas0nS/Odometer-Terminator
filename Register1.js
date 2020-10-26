@@ -36,7 +36,6 @@ class Register1 extends React.Component {
                     keyboardType = 'default'
                     onChangeText={(email) => this.setState({ email })}
                     placeholder='12345@gmail.com'
-                    placeholderTextColor = 'black'
                     style={styles.input}
                 />
 
@@ -46,7 +45,6 @@ class Register1 extends React.Component {
                     keyboardType = 'default'
                     onChangeText={(phone) => this.setState({ phone })}
                     placeholder='123-456-7890'
-                    placeholderTextColor = 'black'
                     style={styles.input}
                 />
 
@@ -56,7 +54,6 @@ class Register1 extends React.Component {
                     keyboardType = 'default'
                     onChangeText={(address) => this.setState({ address })}
                     placeholder='123 Badger St.'
-                    placeholderTextColor = 'black'
                     style={styles.input}
                 />
 
@@ -66,7 +63,6 @@ class Register1 extends React.Component {
                     keyboardType = 'default'
                     onChangeText={(city) => this.setState({ city })}
                     placeholder='Madison'
-                    placeholderTextColor = 'black'
                     style={styles.input}
                 />
 
@@ -76,7 +72,6 @@ class Register1 extends React.Component {
                     keyboardType = 'default'
                     onChangeText={(zip) => this.setState({ zip })}
                     placeholder='12345'
-                    placeholderTextColor = 'black'
                     style={styles.input}
                 />
             </KeyboardAvoidingView>
@@ -116,7 +111,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     width: 330,
     height: 390,
-    borderRadius:10,
+    borderRadius:30,
     borderWidth: 1,
     marginBottom: 15,
   },
