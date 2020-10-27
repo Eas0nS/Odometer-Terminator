@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 class Register2 extends React.Component {
@@ -9,7 +9,11 @@ class Register2 extends React.Component {
     exp: '',
     cvv: '',
     billing_addr:'',
+    modalVisible: false
   };
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
   updateCT = (card_type) => {
     console.log(card_type),
     this.setState({ card_type: card_type });
@@ -19,6 +23,7 @@ class Register2 extends React.Component {
     Alert.alert('Credentials', `card_num: ${card_num} + card_type: ${card_type} + expiration: ${exp} + cvv: ${cvv} + billing_addr: ${billing_addr}`);
   }
   render() {
+    const { modalVisible } = this.state;
     return (
       <KeyboardAvoidingView
         style={styles.container}
@@ -79,6 +84,30 @@ class Register2 extends React.Component {
           />
 
           </KeyboardAvoidingView>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+              }}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalText}>Success!</Text>
+                  <TouchableHighlight
+                    style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                    onPress={() => {
+                      this.setModalVisible(!modalVisible);
+                      this.props.navigation.navigate('Login');
+                    }}
+                  >
+                    <Text style={styles.textStyle}>Close</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
+
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
@@ -89,9 +118,10 @@ class Register2 extends React.Component {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                  this.props.navigation.navigate('Register3')}
+                    this.setModalVisible(true)
+                  }
                 >
-                  <Text style={styles.buttonText}> Next </Text>
+                  <Text style={styles.buttonText}> Register </Text>
                 </TouchableOpacity>
           </KeyboardAvoidingView>
     );
@@ -110,7 +140,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     //alignItems: 'center',
     justifyContent: 'center',
-    opacity: 0.9,
+    opacity: 0.7,
     width: 330,
     height: 390,
     borderRadius:30,
@@ -183,6 +213,37 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     marginTop: 7,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
 
 export default Register2;
