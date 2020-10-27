@@ -13,11 +13,14 @@ $json = file_get_contents('php://input');
 // decoding the received JSON and store into $obj variable.
 $obj = json_decode($json,true);
   
-// Populate User name from JSON $obj array and store into $name.
+// Populate vars from JSON $obj array and store into db.
 $username = $obj['username'];
-  
-// Populate password from JSON $obj array and store into $password.
 $password = $obj['password'];
+$email = $obj['email'];
+$phone = $obj['phone'];
+$address = $obj['address'];
+$city = $obj['city'];
+$zip = $obj['zip'];
  
 //Checking username is already exist or not using SQL query.
 $CheckSQL = "SELECT * FROM User WHERE username='$username'";
@@ -37,7 +40,8 @@ if(isset($check)){
 
 } else{
     // Creating SQL query and insert the record into MySQL database table.
-    $Sql_Query = "insert into User (username,password) values ('$username','$password')";
+    $Sql_Query = "insert into User (username,password,email,phone,address,city,zip) values 
+        ('$username','$password','$email','$phone','$address','$city','$zip')";
   
     if(mysqli_query($con,$Sql_Query)){
   

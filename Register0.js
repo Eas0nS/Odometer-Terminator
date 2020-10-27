@@ -11,28 +11,14 @@ class Register0 extends React.Component {
         password: '',
     }
   }
-  
-  userRegistration = () =>{
- 
-    const {username} = this.state;
-    const {password} = this.state;   
 
-    fetch('http://localhost:8080/odometer_terminator/user_registration.php', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: username, 
-          password: password,    
-        })
-    }).then((response) => response.json())
-        .then((responseJson) => {
-          Alert.alert(responseJson);   
-        }).catch((error) => {
-          console.error(error);
-        });
+  naviagteUser = () => {
+
+    const {username} = this.state;
+    const {password} = this.state; 
+
+    this.props.navigation.navigate('Register1', 
+        {username: username, password: password})
   }
 
   render() {
@@ -59,12 +45,6 @@ class Register0 extends React.Component {
         />
         <TouchableOpacity
             style={styles.button}
-            onPress={this.userRegistration}
-            >
-            <Text style={styles.buttonText}> Register </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.button}
             onPress={() =>
                 this.props.navigation.navigate('Login')}
             >
@@ -72,8 +52,7 @@ class Register0 extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
             style={styles.button}
-            onPress={() =>
-                this.props.navigation.navigate('Register1')}
+            onPress={this.naviagteUser}
             >
             <Text style={styles.buttonText}> Next </Text>
         </TouchableOpacity>

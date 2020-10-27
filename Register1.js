@@ -2,18 +2,52 @@ import React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 
 class Register1 extends React.Component {
-    state = {
+
+    constructor(props) {
+      super(props)
+      this.state = {
+        username: this.props.route.params.username,
+        password: this.props.route.params.password,
         email: '',
         phone: '',
         address: '',
         city: '',
         zip:'',
-    };
-    
-    onRegister() {
-        const { email, phone, address, city, zip} = this.state;
-        Alert.alert('Credentials', `email: ${email} + phone: ${phone} + address: ${address}`);
       }
+    }
+
+    userRegistration = () =>{
+ 
+      const {username} = this.state;
+      const {password} = this.state;   
+      const {email} = this.state;
+      const {phone} = this.state;
+      const {address} = this.state;
+      const {city} = this.state;
+      const {zip} = this.state;
+  
+      fetch('http://localhost:8080/odometer_terminator/user_registration.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username, 
+            password: password,
+            email: email,
+            phone: phone,
+            address: address,
+            city: city,
+            zip: zip
+          })
+      }).then((response) => response.json())
+          .then((responseJson) => {
+            Alert.alert(responseJson);   
+          }).catch((error) => {
+            console.error(error);
+          });
+    }
 
     render() {
         return (
@@ -84,10 +118,9 @@ class Register1 extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() =>
-                  this.props.navigation.navigate('Register2')}
+                  onPress={this.userRegistration}
                 >
-                  <Text style={styles.buttonText}> Next </Text>
+                  <Text style={styles.buttonText}> Register </Text>
                 </TouchableOpacity>
 
           </KeyboardAvoidingView>
