@@ -47,6 +47,7 @@ class Register1 extends React.Component {
           }).catch((error) => {
             console.error(error);
           });
+      this.props.navigation.navigate('Login')
     }
 
     render() {
