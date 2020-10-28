@@ -14,6 +14,7 @@ import CarStatus from './CarStatus';
 import Contact from './Contact';
 import InsurancePlan from './InsurancePlan';
 import ReportAccident from './ReportAccident';
+import CustomButton from './CustomButton';
 
 const Stack = createStackNavigator();
 
@@ -77,7 +78,12 @@ class App extends React.Component {
             name="ReportAccident"
             component={ReportAccident}
           />
-        </Stack.Navigator>
+
+          <Stack.Screen
+            name="CustomButton"
+            component={CustomButton}
+          />
+          </Stack.Navigator>
       </NavigationContainer>
     );
   }
