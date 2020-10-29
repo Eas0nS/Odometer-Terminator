@@ -113,9 +113,9 @@ class Register1 extends React.Component {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                  this.props.navigation.navigate('Register0')}
+                  this.props.navigation.navigate('Register2')}
                 >
-                  <Text style={styles.buttonText}> Back </Text>
+                  <Text style={styles.buttonText}> Next </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.button}

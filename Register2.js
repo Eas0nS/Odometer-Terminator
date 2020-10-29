@@ -107,7 +107,6 @@ class Register2 extends React.Component {
                 </View>
               </View>
             </Modal>
-
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
@@ -115,6 +114,7 @@ class Register2 extends React.Component {
                 >
                   <Text style={styles.buttonText}> Back </Text>
                 </TouchableOpacity>
+                {/*
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
@@ -123,6 +123,7 @@ class Register2 extends React.Component {
                 >
                   <Text style={styles.buttonText}> Register </Text>
                 </TouchableOpacity>
+                */}
           </KeyboardAvoidingView>
     );
   }
