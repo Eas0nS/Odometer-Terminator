@@ -3,20 +3,47 @@ import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInp
 
 class Login extends React.Component {
 
-  state = {
-    username: '',
-    password: '',
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: "",
+      password: "",
+    }
+  }
     
-  onLogin() {
-    const { username, password } = this.state;
-    Alert.alert('Credentials', `username: ${username} + password: ${password}`);
+  userLogin = () =>{
+ 
+    const { username }  = this.state ;
+    const { password }  = this.state ;
+    
+    fetch('http://localhost:8080/odometer_terminator/user_login.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+        // If server response message same as Data Matched
+        if(responseJson === 'Correct Username and Password') {
+          this.props.navigation.navigate('Dashboard', { username: username });
+        } else{
+          Alert.alert(responseJson);
+        }
+      }).catch((error) => {
+        console.error(error);
+
+      });
   }
   
   render() {
     return (
-
-    <View style={styles.container}>
+      <View style={styles.container}>
         <Image 
           style= {styles.backgroundImage}
           source= {require('./assets/bg2.png')}
@@ -28,7 +55,6 @@ class Login extends React.Component {
           source={require('./assets/logo.png')}
         />
         <TextInput
-          value={this.state.username}
           keyboardType = 'default'
           onChangeText={(username) => this.setState({ username })}
           placeholder='username'
@@ -36,7 +62,6 @@ class Login extends React.Component {
           style={styles.input}
         />
         <TextInput
-          value={this.state.password}
           onChangeText={(password) => this.setState({ password })}
           placeholder={'password'}
           secureTextEntry={true}
@@ -45,8 +70,7 @@ class Login extends React.Component {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-             this.props.navigation.navigate('Dashboard')}
+          onPress={this.userLogin}
         >
         <Text style={styles.buttonText}> Login </Text>
         </TouchableOpacity>
@@ -58,8 +82,7 @@ class Login extends React.Component {
         <Text style={styles.buttonText}> Register </Text>
         </TouchableOpacity>
         
-    </View>
-      
+      </View>
     );
   }
 }
