@@ -3,6 +3,14 @@ import { StyleSheet, Text, View, Button, Image,TouchableOpacity } from 'react-na
 import CustomButton from './CustomButton';
 
 class Personal extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: this.props.route.params.username,
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -26,22 +34,22 @@ class Personal extends React.Component {
 
         <View style={styles.middle}>
             <View style={styles.name}>
-              <Text style={styles.listText}> Name </Text>
-              <CustomButton text='Oliver' color='#FFFDD0' onPress={() =>
+              <Text style={styles.listText}> Username </Text>
+              <CustomButton text={this.state.username} color='#FFFDD0' onPress={() =>
                     this.props.navigation.navigate('Dashboard')}/>
             </View>
             <View style={styles.gender}>
-              <Text style={styles.listText}> Gender </Text>
-              <CustomButton text='Female' color='#FFFDD0' onPress={() =>
+              <Text style={styles.listText}> Email </Text>
+              <CustomButton text='123@mail.com' color='#FFFDD0' onPress={() =>
                     this.props.navigation.navigate('Dashboard')}/>
             </View>
             <View style={styles.birthday}>
-              <Text style={styles.listText}> Birthday </Text>
-              <CustomButton text='Jan. 1st, 1998' color='#FFFDD0' onPress={() =>
+              <Text style={styles.listText}> Phone </Text>
+              <CustomButton text='1234567890' color='#FFFDD0' onPress={() =>
                     this.props.navigation.navigate('Dashboard')}/>
             </View>
             <View style={styles.location}>
-              <Text style={styles.listText}> Location </Text>
+              <Text style={styles.listText}> Address </Text>
               <CustomButton text='201 N Charter St.' color='#FFFDD0' onPress={() =>
                     this.props.navigation.navigate('Dashboard')}/>
             </View>

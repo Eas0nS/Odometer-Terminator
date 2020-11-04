@@ -31,7 +31,8 @@ class Login extends React.Component {
 
         // If server response message same as Data Matched
         if(responseJson === 'Correct Username and Password') {
-          this.props.navigation.navigate('Dashboard', { username: username });
+          this.props.navigation.navigate('Dashboard', 
+            {username: username, password: password});
         } else{
           Alert.alert(responseJson);
         }

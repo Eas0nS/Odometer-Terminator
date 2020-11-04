@@ -2,9 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput } from 'react-native';
 
 class Dashboard extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: this.props.route.params.username,
+      password: this.props.route.params.password,
+    }
+  }
+
   render() {
     return (
-
       <View style={styles.container}>
         <Image 
             style= {styles.backgroundImage}
@@ -17,8 +25,10 @@ class Dashboard extends React.Component {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            this.props.navigation.navigate('Personal')}
+          onPress={() => {
+            const { username }  = this.state;
+            this.props.navigation.navigate('Personal', {username: username});
+          }}
         >
         <Text style={styles.buttonText}> Personal Account </Text>
         </TouchableOpacity>
