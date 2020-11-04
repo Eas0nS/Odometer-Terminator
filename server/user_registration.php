@@ -21,14 +21,37 @@ $phone = $obj['phone'];
 $address = $obj['address'];
 $city = $obj['city'];
 $zip = $obj['zip'];
- 
-//Checking username is already exist or not using SQL query.
+
+// Checking username is empty or not
+$username = trim($username);
+
+// Checking username is already exist or not using SQL query.
 $CheckSQL = "SELECT * FROM User WHERE username='$username'";
  
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
- 
-if(isset($check)){
+
+if (isset($username) === true && $username === ''){
+
+    $UsernameEmptyMSG = 'Username Is Empty, Please Try Again !!!';
+  
+    // Converting the message into JSON format.
+    $UsernameEmptyJson = json_encode($UsernameEmptyMSG);
+
+    // Echo the message.
+    echo $UsernameEmptyJson; 
+    
+} else if (isset($password) === true && $password === ''){
+
+    $PasswordEmptyMSG = 'Password Is Empty, Please Try Again !!!';
+  
+    // Converting the message into JSON format.
+    $PasswordEmptyJson = json_encode($PasswordEmptyMSG);
+
+    // Echo the message.
+    echo $PasswordEmptyJson; 
+
+} else if (isset($check)){
  
     $UsernameExistMSG = 'Username Already Exist, Please Try Again !!!';
   
