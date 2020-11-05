@@ -2,20 +2,18 @@ import React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
 
 class Personal extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//         username: this.props.route.params.username,
-//     }
-//   }
-  state = {
-    car_brand: '',
-    phone: '',
-    email: '',
-    address: '',
-    userID:'',
-    modalVisible: false
-  };
+
+   constructor(props) {
+     super(props)
+     this.state = {
+        username: this.props.route.params.username,
+        phone: '',
+        email: '',
+        address: '',
+        userID:'',
+        modalVisible: false
+     }
+   }
   
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
@@ -42,10 +40,6 @@ class Personal extends React.Component {
         console.error(error);
       });
   };
-
-  
-
-
 
   render() {
     const { modalVisible } = this.state;
@@ -86,9 +80,9 @@ class Personal extends React.Component {
                 <KeyboardAvoidingView style={styles.modalView}>
                   <KeyboardAvoidingView style={styles.inline}>
                     <TextInput
-                      value = {this.state.car_brand}
+                      value = {this.state.username}
                       keyboardType = 'default'
-                      onChangeText={(car_brand) => this.setState({ car_brand })}
+                      onChangeText={(username) => this.setState({ username })}
                       placeholder='Username'
                       placeholderTextColor='white'
                       color='white'
@@ -163,7 +157,7 @@ class Personal extends React.Component {
         >
           <Text style={styles.other_info}>Username</Text>
           <View style={styles.smallcontainer}>
-            <Text style={styles.input_info} text={this.state.username}>{this.state.car_brand}</Text>
+            <Text style={styles.input_info} text={this.state.username}>{this.state.username}</Text>
           </View>
           <Text style={styles.other_info}>Email</Text>
           <View style={styles.smallcontainer}>
