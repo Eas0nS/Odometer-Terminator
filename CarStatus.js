@@ -26,7 +26,7 @@ class CarStatus extends React.Component {
       //If response is in json then in success
       .then((responseJson) => {
         //Success
-        alert(JSON.stringify(responseJson));
+        alert('Your current insurance status: '+JSON.stringify(responseJson));
         console.log(responseJson);
       })
       //If response is not in json then in error
