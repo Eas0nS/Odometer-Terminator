@@ -15,6 +15,30 @@ class CarStatus extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
+
+  getDataUsingGet = () => {
+    //GET request
+    fetch('http://18.204.130.183:8000/health', {
+      method: 'GET',
+      //Request Type
+    })
+      .then((response) => response.json())
+      //If response is in json then in success
+      .then((responseJson) => {
+        //Success
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+      })
+      //If response is not in json then in error
+      .catch((error) => {
+        //Error
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
+  };
+
+
+
   render() {
     const { modalVisible } = this.state;
     return (
@@ -145,6 +169,19 @@ class CarStatus extends React.Component {
           >
             <Text style={styles.editbuttontext}> Start OCR </Text>
           </TouchableOpacity>
+
+
+              <Text> </Text>
+
+          <TouchableOpacity
+            style={styles.ocrbutton}
+            onPress={this.getDataUsingGet}>
+            <Text style={styles.editbuttontext}>
+              Get Your Insurance Status
+            </Text>
+          </TouchableOpacity>
+
+
         </View>
       </View> 
     );
@@ -354,7 +391,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
+
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#f4511e',
+    padding: 10,
+    marginVertical: 10,
+  },
+
+  textStyle: {
+    fontSize: 18,
+    color: 'white',
+  },
+
 });
 
 export default CarStatus;
