@@ -171,9 +171,6 @@ class CarStatus extends React.Component {
             <Text style={styles.editbuttontext}> Start OCR </Text>
           </TouchableOpacity>
 
-
-              <Text> </Text>
-
           <TouchableOpacity
             style={styles.ocrbutton}
             onPress={this.getDataUsingGet}>
@@ -241,7 +238,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     marginBottom: 10,
-    marginTop: 15
+    marginTop: 10
   },
   container2: {
     backgroundColor: '#1d1d2a',
