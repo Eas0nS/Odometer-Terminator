@@ -45,17 +45,17 @@ class Register0 extends React.Component {
         />
         <TouchableOpacity
             style={styles.button}
-            onPress={() =>
-                this.props.navigation.navigate('Login')}
-            >
-            <Text style={styles.buttonText}> Back </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.button}
             onPress={this.naviagteUser}
             >
             <Text style={styles.buttonText}> Next </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+                this.props.navigation.navigate('Login')}
+            >
+            <Text style={styles.buttonText}> Back </Text>
+        </TouchableOpacity> 
       </View>
     );
   }

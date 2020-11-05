@@ -11,6 +11,7 @@ class Register2 extends React.Component {
     billing_addr:'',
     modalVisible: false
   };
+  
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   }
@@ -110,20 +111,18 @@ class Register2 extends React.Component {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                  this.props.navigation.navigate('Register1')}
+                  this.props.navigation.navigate('CarStatus')}
                 >
-                  <Text style={styles.buttonText}> Back </Text>
+                  <Text style={styles.buttonText}> Status page </Text>
                 </TouchableOpacity>
-                {/*
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                    this.setModalVisible(true)
-                  }
+                  this.props.navigation.navigate('Register1')}
                 >
-                  <Text style={styles.buttonText}> Register </Text>
-                </TouchableOpacity>
-                */}
+                  <Text style={styles.buttonText}> Back </Text>
+                </TouchableOpacity>           
+               
           </KeyboardAvoidingView>
     );
   }
