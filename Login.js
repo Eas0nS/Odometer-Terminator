@@ -75,6 +75,7 @@ class Login extends React.Component {
         >
         <Text style={styles.buttonText}> Login </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
@@ -82,6 +83,12 @@ class Login extends React.Component {
         >
         <Text style={styles.buttonText}> Register </Text>
         </TouchableOpacity>
+
+
+      
+
+
+
         
       </View>
     );
