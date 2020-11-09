@@ -1,14 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput } from 'react-native';
+import { getAppLoadingLifecycleEmitter } from 'expo/build/launch/AppLoading';
 
 class Dashboard extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      id: '',
       username: this.props.route.params.username,
       password: this.props.route.params.password,
     }
+  }
+
+  componentDidMount() {
+ 
+    const { username } = this.state;
+    
+    fetch('http://localhost:8080/odometer_terminator/user_dashboard.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+          this.setState({id: responseJson.id});
+
+      }).catch((error) => {
+        console.error(error);
+
+      });
   }
 
   render() {
@@ -26,8 +52,8 @@ class Dashboard extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            const { username }  = this.state;
-            this.props.navigation.navigate('Personal', {username: username});
+            const{ id } = this.state;
+            this.props.navigation.navigate('Personal', {id:id});
           }}
         >
         <Text style={styles.buttonText}> Personal Account </Text>

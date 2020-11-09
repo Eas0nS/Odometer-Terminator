@@ -12,10 +12,10 @@ $json = file_get_contents('php://input');
 // decoding the received JSON and store into $obj variable.
 $obj = json_decode($json,true);
  
-// Populate User email from JSON $obj array and store into $email.
+// Populate username from JSON $obj array and store into $username.
 $username = $obj['username'];
  
-// Populate Password from JSON $obj array and store into $password.
+// Populate password from JSON $obj array and store into $password.
 $password = $obj['password'];
  
 //Applying User Login query with email and password match.

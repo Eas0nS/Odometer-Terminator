@@ -3,43 +3,50 @@ import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInp
 
 class Personal extends React.Component {
 
-   constructor(props) {
-     super(props)
-     this.state = {
-        username: this.props.route.params.username,
+  constructor(props) {
+    super(props)
+    this.state = {
+        id: this.props.route.params.id,
+        username: '',
         phone: '',
         email: '',
         address: '',
-        userID:'',
+        city: '',
         modalVisible: false
      }
    }
+
+  componentDidMount() {
+ 
+    const { id } = this.state;
+    
+    fetch('http://localhost:8080/odometer_terminator/user_personal.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({username: responseJson.username,
+                      email: responseJson.email,
+                      phone: responseJson.phone,
+                      address: responseJson.address,
+                      city: responseJson.city});
+
+      }).catch((error) => {
+        console.error(error);
+
+      });
+  }
   
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   }
-
-
-  getDataUsingGet = () => {
-    //GET request
-    fetch('http://18.204.130.183:8000/health', {
-      method: 'GET',
-      //Request Type
-    })
-      .then((response) => response.json())
-      //If response is in json then in success
-      .then((responseJson) => {
-        //Success
-        alert('Your current insurance status: '+JSON.stringify(responseJson));
-        console.log(responseJson);
-      })
-      //If response is not in json then in error
-      .catch((error) => {
-        //Error
-        alert(JSON.stringify(error));
-        console.error(error);
-      });
-  };
 
   render() {
     const { modalVisible } = this.state;
@@ -119,10 +126,10 @@ class Personal extends React.Component {
                       style={styles.input2}
                     />
                     <TextInput
-                      value = {this.state.userID}
+                      value = {this.state.city}
                       keyboardType = 'default'
-                      onChangeText={(userID) => this.setState({ userID })}
-                      placeholder='UserID'
+                      onChangeText={(city) => this.setState({ city })}
+                      placeholder='City'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input2}
@@ -171,21 +178,12 @@ class Personal extends React.Component {
           <View style={styles.smallcontainer}>
             <Text style={styles.input_info}>{this.state.address}</Text>
           </View>
-          <Text style={styles.other_info}>UserID</Text>
+          <Text style={styles.other_info}>City</Text>
           <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.userID}</Text>
+            <Text style={styles.input_info}>{this.state.city}</Text>
           </View>
         </View>
 
-        <View>
-          <TouchableOpacity
-            style={styles.ocrbutton}
-            onPress={() =>
-              this.props.navigation.navigate('Register2')}
-          >
-            <Text style={styles.editbuttontext}> Return </Text>
-          </TouchableOpacity>
-        </View>
       </View> 
     );
   }
@@ -251,18 +249,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 10,
     marginLeft: -80,
-  },
-  ocrbutton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#0ad48a',
-    width: 320,
-    height: 50,
-    paddingTop: 10,
-    borderWidth: 1,
-    borderRadius: 15,
-    marginBottom: 30,
-    marginTop: 0,
   },
   container2: {
     backgroundColor: '#1d1d2a',

@@ -37,8 +37,6 @@ class CarStatus extends React.Component {
       });
   };
 
-
-
   render() {
     const { modalVisible } = this.state;
     return (
