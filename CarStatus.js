@@ -8,13 +8,23 @@ class CarStatus extends React.Component {
     car_color: '',
     oil_mileage: '',
     license:'',
-    modalVisible: false
+    modalVisible: false,
+    TextInputDisableStatus: false,
+    ButtonText : 'Update'
   };
   
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   }
 
+  onPressButton = () => {  
+    this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
+    if (this.state.ButtonText == 'Update') {
+      this.setState({ ButtonText : 'save' })
+    } else {
+      this.setState({ ButtonText : 'Update' })
+    }
+  }
 
   getDataUsingGet = () => {
     //GET request
@@ -138,8 +148,26 @@ class CarStatus extends React.Component {
           behavior="padding"
         >
           <Text style={styles.other_info}>Car Brand</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.car_brand}</Text>
+          <View>
+          {/* <View style={styles.smallcontainer}> */}
+            {/* <Text style={styles.input_info}>{this.state.car_brand}</Text> */}
+            <TextInput  
+              placeholder="Enter Your Car Brand"
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? '#0ad48a' : '#161620' }]}  
+              editable={this.state.TextInputDisableStatus}  
+            />
+            {/* <Button  
+              onPress={this.onPressButton}  
+              title="Update Car Model"  
+              color="#841584"  
+              accessibilityLabel="Update Username"  
+            /> */}
+            <TouchableOpacity
+              style={styles.ocrbutton}
+              onPress={this.onPressButton}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Car Model</Text>
           <View style={styles.smallcontainer}>
@@ -176,8 +204,6 @@ class CarStatus extends React.Component {
               Get Your Insurance Status
             </Text>
           </TouchableOpacity>
-
-
         </View>
       </View> 
     );
@@ -400,6 +426,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+
+  TextInputStyle: {  
+    textAlign: 'center',  
+    height: 40,  
+    borderRadius: 10,  
+    borderWidth: 2,  
+    borderColor: '#009688',  
+    marginBottom: 10  
+  }  
 
 });
 
