@@ -10,7 +10,11 @@ class CarStatus extends React.Component {
     license:'',
     modalVisible: false,
     TextInputDisableStatus: false,
-    ButtonText : 'Update'
+    TextInputDisableStatus2: false,
+    TextInputDisableStatus3: false,
+    ButtonText : 'Update',
+    ButtonText2 : 'Update',
+    ButtonText3 : 'Update'
   };
   
   setModalVisible = (visible) => {
@@ -23,6 +27,24 @@ class CarStatus extends React.Component {
       this.setState({ ButtonText : 'save' })
     } else {
       this.setState({ ButtonText : 'Update' })
+    }
+  }
+
+  onPressButton2 = () => {  
+    this.setState({ TextInputDisableStatus2: !this.state.TextInputDisableStatus2 });
+    if (this.state.ButtonText2 == 'Update') {
+      this.setState({ ButtonText2 : 'save' })
+    } else {
+      this.setState({ ButtonText2 : 'Update' })
+    }
+  }
+
+  onPressButton3 = () => {  
+    this.setState({ TextInputDisableStatus3: !this.state.TextInputDisableStatus3 });
+    if (this.state.ButtonText3 == 'Update') {
+      this.setState({ ButtonText3 : 'save' })
+    } else {
+      this.setState({ ButtonText3 : 'Update' })
     }
   }
 
@@ -133,7 +155,7 @@ class CarStatus extends React.Component {
               </KeyboardAvoidingView>
             </Modal>
             <TouchableHighlight
-              style={styles.editbutton}
+              style={styles.editbutton1}
               onPress={() => {
                 this.setModalVisible(true);
               }}
@@ -148,34 +170,52 @@ class CarStatus extends React.Component {
           behavior="padding"
         >
           <Text style={styles.other_info}>Car Brand</Text>
-          <View>
-          {/* <View style={styles.smallcontainer}> */}
-            {/* <Text style={styles.input_info}>{this.state.car_brand}</Text> */}
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
-              placeholder="Enter Your Car Brand"
-              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? '#0ad48a' : '#161620' }]}  
-              editable={this.state.TextInputDisableStatus}  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus}
+              value = {this.state.car_brand}
+              keyboardType = 'default'
+              onChangeText={(car_brand) => this.setState({ car_brand })}
             />
-            {/* <Button  
-              onPress={this.onPressButton}  
-              title="Update Car Model"  
-              color="#841584"  
-              accessibilityLabel="Update Username"  
-            /> */}
             <TouchableOpacity
-              style={styles.ocrbutton}
+              style={styles.editbutton}
               onPress={this.onPressButton}
             >
               <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
             </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Car Model</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.car_model}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus2}
+              value = {this.state.car_model}
+              keyboardType = 'default'
+              onChangeText={(car_model) => this.setState({ car_model })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton2}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText2} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Car Color</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.car_color}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus3 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus3}
+              value = {this.state.car_color}
+              keyboardType = 'default'
+              onChangeText={(car_color) => this.setState({ car_color })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton3}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText3} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Oil Milage</Text>
           <View style={styles.smallcontainer}>
@@ -228,7 +268,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  editbutton: {
+  editbutton1: {
     alignItems: 'center',
     backgroundColor: '#242433',
     borderColor: '#242433',
@@ -264,6 +304,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10
   },
+  editbutton: {
+    alignItems: 'center',
+    backgroundColor: '#0ad48a',
+    borderColor: '#0ad48a',
+    width: 40,
+    height: 40,
+    paddingTop: 10,
+    borderWidth: 1,
+    borderRadius: 15,
+    marginLeft: 10,
+    marginBottom: 10
+  },
   container2: {
     backgroundColor: '#1d1d2a',
     borderColor: '#1d1d2a',
@@ -281,10 +333,10 @@ const styles = StyleSheet.create({
   smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#161620',
+    //backgroundColor: '#161620',
     width: 250,
     height: 35,
-    marginLeft: 20,
+    marginLeft: 30,
     marginTop: 10,
     marginBottom: 5,
     borderRadius: 10,
@@ -324,7 +376,6 @@ const styles = StyleSheet.create({
   },
   other_info:{
     color: 'white',
-    //fontWeight: 'bold',
     paddingLeft: 20,
     fontSize: 20,
     justifyContent: 'flex-start',
@@ -428,13 +479,19 @@ const styles = StyleSheet.create({
   },
 
   TextInputStyle: {  
-    textAlign: 'center',  
-    height: 40,  
+    textAlign: 'center',
+    width: 235,
+    height: 35,
     borderRadius: 10,  
-    borderWidth: 2,  
-    borderColor: '#009688',  
-    marginBottom: 10  
-  }  
+    borderWidth: 2,
+    borderColor: '#161620',
+    marginBottom: 10,
+    color: 'white'
+  },
+
+  ImageIconStyle: {
+    resizeMode: 'stretch',
+  }
 
 });
 
