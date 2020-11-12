@@ -6,13 +6,23 @@ class Personal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        id: this.props.route.params.id,
+        // id: this.props.route.params.id,
         username: '',
         phone: '',
         email: '',
         address: '',
         city: '',
-        modalVisible: false
+        modalVisible: false,
+        TextInputDisableStatus: false,
+        TextInputDisableStatus2: false,
+        TextInputDisableStatus3: false,
+        TextInputDisableStatus4: false,
+        TextInputDisableStatus5: false,
+        ButtonText : '>>',
+        ButtonText2 : '>>',
+        ButtonText3 : '>>',
+        ButtonText4 : '>>',
+        ButtonText5 : '>>'
      }
    }
 
@@ -46,6 +56,51 @@ class Personal extends React.Component {
   
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
+  }
+
+  onPressButton = () => {  
+    this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
+    if (this.state.ButtonText == '>>') {
+      this.setState({ ButtonText : 'Y' })
+    } else {
+      this.setState({ ButtonText : '>>' })
+    }
+  }
+
+  onPressButton2 = () => {  
+    this.setState({ TextInputDisableStatus2: !this.state.TextInputDisableStatus2 });
+    if (this.state.ButtonText2 == '>>') {
+      this.setState({ ButtonText2 : 'Y' })
+    } else {
+      this.setState({ ButtonText2 : '>>' })
+    }
+  }
+
+  onPressButton3 = () => {  
+    this.setState({ TextInputDisableStatus3: !this.state.TextInputDisableStatus3 });
+    if (this.state.ButtonText3 == '>>') {
+      this.setState({ ButtonText3 : 'Y' })
+    } else {
+      this.setState({ ButtonText3 : '>>' })
+    }
+  }
+
+  onPressButton4 = () => {  
+    this.setState({ TextInputDisableStatus4: !this.state.TextInputDisableStatus4 });
+    if (this.state.ButtonText4 == '>>') {
+      this.setState({ ButtonText4 : 'Y' })
+    } else {
+      this.setState({ ButtonText4 : '>>' })
+    }
+  }
+
+  onPressButton5 = () => {  
+    this.setState({ TextInputDisableStatus5: !this.state.TextInputDisableStatus5 });
+    if (this.state.ButtonText5 == '>>') {
+      this.setState({ ButtonText5 : 'Y' })
+    } else {
+      this.setState({ ButtonText5 : '>>' })
+    }
   }
 
   render() {
@@ -147,14 +202,14 @@ class Personal extends React.Component {
                 </KeyboardAvoidingView>
               </KeyboardAvoidingView>
             </Modal>
-            <TouchableHighlight
+            {/* <TouchableHighlight
               style={styles.editbutton}
               onPress={() => {
                 this.setModalVisible(true);
               }}
               >
                 <Text style={styles.editbuttontext}> Edit </Text>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
           </KeyboardAvoidingView>
         </KeyboardAvoidingView>
         
@@ -163,24 +218,84 @@ class Personal extends React.Component {
           behavior="padding"
         >
           <Text style={styles.other_info}>Username</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info} text={this.state.username}>{this.state.username}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus}
+              value = {this.state.username}
+              keyboardType = 'default'
+              onChangeText={(username) => this.setState({ username })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Email</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.email}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus2}
+              value = {this.state.email}
+              keyboardType = 'default'
+              onChangeText={(email) => this.setState({ email })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton2}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText2} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Phone</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.phone}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus3 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus3}
+              value = {this.state.phone}
+              keyboardType = 'default'
+              onChangeText={(phone) => this.setState({ phone })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton3}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText3} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Address</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.address}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus4 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus4}
+              value = {this.state.address}
+              keyboardType = 'default'
+              onChangeText={(address) => this.setState({ address })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton4}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText4} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>City</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.city}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus5 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus5}
+              value = {this.state.city}
+              keyboardType = 'default'
+              onChangeText={(city) => this.setState({ city })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton5}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText5} </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -200,12 +315,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  editbuttontext:{
-    color: 'white',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   editbutton: {
     alignItems: 'center',
@@ -267,10 +376,10 @@ const styles = StyleSheet.create({
   smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#161620',
+    //backgroundColor: '#161620',
     width: 250,
     height: 35,
-    marginLeft: 20,
+    marginLeft: 30,
     marginTop: 10,
     marginBottom: 5,
     borderRadius: 10,
@@ -412,6 +521,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+  TextInputStyle: {  
+    textAlign: 'center',
+    width: 235,
+    height: 35,
+    borderRadius: 10,  
+    borderWidth: 2,
+    borderColor: '#161620',
+    marginBottom: 10,
+    color: 'white'
+  },
 
   avatar: {
     width: 140,
@@ -421,6 +540,35 @@ const styles = StyleSheet.create({
     // marginBottom: 50,
     marginTop: 10,
     // flex: 1,
+  },
+  TextInputStyle: {  
+    textAlign: 'center',
+    width: 235,
+    height: 35,
+    borderRadius: 10,  
+    borderWidth: 2,
+    borderColor: '#161620',
+    marginBottom: 10,
+    color: 'white'
+  },
+
+  editbuttontext:{
+    color: 'white',
+    fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editbutton: {
+    alignItems: 'center',
+    backgroundColor: '#0ad48a',
+    borderColor: '#0ad48a',
+    width: 40,
+    height: 40,
+    paddingTop: 10,
+    borderWidth: 1,
+    borderRadius: 15,
+    marginLeft: 10,
+    marginBottom: 10
   },
 
 });
