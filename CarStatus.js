@@ -12,9 +12,9 @@ class CarStatus extends React.Component {
     TextInputDisableStatus: false,
     TextInputDisableStatus2: false,
     TextInputDisableStatus3: false,
-    ButtonText : 'Update',
-    ButtonText2 : 'Update',
-    ButtonText3 : 'Update'
+    ButtonText : '>',
+    ButtonText2 : '>',
+    ButtonText3 : '>'
   };
   
   setModalVisible = (visible) => {
@@ -23,28 +23,28 @@ class CarStatus extends React.Component {
 
   onPressButton = () => {  
     this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
-    if (this.state.ButtonText == 'Update') {
-      this.setState({ ButtonText : 'save' })
+    if (this.state.ButtonText == '>') {
+      this.setState({ ButtonText : '✓' })
     } else {
-      this.setState({ ButtonText : 'Update' })
+      this.setState({ ButtonText : '>' })
     }
   }
 
   onPressButton2 = () => {  
     this.setState({ TextInputDisableStatus2: !this.state.TextInputDisableStatus2 });
-    if (this.state.ButtonText2 == 'Update') {
-      this.setState({ ButtonText2 : 'save' })
+    if (this.state.ButtonText2 == '>') {
+      this.setState({ ButtonText2 : '✓' })
     } else {
-      this.setState({ ButtonText2 : 'Update' })
+      this.setState({ ButtonText2 : '>' })
     }
   }
 
   onPressButton3 = () => {  
     this.setState({ TextInputDisableStatus3: !this.state.TextInputDisableStatus3 });
-    if (this.state.ButtonText3 == 'Update') {
-      this.setState({ ButtonText3 : 'save' })
+    if (this.state.ButtonText3 == '>') {
+      this.setState({ ButtonText3 : '✓' })
     } else {
-      this.setState({ ButtonText3 : 'Update' })
+      this.setState({ ButtonText3 : '>' })
     }
   }
 
