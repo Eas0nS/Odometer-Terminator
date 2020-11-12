@@ -154,14 +154,7 @@ class CarStatus extends React.Component {
                 </KeyboardAvoidingView>
               </KeyboardAvoidingView>
             </Modal>
-            <TouchableHighlight
-              style={styles.editbutton1}
-              onPress={() => {
-                this.setModalVisible(true);
-              }}
-              >
-                <Text style={styles.editbuttontext}> Edit </Text>
-            </TouchableHighlight>
+            
           </KeyboardAvoidingView>
         </KeyboardAvoidingView>
         
@@ -267,18 +260,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  editbutton1: {
-    alignItems: 'center',
-    backgroundColor: '#242433',
-    borderColor: '#242433',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
   },
   closebutton: {
     alignItems: 'center',

@@ -6,7 +6,7 @@ class Personal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        // id: this.props.route.params.id,
+        id: this.props.route.params.id,
         username: '',
         phone: '',
         email: '',
@@ -18,11 +18,11 @@ class Personal extends React.Component {
         TextInputDisableStatus3: false,
         TextInputDisableStatus4: false,
         TextInputDisableStatus5: false,
-        ButtonText : '>>',
-        ButtonText2 : '>>',
-        ButtonText3 : '>>',
-        ButtonText4 : '>>',
-        ButtonText5 : '>>'
+        ButtonText : '>',
+        ButtonText2 : '>',
+        ButtonText3 : '>',
+        ButtonText4 : '>',
+        ButtonText5 : '>'
      }
    }
 
@@ -60,46 +60,46 @@ class Personal extends React.Component {
 
   onPressButton = () => {  
     this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
-    if (this.state.ButtonText == '>>') {
-      this.setState({ ButtonText : 'Y' })
+    if (this.state.ButtonText == '>') {
+      this.setState({ ButtonText : '✓' })
     } else {
-      this.setState({ ButtonText : '>>' })
+      this.setState({ ButtonText : '>' })
     }
   }
 
   onPressButton2 = () => {  
     this.setState({ TextInputDisableStatus2: !this.state.TextInputDisableStatus2 });
-    if (this.state.ButtonText2 == '>>') {
-      this.setState({ ButtonText2 : 'Y' })
+    if (this.state.ButtonText2 == '>') {
+      this.setState({ ButtonText2 : '✓' })
     } else {
-      this.setState({ ButtonText2 : '>>' })
+      this.setState({ ButtonText2 : '>' })
     }
   }
 
   onPressButton3 = () => {  
     this.setState({ TextInputDisableStatus3: !this.state.TextInputDisableStatus3 });
-    if (this.state.ButtonText3 == '>>') {
-      this.setState({ ButtonText3 : 'Y' })
+    if (this.state.ButtonText3 == '>') {
+      this.setState({ ButtonText3 : '✓' })
     } else {
-      this.setState({ ButtonText3 : '>>' })
+      this.setState({ ButtonText3 : '>' })
     }
   }
 
   onPressButton4 = () => {  
     this.setState({ TextInputDisableStatus4: !this.state.TextInputDisableStatus4 });
-    if (this.state.ButtonText4 == '>>') {
-      this.setState({ ButtonText4 : 'Y' })
+    if (this.state.ButtonText4 == '>') {
+      this.setState({ ButtonText4 : '✓' })
     } else {
-      this.setState({ ButtonText4 : '>>' })
+      this.setState({ ButtonText4 : '>' })
     }
   }
 
   onPressButton5 = () => {  
     this.setState({ TextInputDisableStatus5: !this.state.TextInputDisableStatus5 });
-    if (this.state.ButtonText5 == '>>') {
-      this.setState({ ButtonText5 : 'Y' })
+    if (this.state.ButtonText5 == '>') {
+      this.setState({ ButtonText5 : '✓' })
     } else {
-      this.setState({ ButtonText5 : '>>' })
+      this.setState({ ButtonText5 : '>' })
     }
   }
 
