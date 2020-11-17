@@ -58,13 +58,44 @@ class Personal extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
-  onPressButton = () => {  
+  updatePersonalInfo() {
+    
+    const {id} = this.state;
+    const {username} = this.state;
+    const {email} = this.state;
+    const {phone} = this.state;
+    const {address} = this.state;
+    const {city} = this.state;
+  
+    fetch('http://localhost:8080/odometer_terminator/user_personal_update.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+          username: username, 
+          email: email,
+          phone: phone,
+          address: address,
+          city: city,
+        })
+    }).then((response) => response.json())
+        .then(() => {
+        }).catch((error) => {
+          console.error(error);
+        });
+  }
+
+  onPressButton1 = () => {  
     this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
     if (this.state.ButtonText == '>') {
       this.setState({ ButtonText : '✓' })
     } else {
       this.setState({ ButtonText : '>' })
     }
+    this.updatePersonalInfo()
   }
 
   onPressButton2 = () => {  
@@ -74,6 +105,7 @@ class Personal extends React.Component {
     } else {
       this.setState({ ButtonText2 : '>' })
     }
+    this.updatePersonalInfo()
   }
 
   onPressButton3 = () => {  
@@ -83,6 +115,7 @@ class Personal extends React.Component {
     } else {
       this.setState({ ButtonText3 : '>' })
     }
+    this.updatePersonalInfo()
   }
 
   onPressButton4 = () => {  
@@ -92,6 +125,7 @@ class Personal extends React.Component {
     } else {
       this.setState({ ButtonText4 : '>' })
     }
+    this.updatePersonalInfo()
   }
 
   onPressButton5 = () => {  
@@ -101,6 +135,7 @@ class Personal extends React.Component {
     } else {
       this.setState({ ButtonText5 : '>' })
     }
+    this.updatePersonalInfo()
   }
 
   render() {
@@ -202,14 +237,6 @@ class Personal extends React.Component {
                 </KeyboardAvoidingView>
               </KeyboardAvoidingView>
             </Modal>
-            {/* <TouchableHighlight
-              style={styles.editbutton}
-              onPress={() => {
-                this.setModalVisible(true);
-              }}
-              >
-                <Text style={styles.editbuttontext}> Edit </Text>
-            </TouchableHighlight> */}
           </KeyboardAvoidingView>
         </KeyboardAvoidingView>
         
@@ -228,11 +255,12 @@ class Personal extends React.Component {
             />
             <TouchableOpacity
               style={styles.editbutton}
-              onPress={this.onPressButton}
+              onPress={this.onPressButton1}
             >
               <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
             </TouchableOpacity>
           </View>
+
           <Text style={styles.other_info}>Email</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
@@ -249,6 +277,7 @@ class Personal extends React.Component {
               <Text style={styles.editbuttontext}> {this.state.ButtonText2} </Text>
             </TouchableOpacity>
           </View>
+
           <Text style={styles.other_info}>Phone</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
@@ -265,6 +294,7 @@ class Personal extends React.Component {
               <Text style={styles.editbuttontext}> {this.state.ButtonText3} </Text>
             </TouchableOpacity>
           </View>
+
           <Text style={styles.other_info}>Address</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
@@ -281,6 +311,7 @@ class Personal extends React.Component {
               <Text style={styles.editbuttontext}> {this.state.ButtonText4} </Text>
             </TouchableOpacity>
           </View>
+
           <Text style={styles.other_info}>City</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
@@ -365,10 +396,10 @@ const styles = StyleSheet.create({
     borderLeftColor: '#0ad48a',
     borderLeftWidth: 10,
     justifyContent: 'center',
-    opacity: 0.7,
+    opacity: 0.8,
     width: 330,
-    height: 390,
-    borderRadius:10,
+    height: 410,
+    borderRadius: 10,
     borderWidth: 1,
     marginBottom: 15,
     paddingLeft: 10
@@ -419,7 +450,7 @@ const styles = StyleSheet.create({
   },
   other_info:{
     color: 'white',
-    //fontWeight: 'bold',
+    fontWeight: 'bold',
     paddingLeft: 20,
     fontSize: 20,
     justifyContent: 'flex-start',
@@ -509,22 +540,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-
-  buttonStyle: {
-    alignItems: 'center',
-    backgroundColor: '#f4511e',
-    padding: 10,
-    marginVertical: 10,
-  },
-
-  textStyle: {
-    fontSize: 18,
-    color: 'white',
-  },
   TextInputStyle: {  
     textAlign: 'center',
     width: 235,
-    height: 35,
+    height: 40,
+    fontSize: 18,
     borderRadius: 10,  
     borderWidth: 2,
     borderColor: '#161620',
@@ -541,17 +561,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     // flex: 1,
   },
-  TextInputStyle: {  
-    textAlign: 'center',
-    width: 235,
-    height: 35,
-    borderRadius: 10,  
-    borderWidth: 2,
-    borderColor: '#161620',
-    marginBottom: 10,
-    color: 'white'
-  },
-
   editbuttontext:{
     color: 'white',
     fontSize: 20,
