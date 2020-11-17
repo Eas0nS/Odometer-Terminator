@@ -14,7 +14,19 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
- 
+    // componentDidMount runs immediately after
+    // redirected to this Dashboard page
+
+    this.getUserID();
+
+  }
+
+  getUserID() {
+    // IMPORTANT
+    // Gets the userID from username
+    // The userID is further passed into pages
+    // like Personal Account, Car Status...
+
     const { username } = this.state;
     
     fetch('http://localhost:8080/odometer_terminator/user_dashboard.php', {
@@ -28,16 +40,38 @@ class Dashboard extends React.Component {
       })
     }).then((response) => response.json())
       .then((responseJson) => {
-
           this.setState({id: responseJson.id});
-
       }).catch((error) => {
         console.error(error);
-
       });
+
+  }
+
+  insertCarRecord() {
+    // Insert a new car record into table Car
+    // with the corresponding userID
+
+    const { id } = this.state;
+
+    fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: id,
+      })
+    }).then((response) => response.json())
+      .then(() => {
+      }).catch((error) => {
+        console.error(error);
+      });
+
   }
 
   render() {
+    this.insertCarRecord();
     return (
       <View style={styles.container}>
         <Image 
@@ -164,7 +198,8 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     fontFamily: 'Courier',
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
   },

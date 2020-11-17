@@ -80,7 +80,7 @@ class CarStatus extends React.Component {
           style={styles.container3}
           behavior="padding"
         >
-          <Text style={styles.titleText}>Car Info</Text>
+          <Text style={styles.titleText}>Car Status</Text>
           <KeyboardAvoidingView>
             <Modal
               animationType="slide"
@@ -357,6 +357,7 @@ const styles = StyleSheet.create({
   },
   other_info:{
     color: 'white',
+    fontWeight: 'bold',
     paddingLeft: 20,
     fontSize: 20,
     justifyContent: 'flex-start',
@@ -463,6 +464,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 235,
     height: 35,
+    fontSize: 18,
     borderRadius: 10,  
     borderWidth: 2,
     borderColor: '#161620',

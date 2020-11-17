@@ -78,7 +78,7 @@ if (isset($username) === true && $username === ''){
         echo $json ;
     } else{
 
-        echo 'Try Again';
+        echo json_encode('Try Again');
   
     }
 }
