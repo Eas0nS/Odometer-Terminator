@@ -2,23 +2,80 @@ import React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
 
 class CarStatus extends React.Component {
-  state = {
-    car_brand: '',
-    car_model: '',
-    car_color: '',
-    oil_mileage: '',
-    license:'',
-    modalVisible: false,
-    TextInputDisableStatus: false,
-    TextInputDisableStatus2: false,
-    TextInputDisableStatus3: false,
-    ButtonText : '>',
-    ButtonText2 : '>',
-    ButtonText3 : '>'
-  };
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      userID: this.props.route.params.id,
+      brand: '',
+      model: '',
+      color: '',
+      mileage: '',
+      license_plate: '',
+      modalVisible: false,
+      TextInputDisableStatus: false,
+      TextInputDisableStatus2: false,
+      TextInputDisableStatus3: false,
+      ButtonText : '>',
+      ButtonText2 : '>',
+      ButtonText3 : '>'
+    };
+  }
   
+  componentDidMount() {
+ 
+    const { userID } = this.state;
+    
+    fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: userID,
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({brand: responseJson.brand,
+                      model: responseJson.model,
+                      color: responseJson.color});
+
+      }).catch((error) => {
+        console.error(error);
+
+      });
+  }
+
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
+  }
+
+  updateCarStatus() {
+    
+    const {userID} = this.state;
+    const {brand} = this.state;
+    const {model} = this.state;
+    const {color} = this.state;
+  
+    fetch('http://localhost:8080/odometer_terminator/user_carstatus_update.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userID: userID,
+          brand: brand,
+          model: model,
+          color: color,
+        })
+    }).then((response) => response.json())
+        .then(() => {
+        }).catch((error) => {
+          console.error(error);
+        });
   }
 
   onPressButton = () => {  
@@ -28,6 +85,7 @@ class CarStatus extends React.Component {
     } else {
       this.setState({ ButtonText : '>' })
     }
+    this.updateCarStatus();
   }
 
   onPressButton2 = () => {  
@@ -37,6 +95,7 @@ class CarStatus extends React.Component {
     } else {
       this.setState({ ButtonText2 : '>' })
     }
+    this.updateCarStatus();
   }
 
   onPressButton3 = () => {  
@@ -46,6 +105,7 @@ class CarStatus extends React.Component {
     } else {
       this.setState({ ButtonText3 : '>' })
     }
+    this.updateCarStatus();
   }
 
   getDataUsingGet = () => {
@@ -94,19 +154,19 @@ class CarStatus extends React.Component {
                 <KeyboardAvoidingView style={styles.modalView}>
                   <KeyboardAvoidingView style={styles.inline}>
                     <TextInput
-                      value = {this.state.car_brand}
+                      value = {this.state.brand}
                       keyboardType = 'default'
-                      onChangeText={(car_brand) => this.setState({ car_brand })}
+                      onChangeText={(brand) => this.setState({ brand })}
                       placeholder='Car Brand'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input1}
                     />
                     <TextInput
-                      value = {this.state.car_color}
+                      value = {this.state.color}
                       keyboardType = 'default'
                       width = {100}
-                      onChangeText={(car_color) => this.setState({ car_color })}
+                      onChangeText={(color) => this.setState({ color })}
                       placeholder='Car Color'
                       placeholderTextColor='white'
                       color='white'
@@ -115,27 +175,27 @@ class CarStatus extends React.Component {
                   </KeyboardAvoidingView>
                   <KeyboardAvoidingView>
                     <TextInput
-                      value = {this.state.car_model}
+                      value = {this.state.model}
                       keyboardType = 'default'
-                      onChangeText={(car_model) => this.setState({ car_model })}
+                      onChangeText={(model) => this.setState({ model })}
                       placeholder='Car Model'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input2}
                     />
                     <TextInput
-                      value = {this.state.oil_mileage}
+                      value = {this.state.mileage}
                       keyboardType = 'default'
-                      onChangeText={(oil_mileage) => this.setState({ oil_mileage })}
+                      onChangeText={(mileage) => this.setState({ mileage })}
                       placeholder='Oil Milage'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input2}
                     />
                     <TextInput
-                      value = {this.state.license}
+                      value = {this.state.license_plate}
                       keyboardType = 'default'
-                      onChangeText={(license) => this.setState({ license })}
+                      onChangeText={(license_plate) => this.setState({ license_plate })}
                       placeholder='License Plate Number'
                       placeholderTextColor='white'
                       color='white'
@@ -167,9 +227,9 @@ class CarStatus extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus}
-              value = {this.state.car_brand}
+              value = {this.state.brand}
               keyboardType = 'default'
-              onChangeText={(car_brand) => this.setState({ car_brand })}
+              onChangeText={(brand) => this.setState({ brand })}
             />
             <TouchableOpacity
               style={styles.editbutton}
@@ -183,9 +243,9 @@ class CarStatus extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus2}
-              value = {this.state.car_model}
+              value = {this.state.model}
               keyboardType = 'default'
-              onChangeText={(car_model) => this.setState({ car_model })}
+              onChangeText={(model) => this.setState({ model })}
             />
             <TouchableOpacity
               style={styles.editbutton}
@@ -199,9 +259,9 @@ class CarStatus extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus3 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus3}
-              value = {this.state.car_color}
+              value = {this.state.color}
               keyboardType = 'default'
-              onChangeText={(car_color) => this.setState({ car_color })}
+              onChangeText={(color) => this.setState({ color })}
             />
             <TouchableOpacity
               style={styles.editbutton}
@@ -212,11 +272,11 @@ class CarStatus extends React.Component {
           </View>
           <Text style={styles.other_info}>Oil Milage</Text>
           <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.oil_mileage}</Text>
+            <Text style={styles.input_info}>{this.state.mileage}</Text>
           </View>
           <Text style={styles.other_info}>License Plate Number</Text>
           <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.license}</Text>
+            <Text style={styles.input_info}>{this.state.license_plate}</Text>
           </View>
         </View>
 
@@ -431,10 +491,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
@@ -447,19 +503,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-
-  buttonStyle: {
-    alignItems: 'center',
-    backgroundColor: '#f4511e',
-    padding: 10,
-    marginVertical: 10,
-  },
-
-  textStyle: {
-    fontSize: 18,
-    color: 'white',
-  },
-
   TextInputStyle: {  
     textAlign: 'center',
     width: 235,
@@ -471,10 +514,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: 'white'
   },
-
-  ImageIconStyle: {
-    resizeMode: 'stretch',
-  }
 
 });
 

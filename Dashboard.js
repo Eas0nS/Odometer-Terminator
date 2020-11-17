@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
 
     const { id } = this.state;
 
-    fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
+    fetch('http://localhost:8080/odometer_terminator/user_dashboard_car.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -94,8 +94,10 @@ class Dashboard extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-             this.props.navigation.navigate('CarStatus')}
+          onPress={() => {
+            const{ id } = this.state;
+            this.props.navigation.navigate('CarStatus', {id:id});
+          }}
         >
         <Text style={styles.buttonText}> Car Status </Text>
         </TouchableOpacity>

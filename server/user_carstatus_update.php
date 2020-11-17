@@ -13,20 +13,27 @@ $json = file_get_contents('php://input');
 $obj = json_decode($json,true);
  
 $userID = $obj['userID'];
- 
-$Sql_Query = "select * from Car where userID = '$userID' ";
- 
-// Executing SQL Query.
-$get_info = mysqli_fetch_array(mysqli_query($con,$Sql_Query));
+$brand = $obj['brand']; 
+$model = $obj['model'];
+$color = $obj['color'];
 
-if(isset($get_info)){
+$Sql_Query = "update Car set brand = '$brand', model = '$model',
+             color = '$color' where userID = '$userID' ";
+ 
+if(mysqli_query($con,$Sql_Query)){
+  
+    // If the record updated successfully then show the message.
+    $MSG = 'Car Status Updated Successfully' ;
 
     // Converting the message into JSON format.
-    $GetInfoJson = json_encode($get_info);
- 
-    // Echo the message.
-    echo $GetInfoJson; 
- 
+    $json = json_encode($MSG);
+
+    echo $json;
+
+} else{
+
+    echo json_encode('Try Again');
+
 }
 
 mysqli_close($con);
