@@ -169,8 +169,7 @@ class Contact extends React.Component {
         <TouchableHighlight
               style={styles.emailButton}
               onPress={() => {
-                this.setModalVisible(true);
-              }}
+                this.props.navigation.navigate('Appointment')}}
               >
                 <Text style={styles.editbuttontext}> Email us </Text>
           </TouchableHighlight>
