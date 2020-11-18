@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
-             this.props.navigation.navigate('ReportAccident')}
+             this.props.navigation.navigate('Claim')}
         >
         <Text style={styles.buttonText}> Report Accident </Text>
         </TouchableOpacity>
