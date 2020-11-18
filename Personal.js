@@ -551,15 +551,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: 'white'
   },
-
   avatar: {
     width: 140,
     height: 140,
     alignItems: 'center',
     marginLeft: 0,
-    // marginBottom: 50,
     marginTop: 10,
-    // flex: 1,
   },
   editbuttontext:{
     color: 'white',

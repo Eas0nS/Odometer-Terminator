@@ -3,11 +3,9 @@ import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInp
 
 class Contact extends React.Component {
   state = {
-    car_brand: '',
-    car_model: '',
-    car_color: '',
-    oil_mileage: '',
-    license:'',
+    agent: '',
+    phone: '',
+    feedback: '',
     modalVisible: false,
     TextInputDisableStatus: false,
     TextInputDisableStatus2: false,
@@ -21,7 +19,7 @@ class Contact extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
-  onPressButton = () => {  
+  onPressButton1 = () => {  
     this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
     if (this.state.ButtonText == '>') {
       this.setState({ ButtonText : '✓' })
@@ -48,27 +46,6 @@ class Contact extends React.Component {
     }
   }
 
-  getDataUsingGet = () => {
-    //GET request
-    fetch('http://18.204.130.183:8000/health', {
-      method: 'GET',
-      //Request Type
-    })
-      .then((response) => response.json())
-      //If response is in json then in success
-      .then((responseJson) => {
-        //Success
-        alert('Your current insurance status: '+JSON.stringify(responseJson));
-        console.log(responseJson);
-      })
-      //If response is not in json then in error
-      .catch((error) => {
-        //Error
-        alert(JSON.stringify(error));
-        console.error(error);
-      });
-  };
-
   render() {
     const { modalVisible } = this.state;
     return (
@@ -94,19 +71,19 @@ class Contact extends React.Component {
                 <KeyboardAvoidingView style={styles.modalView}>
                   <KeyboardAvoidingView style={styles.inline}>
                     <TextInput
-                      value = {this.state.car_brand}
+                      value = {this.state.agent}
                       keyboardType = 'default'
-                      onChangeText={(car_brand) => this.setState({ car_brand })}
+                      onChangeText={(agent) => this.setState({ agent })}
                       placeholder='Car Brand'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input1}
                     />
                     <TextInput
-                      value = {this.state.car_color}
+                      value = {this.state.feedback}
                       keyboardType = 'default'
                       width = {100}
-                      onChangeText={(car_color) => this.setState({ car_color })}
+                      onChangeText={(feedback) => this.setState({ feedback })}
                       placeholder='Car Color'
                       placeholderTextColor='white'
                       color='white'
@@ -115,28 +92,10 @@ class Contact extends React.Component {
                   </KeyboardAvoidingView>
                   <KeyboardAvoidingView>
                     <TextInput
-                      value = {this.state.car_model}
+                      value = {this.state.phone}
                       keyboardType = 'default'
-                      onChangeText={(car_model) => this.setState({ car_model })}
+                      onChangeText={(phone) => this.setState({ phone })}
                       placeholder='Car Model'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.oil_mileage}
-                      keyboardType = 'default'
-                      onChangeText={(oil_mileage) => this.setState({ oil_mileage })}
-                      placeholder='Oil Milage'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.license}
-                      keyboardType = 'default'
-                      onChangeText={(license) => this.setState({ license })}
-                      placeholder='License Plate Number'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input2}
@@ -183,13 +142,13 @@ class Contact extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus}
-              value = {this.state.car_brand}
+              value = {this.state.agent}
               keyboardType = 'default'
-              onChangeText={(car_brand) => this.setState({ car_brand })}
+              onChangeText={(agent) => this.setState({ agent })}
             />
             <TouchableOpacity
               style={styles.editbutton}
-              onPress={this.onPressButton}
+              onPress={this.onPressButton1}
             >
               <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
             </TouchableOpacity>
@@ -199,9 +158,9 @@ class Contact extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus2}
-              value = {this.state.car_model}
+              value = {this.state.phone}
               keyboardType = 'default'
-              onChangeText={(car_model) => this.setState({ car_model })}
+              onChangeText={(phone) => this.setState({ phone })}
             />
             <TouchableOpacity
               style={styles.editbutton}
@@ -215,9 +174,9 @@ class Contact extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus3 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus3}
-              value = {this.state.car_color}
+              value = {this.state.feedback}
               keyboardType = 'default'
-              onChangeText={(car_color) => this.setState({ car_color })}
+              onChangeText={(feedback) => this.setState({ feedback })}
             />
             <TouchableOpacity
               style={styles.editbutton}
@@ -244,30 +203,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  closebutton: {
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    borderColor: 'orange',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
-  },
-  ocrbutton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#0ad48a',
-    width: 320,
-    height: 50,
-    paddingTop: 10,
-    borderWidth: 1,
-    borderRadius: 15,
-    marginBottom: 10,
-    marginTop: 10
   },
   emailButton: {
     alignItems: 'center',
@@ -325,7 +260,6 @@ const styles = StyleSheet.create({
   smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: '#161620',
     width: 250,
     height: 35,
     marginLeft: 30,
@@ -333,21 +267,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 10,
     paddingLeft: -10,
-  },
-  backgroundImage:{
-    position: 'absolute',
-    justifyContent: 'center',
-    top: null,
-    left: null,
-    bottom: null,
-    right: null,
-    opacity: 0.8,
-  },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   contactText:{
     color: 'white'
@@ -444,35 +363,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
   inline: {
     width: 250,
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: 'center'
   },
-
-  buttonStyle: {
-    alignItems: 'center',
-    backgroundColor: '#f4511e',
-    padding: 10,
-    marginVertical: 10,
-  },
-
-  textStyle: {
-    fontSize: 18,
-    color: 'white',
-  },
-
   TextInputStyle: {  
     textAlign: 'center',
     width: 235,
@@ -483,10 +379,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: 'white'
   },
-
-  ImageIconStyle: {
-    resizeMode: 'stretch',
-  }
 
 });
 

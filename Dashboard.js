@@ -135,7 +135,7 @@ class Dashboard extends React.Component {
           onPress={() =>
              this.props.navigation.navigate('Contact')}
         >
-        <Text style={styles.buttonText}> Contact Us </Text>
+        <Text style={styles.buttonText}> Contact us </Text>
         </TouchableOpacity>
        </View> 
        </View>  

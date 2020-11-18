@@ -50,8 +50,6 @@ class Appointment extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.claimButton}
-              onPress={() =>
-                this.props.navigation.navigate('OCRPage')}
             >
               <Text style={styles.claimButtonText}> ACCIDENT CHECKLIST </Text>
             </TouchableOpacity>
@@ -202,21 +200,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 5
   },
-  filebutton: {
-    width: 300,
-    height: 120,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginTop: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  filetext: {
-    color: '#0ad48a',
-    fontSize: 20,
-  }
 });
 
 export default Appointment;
