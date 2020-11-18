@@ -16,6 +16,8 @@ import InsurancePlan from './InsurancePlan';
 import ReportAccident from './ReportAccident';
 import CustomButton from './CustomButton';
 import OCRPage from './OCRPage';
+import Claim from './Claim';
+import Report from './Report';
 
 const Stack = createStackNavigator();
 
@@ -91,7 +93,15 @@ class App extends React.Component {
             component={OCRPage}
           />
 
+          <Stack.Screen
+            name="Claim"
+            component={Claim}
+          />
 
+          <Stack.Screen
+            name="Report"
+            component={Report}
+          />
           </Stack.Navigator>
       </NavigationContainer>
     );
