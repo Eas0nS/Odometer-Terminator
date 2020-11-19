@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert, TouchableOpacity,
+   TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
 
 class CarStatus extends React.Component {
 
@@ -136,6 +137,7 @@ class CarStatus extends React.Component {
         style={styles.container}
         behavior="padding"
       >
+       <ScrollView>
         <KeyboardAvoidingView
           style={styles.container3}
           behavior="padding"
@@ -298,6 +300,7 @@ class CarStatus extends React.Component {
             </Text>
           </TouchableOpacity>
         </View>
+       </ScrollView>
       </View> 
     );
   }
@@ -374,7 +377,6 @@ const styles = StyleSheet.create({
   smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: '#161620',
     width: 250,
     height: 35,
     marginLeft: 30,
@@ -383,37 +385,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: -10,
   },
-  backgroundImage:{
-    position: 'absolute',
-    justifyContent: 'center',
-    top: null,
-    left: null,
-    bottom: null,
-    right: null,
-    opacity: 0.8,
-  },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   titleText:{
     color: 'white',
     fontWeight: 'bold',
     fontSize: 40,
-    marginTop: -10,
+    marginTop: 50,
     textAlign: 'left',
     marginBottom: 20,
     marginRight: 140
-  },
-  contact_info:{
-    paddingLeft: 40,
-    paddingTop: 10,
-    paddingBottom: 5,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
-    fontSize: 18,
   },
   other_info:{
     color: 'white',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, Image, View, Button, ScrollView, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
 
 class Personal extends React.Component {
 
@@ -145,6 +145,7 @@ class Personal extends React.Component {
         style={styles.container}
         behavior="padding"
       >
+       <ScrollView>
         <View style={styles.top}>
           <Image
             style= {styles.avatar}
@@ -329,7 +330,7 @@ class Personal extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-
+       </ScrollView>
       </View> 
     );
   }
@@ -375,7 +376,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     marginBottom: 20,
-    marginLeft: 35,
+    marginLeft: 140,
     marginTop: 10,
   },
   closebutton: {
@@ -407,7 +408,6 @@ const styles = StyleSheet.create({
   smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: '#161620',
     width: 250,
     height: 35,
     marginLeft: 30,
@@ -555,14 +555,13 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     alignItems: 'center',
-    marginLeft: 0,
-    marginTop: 10,
+    justifyContent: 'center',
+    marginLeft: 100,
+    marginTop: 30,
   },
   editbuttontext:{
     color: 'white',
     fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   editbutton: {
     alignItems: 'center',
