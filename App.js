@@ -18,6 +18,7 @@ import CustomButton from './CustomButton';
 import OCRPage from './OCRPage';
 import Claim from './Claim';
 import Report from './Report';
+import Report2 from './Report2';
 
 const Stack = createStackNavigator();
 
@@ -101,6 +102,10 @@ class App extends React.Component {
           <Stack.Screen
             name="Report"
             component={Report}
+          />
+          <Stack.Screen
+            name="Report2"
+            component={Report2}
           />
           </Stack.Navigator>
       </NavigationContainer>
