@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { View, Button, Alert, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import { View, Button, Alert, TouchableOpacity, StyleSheet, Text, Image} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+
 export default class OCRPage extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+     image: null, // stores URI 
+    }
+   }
+
 
   getMileage = async() => {
     //GET request
@@ -40,6 +49,8 @@ export default class OCRPage extends Component {
   }
   
   render() {
+
+    const { image} = this.state;
     
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -50,9 +61,10 @@ export default class OCRPage extends Component {
       });
   
       console.log(result);
-  
+      
       if (!result.cancelled) {
-        setImage(result.uri);
+        // return result.uri;
+        this.setState({ image: result.uri });
       }
     };
 
@@ -63,8 +75,11 @@ export default class OCRPage extends Component {
             style={styles.filebutton}
             onPress={pickImage}>
           <Text style={styles.filetext}>Choose a file</Text>
+          
+          {/* this is to show the image */}
           </TouchableOpacity>
       </View>
+
 
       <View style={{ flex: 1 }}>
         <TouchableOpacity
@@ -74,6 +89,13 @@ export default class OCRPage extends Component {
               Submit
             </Text>
         </TouchableOpacity>
+
+        <Image 
+          source = {{
+          uri: image
+          }}
+          style = {{ width: 300, height: 300 }}
+          />
 
       </View>
     </View>
