@@ -12,16 +12,16 @@ export default class OCRPage extends Component {
     }
    }
 
-
   getMileage = async() => {
-    //GET request
-    // call API --> object2
     fetch('http://18.204.130.183:8000/mock', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
+      body: JSON.stringify({
+        uri: this.state.image,
+      })
     }).then((response) => response.json())
       .then((responseJson) => {
         alert('Test:'+ JSON.stringify(responseJson));
@@ -63,10 +63,11 @@ export default class OCRPage extends Component {
       console.log(result);
       
       if (!result.cancelled) {
-        // return result.uri;
         this.setState({ image: result.uri });
       }
     };
+
+    console.log(image)
 
     return (
     <View>
@@ -74,12 +75,16 @@ export default class OCRPage extends Component {
           <TouchableOpacity
             style={styles.filebutton}
             onPress={pickImage}>
-          <Text style={styles.filetext}>Choose a file</Text>
-          
-          {/* this is to show the image */}
+            <Text style={styles.filetext}>Choose a file</Text>
           </TouchableOpacity>
       </View>
 
+      <Image 
+        source = {{
+          uri: image
+        }}
+        style = {{ width: 300, height: 300 }}
+      />
 
       <View style={{ flex: 1 }}>
         <TouchableOpacity
@@ -89,13 +94,6 @@ export default class OCRPage extends Component {
               Submit
             </Text>
         </TouchableOpacity>
-
-        <Image 
-          source = {{
-          uri: image
-          }}
-          style = {{ width: 300, height: 300 }}
-          />
 
       </View>
     </View>
@@ -109,13 +107,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#0ad48a',
     borderColor: '#0ad48a',
-    width: 320,
+    width: 300,
     height: 50,
     paddingTop: 10,
     borderWidth: 1,
     borderRadius: 15,
-    marginBottom: 10,
-    marginTop: 10
+    marginTop: 10,
   },
 
   editbuttontext:{
@@ -132,11 +129,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     marginLeft: 20,
-    marginTop: 15,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
+  filetext: {
+    fontSize: 20,
+  }
 
 }
 )
