@@ -25,12 +25,14 @@ class Appointment extends React.Component {
         quality: 1,
       });
   
-      console.log(result);
+    console.log(result);
   
-      if (!result.cancelled) {
+    if (!result.cancelled) {
         setImage(result.uri);
       }
     };
+
+    
 
     return (
       <ScrollView
@@ -44,7 +46,7 @@ class Appointment extends React.Component {
             <TouchableOpacity
               style={styles.list}
               onPress={() =>
-                this.props.navigation.navigate('')}
+                this.props.navigation.navigate('Report2')}
             >
             <Image
                 style= {styles.avatar}
