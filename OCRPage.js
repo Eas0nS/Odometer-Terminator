@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
-import { View, Button, Alert, TouchableOpacity, StyleSheet, Text} from 'react-native';
-import { WebView } from 'react-native-webview';
+import { View, Button, Alert, TouchableOpacity, StyleSheet, Text, Image} from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+
 
 export default class OCRPage extends Component {
-  
-  
-  
+
+  constructor(props) {
+    super(props);
+    this.state = {
+     image: null, // stores URI 
+    }
+   }
+
+
   getMileage = async() => {
     //GET request
     // call API --> object2
     fetch('http://18.204.130.183:8000/mock', {
-      method: 'GET',
-      //Request Type
-    })
-      // .then((response) =>  alert(response))
-      .then((response) => response.json())
-      //If response is in json then in success
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    }).then((response) => response.json())
       .then((responseJson) => {
-        //Success
         alert('Test:'+ JSON.stringify(responseJson));
         console.log(responseJson);
       })
-      //If response is not in json then in error
       .catch((error) => {
-        //Error
         alert(JSON.stringify(error));
         console.error(error);
       });
   };
-
 
   handlePress = async () => {
     fetch('http://18.204.130.183:8000/mock', {
@@ -37,54 +40,65 @@ export default class OCRPage extends Component {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        
-      //   body: JSON.stringify({
-      //       "type": "select",
-      //   "args": {
-      //     "table": "author",
-      //     "columns": [
-      //         "name"
-      //     ],
-      //     "limit": "1"
-      // }
-      //   })
-  })
-      .then((response) => response.json())
-      .then((responseJson) => {
-   Alert.alert("Author name at 0th index:  " + responseJson[0].height);
-      })
-      .catch((error) => {
+    }).then((response) => response.json())
+    .then((responseJson) => {
+          Alert.alert("Author name at 0th index:  " + responseJson[0].height);
+    }).catch((error) => {
         console.error(error);
       });
   }
-
-
-
   
   render() {
-    const myScript = 
-      setTimeout(function() { window.alert('Please upload your odometer image here!') }, 1000);
-      true; 
-    
-    return (
-      <View style={{ flex: 1 }}>
-        <WebView
-          source={{
-            uri:
-            // call API --> object 1
-              'http://18.204.130.183:8000/mock#',
-          }}
-        />
 
-       <TouchableOpacity
-            style={styles.ocrbutton}
-            onPress={this.getMileage}>
-            <Text style={styles.editbuttontext}>
-              Test
-            </Text>
+    const { image} = this.state;
+    
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+      
+      if (!result.cancelled) {
+        // return result.uri;
+        this.setState({ image: result.uri });
+      }
+    };
+
+    return (
+    <View>
+      <View style={[{marginTop: 15}]}>        
+          <TouchableOpacity
+            style={styles.filebutton}
+            onPress={pickImage}>
+          <Text style={styles.filetext}>Choose a file</Text>
+          
+          {/* this is to show the image */}
           </TouchableOpacity>
+      </View>
+
+
+      <View style={{ flex: 1 }}>
+        <TouchableOpacity
+          style={styles.ocrbutton}
+          onPress={this.getMileage}>
+            <Text style={styles.editbuttontext}>
+              Submit
+            </Text>
+        </TouchableOpacity>
+
+        <Image 
+          source = {{
+          uri: image
+          }}
+          style = {{ width: 300, height: 300 }}
+          />
 
       </View>
+    </View>
     );
   }
 }
@@ -107,6 +121,18 @@ const styles = StyleSheet.create({
   editbuttontext:{
     color: 'white',
     fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  filebutton: {
+    width: 300,
+    height: 120,
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginLeft: 20,
+    marginTop: 15,
     alignItems: 'center',
     justifyContent: 'center',
   },
