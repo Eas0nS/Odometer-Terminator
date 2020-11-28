@@ -8,9 +8,9 @@ export default class OCRPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     image: null, // stores URI 
+     image: {uri: null},
     }
-   }
+  }
 
   getMileage = async() => {
     fetch('http://18.204.130.183:8000/mock', {
@@ -20,7 +20,7 @@ export default class OCRPage extends Component {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        uri: this.state.image,
+        form: this.state.image,
       })
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -28,29 +28,14 @@ export default class OCRPage extends Component {
         console.log(responseJson);
       })
       .catch((error) => {
-        alert(JSON.stringify(error));
+        alert(JSON.stringify(this.state.image));
         console.error(error);
       });
   };
-
-  handlePress = async () => {
-    fetch('http://18.204.130.183:8000/mock', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-    }).then((response) => response.json())
-    .then((responseJson) => {
-          Alert.alert("Author name at 0th index:  " + responseJson[0].height);
-    }).catch((error) => {
-        console.error(error);
-      });
-  }
   
   render() {
 
-    const { image} = this.state;
+    const { image } = this.state;
     
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -63,7 +48,7 @@ export default class OCRPage extends Component {
       console.log(result);
       
       if (!result.cancelled) {
-        this.setState({ image: result.uri });
+        this.setState({ image: result });
       }
     };
 
@@ -81,7 +66,7 @@ export default class OCRPage extends Component {
 
       <Image 
         source = {{
-          uri: image
+          uri: image.uri
         }}
         style = {{ width: 300, height: 300 }}
       />
