@@ -9,56 +9,11 @@ import moment from 'moment';
  * www.flaticon.com</a>
  */
 
-class Appointment extends React.Component {
+class Report3 extends React.Component {
     state = {
-        email: '',
-        subject: '',
+        phoneNum: '',
         description: '',
-        filePath: {},
-        isVisible: false,
-        isVisibleTime: false,
-        chosenDate: 'November, 26th 2020',
-        chosenTime: '21:33',
-        location: ''
-    }
-
-    handlePickerDate = (datetime) => {
-        this.setState({
-            isVisible: false,
-            chosenDate: moment(datetime).format('MMMM, Do YYYY'),
-            chosenTime: moment(datetime).format('HH:mm')
-        })
-    }
-
-    showPickerDate = () => {
-        this.setState({
-            isVisible: true
-        })
-    }
-
-    hidePickerDate = () => {
-        this.setState({
-            isVisible: false
-        })
-    }
-
-    handlePickerTime = (datetime) => {
-        this.setState({
-            isVisibleTime: false,
-            chosenTime: moment(datetime).format('HH:mm')
-        })
-    }
-
-    showPickerTime = () => {
-        this.setState({
-            isVisibleTime: true
-        })
-    }
-
-    hidePickerTime = () => {
-        this.setState({
-            isVisibleTime: false
-        })
+        email: '',
     }
 
     render() {
@@ -88,33 +43,12 @@ class Appointment extends React.Component {
                     </Text>
 
                     <View style={styles.container2}>
-                        <Text style={styles.subtitle}>Date</Text>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={this.showPickerDate}
-                        >
-                            <Text style={styles.dateText}> {this.state.chosenDate} </Text>
-                        </TouchableOpacity>
-                        <DateTimePickerModal
-                            isVisible={this.state.isVisible}
-                            mode="datetime"
-                            onConfirm={this.handlePickerDate}
-                            onCancel={this.hidePickerDate}
-                        />
-
-                        <Text style={styles.subtitle}>Time</Text>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={this.showPickerTime}
-                        >
-                            <Text style={styles.dateText}> {this.state.chosenTime} </Text>
-                        </TouchableOpacity>
-                        <DateTimePickerModal
-                            isVisibleTime={this.state.isVisibleTime}
-                            mode="time"
-                            onConfirm={this.handlePickerTime}
-                            onCancel={this.hidePickerTime}
-                        />                        
+                        <Text style={styles.subtitle}>Description</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Location'
+                            placeholderTextColor='white'
+                            onChangeText={(location) => this.setState({location})} />
                     </View>
 
 
@@ -136,7 +70,7 @@ class Appointment extends React.Component {
                     <TouchableOpacity
                             style={styles.next}
                             onPress={() =>
-                            this.props.navigation.navigate('Report3')}
+                            this.props.navigation.navigate('')}
                     >
                             <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: '20'}, {marginRight: 10}]}> NEXT</Text>
                     </TouchableOpacity>
@@ -229,4 +163,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Appointment;
+export default Report3;

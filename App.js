@@ -19,6 +19,7 @@ import OCRPage from './OCRPage';
 import Claim from './Claim';
 import Report from './Report';
 import Report2 from './Report2';
+import Report3 from './Report3';
 import CameraPage from './CameraPage';
 
 const Stack = createStackNavigator();
@@ -107,6 +108,10 @@ class App extends React.Component {
           <Stack.Screen
             name="Report2"
             component={Report2}
+          />
+          <Stack.Screen
+            name="Report3"
+            component={Report3}
           />
           <Stack.Screen
             name="CameraPage"
