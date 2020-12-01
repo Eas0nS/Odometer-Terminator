@@ -17,9 +17,11 @@ class CarStatus extends React.Component {
       TextInputDisableStatus: false,
       TextInputDisableStatus2: false,
       TextInputDisableStatus3: false,
-      ButtonText : '>',
-      ButtonText2 : '>',
-      ButtonText3 : '>'
+      TextInputDisableStatus4: false,
+      ButtonText: '>',
+      ButtonText2: '>',
+      ButtonText3: '>',
+      ButtonText4: '>',
     };
   }
   
@@ -107,6 +109,10 @@ class CarStatus extends React.Component {
       this.setState({ ButtonText3 : '>' })
     }
     this.updateCarStatus();
+  }
+
+  onPressButton4 = () => {
+    this.props.navigation.navigate('CameraPage');
   }
 
   getDataUsingGet = () => {
@@ -273,8 +279,20 @@ class CarStatus extends React.Component {
             </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>Oil Milage</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.mileage}</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus4 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus4}
+              value = {this.state.mileage}
+              keyboardType = 'default'
+              onChangeText={(mileage) => this.setState({ mileage })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton4}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText4} </Text>
+            </TouchableOpacity>
           </View>
           <Text style={styles.other_info}>License Plate Number</Text>
           <View style={styles.smallcontainer}>

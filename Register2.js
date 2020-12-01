@@ -111,17 +111,17 @@ class Register2 extends React.Component {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                  this.props.navigation.navigate('Appointment')}
+                  this.props.navigation.navigate('CameraPage')}
                 >
-                  <Text style={styles.buttonText}> Test </Text>
-                </TouchableOpacity>
+                  <Text style={styles.buttonText}> Camera </Text>
+                </TouchableOpacity>  
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() =>
-                  this.props.navigation.navigate('CameraPage')}
+                  this.props.navigation.navigate('Appointment')}
                 >
-                  <Text style={styles.buttonText}> Back </Text>
-                </TouchableOpacity>           
+                  <Text style={styles.buttonText}> Appointment </Text>
+                </TouchableOpacity>         
                
           </KeyboardAvoidingView>
     );
