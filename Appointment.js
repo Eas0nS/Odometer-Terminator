@@ -1,17 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import CameraPage from './CameraPage.js';
 
 class Appointment extends React.Component {
   state = {
     email: '',
     subject: '',
     description: '',
-    filePath: {}
+    filePath: {},
+    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
+  }
+
+  bindimage () {
+    // this.setState({ image: CameraPage.state.image });
+    console.log(CameraPage.state.twice)
   }
 
   render() {
-
+    const { image } = this.state
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -23,7 +30,7 @@ class Appointment extends React.Component {
       console.log(result);
   
       if (!result.cancelled) {
-        setImage(result.uri);
+        //setImage(result.uri);
       }
     };
 
@@ -97,6 +104,12 @@ class Appointment extends React.Component {
               style={styles.filebutton}
               onPress={pickImage}>
                 <Text style={styles.filetext}>Choose a file</Text>
+                <Image 
+                  source = {{
+                  uri: this.state.image
+                  }}
+                  style = {{ width: 300, height: 300 }}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -104,9 +117,9 @@ class Appointment extends React.Component {
             <TouchableOpacity
               style={styles.submitbutton}
               onPress={() =>
-                this.props.navigation.navigate('OCRPage')}
+                this.bindimage()}
             >
-              <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{ustifyContent:'center'},{paddingTop: 5}]}> Submit </Text>
+              <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Submit </Text>
             </TouchableOpacity>
           </View>
         </View>
