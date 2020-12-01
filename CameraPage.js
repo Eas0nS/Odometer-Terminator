@@ -3,9 +3,8 @@ import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
-
-// const imagefile = '';
+import * as MediaLibrary from 'expo-media-library';
+import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';  
 
 // export const rimage = {
 //   imagefile
@@ -13,10 +12,13 @@ import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons
 
 class CameraPage extends React.Component {
   
-  state = {
-    hasPermission: null,
-    type: Camera.Constants.Type.back,
-    image: null,
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasPermission: null,
+      type: Camera.Constants.Type.back,
+      imagefile: ''
+    }
   }
 
   async componentDidMount() {
@@ -37,21 +39,35 @@ class CameraPage extends React.Component {
   }
 
   takePicture = async () => {
-    console.log('Button Pressed');
-    if (this.camera) {
-      console.log('Taking photo');
-      const options = { quality: 1, base64: true, fixOrientation: true, 
-      exif: true};
-      await this.camera.takePictureAsync(options).then(photo => {
-        photo.exif.Orientation = 1;            
-        console.log(photo);
-        console.log(photo.uri);
-        this.setState({ image: photo.uri });
-      });
-    }
+    
+    // if (this.camera) {
+    //   console.log('Taking photo');
+    //   const options = { quality: 1, base64: true, fixOrientation: true, 
+    //   exif: true};
+    //   await this.camera.takePictureAsync(options).then(photo => {
+    //     photo.exif.Orientation = 1;
+    //     console.log(photo);
+    //     console.log(photo.uri);
+    //     this.setState({ image: photo.uri });
+    //   });
+    // }
     // if (this.camera) {
     //   let photo = await this.camera.takePictureAsync();
     // }
+    const { uri } = await this.camera.takePictureAsync();
+    const asset = await MediaLibrary.createAssetAsync(uri);
+    console.log('Button Pressed');
+    MediaLibrary.createAlbumAsync('Expo', asset)
+      .then(() => {
+        console.log('Album created!');
+        console.log(uri);
+        this.setState({ imagefile: uri });
+        console.log('transferring');
+        this.props.navigation.navigate('Appointment', {image: uri });
+      })
+      .catch(error => {
+        console.log('err', error);
+      });
   }
 
   pickImage = async () => {

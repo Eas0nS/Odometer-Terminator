@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import CameraPage from './CameraPage.js';
+import {imagefile} from './CameraPage.js';
+
+
 
 class Appointment extends React.Component {
   state = {
@@ -9,15 +12,17 @@ class Appointment extends React.Component {
     subject: '',
     description: '',
     filePath: {},
-    image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'
+    //image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
+    image: this.props.route.params.image
   }
 
   bindimage () {
-    // this.setState({ image: CameraPage.state.image });
-    console.log(CameraPage.state.twice)
+    //this.setState({ image: uri });
+    //console.log(urii)
   }
 
   render() {
+    //const urii = this.props.navigation.getParams('text','nothing sent');
     const { image } = this.state
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -106,7 +111,7 @@ class Appointment extends React.Component {
                 <Text style={styles.filetext}>Choose a file</Text>
                 <Image 
                   source = {{
-                  uri: this.state.image
+                  uri: image
                   }}
                   style = {{ width: 300, height: 300 }}
                 />
