@@ -18,10 +18,11 @@ $email = $obj['email'];
 $phone = $obj['phone'];
 $address = $obj['address'];
 $city = $obj['city'];
+$zip = $obj['zip'];
 
 $Sql_Query = "update User set username = '$username', email = '$email',
-             phone = '$phone', address = '$address', city = '$city'
-             where id = '$id' ";
+             phone = '$phone', address = '$address', city = '$city',
+             zip = '$zip' where id = '$id' ";
  
 if(mysqli_query($con,$Sql_Query)){
   

@@ -12,17 +12,20 @@ class Personal extends React.Component {
         email: '',
         address: '',
         city: '',
+        zip: '',
         modalVisible: false,
         TextInputDisableStatus: false,
         TextInputDisableStatus2: false,
         TextInputDisableStatus3: false,
         TextInputDisableStatus4: false,
         TextInputDisableStatus5: false,
+        TextInputDisableStatus6: false,
         ButtonText : '>',
         ButtonText2 : '>',
         ButtonText3 : '>',
         ButtonText4 : '>',
-        ButtonText5 : '>'
+        ButtonText5 : '>',
+        ButtonText6 : '>',
      }
    }
 
@@ -41,12 +44,12 @@ class Personal extends React.Component {
       })
     }).then((response) => response.json())
       .then((responseJson) => {
-
         this.setState({username: responseJson.username,
                       email: responseJson.email,
                       phone: responseJson.phone,
                       address: responseJson.address,
-                      city: responseJson.city});
+                      city: responseJson.city,
+                      zip: responseJson.zip});
 
       }).catch((error) => {
         console.error(error);
@@ -66,6 +69,7 @@ class Personal extends React.Component {
     const {phone} = this.state;
     const {address} = this.state;
     const {city} = this.state;
+    const {zip} = this.state;
   
     fetch('http://localhost:8080/odometer_terminator/user_personal_update.php', {
         method: 'POST',
@@ -80,6 +84,7 @@ class Personal extends React.Component {
           phone: phone,
           address: address,
           city: city,
+          zip: zip,
         })
     }).then((response) => response.json())
         .then(() => {
@@ -134,6 +139,16 @@ class Personal extends React.Component {
       this.setState({ ButtonText5 : '✓' })
     } else {
       this.setState({ ButtonText5 : '>' })
+    }
+    this.updatePersonalInfo()
+  }
+
+  onPressButton6 = () => {  
+    this.setState({ TextInputDisableStatus6: !this.state.TextInputDisableStatus6 });
+    if (this.state.ButtonText6 == '>') {
+      this.setState({ ButtonText6 : '✓' })
+    } else {
+      this.setState({ ButtonText6 : '>' })
     }
     this.updatePersonalInfo()
   }
@@ -221,6 +236,15 @@ class Personal extends React.Component {
                       keyboardType = 'default'
                       onChangeText={(city) => this.setState({ city })}
                       placeholder='City'
+                      placeholderTextColor='white'
+                      color='white'
+                      style={styles.input2}
+                    />
+                    <TextInput
+                      value = {this.state.zip}
+                      keyboardType = 'default'
+                      onChangeText={(zip) => this.setState({ zip })}
+                      placeholder='Zip Code'
                       placeholderTextColor='white'
                       color='white'
                       style={styles.input2}
@@ -329,6 +353,24 @@ class Personal extends React.Component {
               <Text style={styles.editbuttontext}> {this.state.ButtonText5} </Text>
             </TouchableOpacity>
           </View>
+
+          <Text style={styles.other_info}>Zip Code</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus6 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus6}
+              value = {this.state.zip}
+              keyboardType = 'default'
+              onChangeText={(zip) => this.setState({ zip })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton6}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText6} </Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
        </ScrollView>
       </View> 
@@ -399,7 +441,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.8,
     width: 330,
-    height: 410,
+    height: 430,
     borderRadius: 10,
     borderWidth: 1,
     marginBottom: 15,
