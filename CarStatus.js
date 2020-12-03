@@ -115,22 +115,17 @@ class CarStatus extends React.Component {
     this.props.navigation.navigate('CameraPage');
   }
 
+  // Testing purpose only
   getDataUsingGet = () => {
-    //GET request
     fetch('http://18.204.130.183:8000/health', {
       method: 'GET',
-      //Request Type
     })
       .then((response) => response.json())
-      //If response is in json then in success
       .then((responseJson) => {
-        //Success
         alert('Your current insurance status: '+JSON.stringify(responseJson));
         console.log(responseJson);
       })
-      //If response is not in json then in error
       .catch((error) => {
-        //Error
         alert(JSON.stringify(error));
         console.error(error);
       });
@@ -309,14 +304,7 @@ class CarStatus extends React.Component {
           >
             <Text style={styles.editbuttontext}> Start OCR </Text>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.ocrbutton}
-            onPress={this.getDataUsingGet}>
-            <Text style={styles.editbuttontext}>
-              Get Your Insurance Status
-            </Text>
-          </TouchableOpacity>
+          
         </View>
        </ScrollView>
       </View> 

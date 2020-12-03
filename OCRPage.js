@@ -8,24 +8,32 @@ export default class OCRPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     image: {uri: null},
+      image: {uri: null},
+      mileage: '',
     }
   }
 
   getMileage = async() => {
+
+    let file = {
+      name: "img.jpg",
+      uri: this.state.image.uri,
+      type: 'image/jpg'
+    };
+  
+    let body_form = new FormData();
+    body_form.append('image', file);
+
     fetch('http://18.204.130.183:8000/mock', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        "Content-Type": "multipart/form-data"
       },
-      body: JSON.stringify({
-        image: this.state.image,
-      })
+      body: body_form
     }).then((response) => response.json())
       .then((responseJson) => {
-        alert('Test:'+ JSON.stringify(responseJson));
-        console.log(responseJson);
+        this.setState({ mileage: responseJson.mileage});
+        console.log(this.state.mileage)
       })
       .catch((error) => {
         alert(JSON.stringify(this.state.image));
@@ -44,15 +52,14 @@ export default class OCRPage extends Component {
         aspect: [4, 3],
         quality: 1,
       });
-  
-      console.log(result);
       
       if (!result.cancelled) {
         this.setState({ image: result });
       }
-    };
 
-    console.log(image)
+      console.log(this.state.image);
+
+    };
 
     return (
     <View>
