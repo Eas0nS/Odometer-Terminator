@@ -20,7 +20,7 @@ export default class OCRPage extends Component {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        form: this.state.image,
+        image: this.state.image,
       })
     }).then((response) => response.json())
       .then((responseJson) => {
