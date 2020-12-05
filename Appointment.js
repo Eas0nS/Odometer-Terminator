@@ -4,26 +4,17 @@ import * as ImagePicker from 'expo-image-picker';
 import CameraPage from './CameraPage.js';
 import {imagefile} from './CameraPage.js';
 
-
-
 class Appointment extends React.Component {
   state = {
     email: '',
     subject: '',
     description: '',
     filePath: {},
-    //image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
-    image: this.props.route.params.image
-  }
-
-  bindimage () {
-    //this.setState({ image: uri });
-    //console.log(urii)
+    // image: this.props.route.params.image
   }
 
   render() {
-    //const urii = this.props.navigation.getParams('text','nothing sent');
-    const { image } = this.state
+    // const { image } = this.state
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -31,8 +22,6 @@ class Appointment extends React.Component {
         aspect: [4, 3],
         quality: 1,
       });
-  
-      console.log(result);
   
       if (!result.cancelled) {
         //setImage(result.uri);
@@ -109,12 +98,12 @@ class Appointment extends React.Component {
               style={styles.filebutton}
               onPress={pickImage}>
                 <Text style={styles.filetext}>Choose a file</Text>
-                <Image 
+                {/* <Image 
                   source = {{
                   uri: image
                   }}
                   style = {{ width: 300, height: 300 }}
-                />
+                /> */}
               </TouchableOpacity>
             </View>
           </View>
@@ -122,7 +111,7 @@ class Appointment extends React.Component {
             <TouchableOpacity
               style={styles.submitbutton}
               onPress={() =>
-                this.bindimage()}
+                this.props.navigation.navigate('Register2')}
             >
               <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Submit </Text>
             </TouchableOpacity>

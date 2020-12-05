@@ -300,7 +300,7 @@ class CarStatus extends React.Component {
           <TouchableOpacity
             style={styles.ocrbutton}
             onPress={() =>
-              this.props.navigation.navigate('OCRPage')}
+              this.props.navigation.navigate('CameraPage')}
           >
             <Text style={styles.editbuttontext}> Start OCR </Text>
           </TouchableOpacity>

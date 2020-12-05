@@ -6,10 +6,6 @@ import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';  
 
-// export const rimage = {
-//   imagefile
-// }
-
 class CameraPage extends React.Component {
   
   constructor(props) {
@@ -39,21 +35,6 @@ class CameraPage extends React.Component {
   }
 
   takePicture = async () => {
-    
-    // if (this.camera) {
-    //   console.log('Taking photo');
-    //   const options = { quality: 1, base64: true, fixOrientation: true, 
-    //   exif: true};
-    //   await this.camera.takePictureAsync(options).then(photo => {
-    //     photo.exif.Orientation = 1;
-    //     console.log(photo);
-    //     console.log(photo.uri);
-    //     this.setState({ image: photo.uri });
-    //   });
-    // }
-    // if (this.camera) {
-    //   let photo = await this.camera.takePictureAsync();
-    // }
     const { uri } = await this.camera.takePictureAsync();
     const asset = await MediaLibrary.createAssetAsync(uri);
     console.log('Button Pressed');
@@ -62,22 +43,37 @@ class CameraPage extends React.Component {
         console.log('Album created!');
         console.log(uri);
         this.setState({ imagefile: uri });
-        console.log('transferring');
-        this.props.navigation.navigate('Appointment', {image: uri });
+        this.props.navigation.navigate('EditPage', {image: uri });
       })
       .catch(error => {
         console.log('err', error);
       });
   }
 
+  // pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.Images
+  //   });
+  // }
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
-  }
+    
+    if (!result.cancelled) {
+      this.setState({ imagefile: result.uri });
+      this.props.navigation.navigate('EditPage', {image: result.uri})
+    }
+  };
 
   render() {
     const { hasPermission, image } = this.state
+    
+    
+
     if (hasPermission === null) {
       return <View />;
     } else if (hasPermission === false) {
@@ -133,5 +129,3 @@ class CameraPage extends React.Component {
 }
 
 export default CameraPage;
-
-// export const rimage = {this.state.image};

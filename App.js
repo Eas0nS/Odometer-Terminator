@@ -21,6 +21,7 @@ import Report from './Report';
 import Report2 from './Report2';
 import Report3 from './Report3';
 import CameraPage from './CameraPage';
+import EditPage from './EditPage';
 
 const Stack = createStackNavigator();
 
@@ -116,6 +117,10 @@ class App extends React.Component {
           <Stack.Screen
             name="CameraPage"
             component={CameraPage}
+          />
+          <Stack.Screen
+            name="EditPage"
+            component={EditPage}
           />
           </Stack.Navigator>
       </NavigationContainer>
