@@ -6,7 +6,7 @@ class InsurancePlan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        // id: this.props.route.params.id,
+        id: this.props.route.params.id,
         StateRequirement: 'Wisconsin',
         Age: '25',
         CarModel: 'Honda Civic',
@@ -46,9 +46,77 @@ class InsurancePlan extends React.Component {
         isVisible9: false,
         isVisible10: false,
         isVisible11: false,
+        isVisible12: false,
         
+        // username: '',
+        // phone: '',
+        // email: '',
+        // address: '',
+        city: '',
+        zip: '',
+        brand: '',
+        model: '',
+        color: '',
+        mileage: '',
+        license_plate: '',
+
      }
    }
+
+  componentDidMount() {
+    const { id } = this.state;
+    fetch('http://localhost:8080/odometer_terminator/user_personal.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+      })
+  }).then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        // username: responseJson.username,
+        // email: responseJson.email,
+        // phone: responseJson.phone,
+        // address: responseJson.address,
+        city: responseJson.city,
+        zip: responseJson.zip,
+      });
+    }).catch((error) => {
+      console.error(error);
+
+    });
+
+
+    fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: id,
+      })
+  }).then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        brand: responseJson.brand,
+        model: responseJson.model,
+        color: responseJson.color,
+        mileage: responseJson.mileage,
+        license_plate: responseJson.license_plate,
+      });
+    }).catch((error) => {
+      console.error(error);
+
+    });
+
+
+
+
+  }
 
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
@@ -88,6 +156,10 @@ class InsurancePlan extends React.Component {
     this.setState({isVisible11: show})
   }
 
+  displayModal12(show){
+    this.setState({isVisible12: show})
+  }
+
   render() {
     const { modalVisible } = this.state;
     return (
@@ -98,17 +170,20 @@ class InsurancePlan extends React.Component {
       >
       <ScrollView>
       <View style={styles.top}>
-          <Image
+          {/* <Image
             style= {styles.avatar}
-            source= {require('./assets/nan.jpg')}
-          />
+            source= {require('./assets/amfm.jpeg')}
+          /> */}
 
           <TouchableOpacity
-              style={styles.changeButton}
               onPress={() =>
                   this.props.navigation.navigate('Dashboard')}
           >
-          <Text style={styles.changeButtonText}>Change </Text>
+          <Image
+            style= {styles.avatar}
+            source= {require('./assets/logo.png')}
+          />
+
           </TouchableOpacity>
       </View>
 
@@ -117,7 +192,7 @@ class InsurancePlan extends React.Component {
           behavior="padding"
         >
 
-        <Text style={styles.titleText}>Insurance Status</Text>
+        <Text style={styles.titleText}>{'\n'}Insurance Plan</Text>
 
         <KeyboardAvoidingView>
         <Modal
@@ -237,14 +312,14 @@ class InsurancePlan extends React.Component {
             </TouchableOpacity>
         </View>
 
-        <Text style={styles.other_info}>Car Model</Text>
+        <Text style={styles.other_info}>Car Brand</Text>
         <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus2}
-              value = {this.state.CarModel}
+              value = {this.state.brand}
               keyboardType = 'default'
-              onChangeText={(CarModel) => this.setState({ CarModel })}
+              onChangeText={(brand) => this.setState({ brand })}
             />
 
             <Modal
@@ -275,6 +350,51 @@ class InsurancePlan extends React.Component {
               style={styles.editbutton}
               onPress={() => {
                 this.displayModal10(true);
+              }}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
+            </TouchableOpacity>
+          </View>
+
+
+          <Text style={styles.other_info}>Car Model</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus2 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus2}
+              value = {this.state.model}
+              keyboardType = 'default'
+              onChangeText={(model) => this.setState({ model })}
+            />
+
+            <Modal
+            animationType = {"slide"}
+            transparent={false}
+            visible={this.state.isVisible12}
+            onRequestClose={() => {
+              Alert.alert('Modal has now been closed.');
+            }}>
+
+            <Image 
+              source={require('./assets/civic.jpeg')}
+              style = { styles.image }/>
+              <Text style = { styles.text }>
+                  Honda Civic insurance facts: {'\n'}
+                  {'\n'}{'\u2022 '}Average auto insurance price: $69/month {'\n'}
+                  {'\n'}{'\u2022 '}Most affordable insurance company: Progressive ($34/month) {'\n'}
+                  {'\n'}{'\u2022 '}Civic insurance rate vs. average vehicle insurance rate: $29 less expensive than the average vehicle {'\n'}
+                  {'\n'} More info: {'\n'}https://www.thezebra.com/auto-insurance/vehicles/honda/civic/
+              </Text>
+              <Text
+                style={styles.closeText}
+                onPress={() => {
+                  this.displayModal12(!this.state.isVisible12);}}>Close Modal</Text>
+            </Modal>
+
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={() => {
+                this.displayModal12(true);
               }}
             >
               <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
@@ -574,9 +694,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus10 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus10}
-              value = {this.state.ZipCode}
+              value = {this.state.zip}
               keyboardType = 'default'
-              onChangeText={(ZipCode) => this.setState({ ZipCode })}
+              onChangeText={(zip) => this.setState({ zip })}
             />
 
             <Modal
@@ -725,7 +845,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.8,
     width: 330,
-    height: 780,
+    height: 880,
     borderRadius: 10,
     borderWidth: 1,
     marginBottom: 15,
@@ -900,12 +1020,12 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   avatar: {
-    width: 140,
-    height: 140,
+    width: "100%",
+    height: 130,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 100,
-    marginTop: 30,
+    // marginLeft: 30,
+    marginTop: 20,
   },
   editbuttontext:{
     color: 'white',
