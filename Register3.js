@@ -134,10 +134,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container2: {
-    //flex: 1,
     backgroundColor: 'white',
     borderColor: 'white',
-    //alignItems: 'center',
     justifyContent: 'center',
     opacity: 0.7,
     width: 330,
@@ -155,12 +153,6 @@ const styles = StyleSheet.create({
     right: null,
     opacity: 0.8,
   },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   titleText:{
     fontFamily: 'Courier',
     fontWeight: 'bold',
@@ -169,14 +161,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 20,
     marginRight: 140
-  },
-  contact_info:{
-    paddingLeft: 40,
-    paddingTop: 10,
-    paddingBottom: 5,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
-    fontSize: 18,
   },
   other_info:{
     paddingLeft: 40,
