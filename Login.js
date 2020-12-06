@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, Image, View, Alert, TouchableOpacity, TextInput } from 'react-native';
 
 class Login extends React.Component {
 
@@ -28,7 +28,6 @@ class Login extends React.Component {
       })
     }).then((response) => response.json())
       .then((responseJson) => {
-
         // If server response message same as Data Matched
         if(responseJson === 'Correct Username and Password') {
           this.props.navigation.navigate('Dashboard', 
@@ -38,7 +37,6 @@ class Login extends React.Component {
         }
       }).catch((error) => {
         console.error(error);
-
       });
   }
   
@@ -73,23 +71,15 @@ class Login extends React.Component {
           style={styles.button}
           onPress={this.userLogin}
         >
-        <Text style={styles.buttonText}> Login </Text>
+          <Text style={styles.buttonText}> Login </Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={styles.button}
           onPress={() =>
              this.props.navigation.navigate('Register0')}
         >
-        <Text style={styles.buttonText}> Register </Text>
-        </TouchableOpacity>
-
-
-      
-
-
-
-        
+          <Text style={styles.buttonText}> Register </Text>
+        </TouchableOpacity> 
       </View>
     );
   }
