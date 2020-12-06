@@ -39,38 +39,41 @@ class Report3 extends React.Component {
             >
                 <View>
                     <Text style={[{ color: 'white' }, { marginTop: 50 }, { marginLeft: 20 }, { fontWeight: 'bold' }, { fontSize: 25 }]}>
-                        When did the incident happen?
+                        What happened?
                     </Text>
 
                     <View style={styles.container2}>
                         <Text style={styles.subtitle}>Description</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder='Location'
+                            placeholder='Brief Description'
                             placeholderTextColor='white'
                             onChangeText={(location) => this.setState({location})} />
                     </View>
 
 
                     <Text style={[{ color: 'white' }, { marginTop: 50 }, { marginLeft: 20 }, { fontWeight: 'bold' }, { fontSize: 25 }]}>
-                            Where did the incident happen?
+                            How can we reach you?
                     </Text>
 
                     <View style={styles.container3}>
+                        <Text style={styles.subtitle}>Phone Number</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder='Location'
+                            placeholder='Phone'
                             placeholderTextColor='white'
                             onChangeText={(location) => this.setState({location})} />
-                        <Text style={[{ color: 'white'}, {marginTop: 20}, {marginLeft: 30}, {marginRight: 30}]}>
-                            Please give us a brief description of the location. If you aren't sure of an actual address,
-                            just mention the closest intersection or landmark.
-                        </Text>
+                        <Text style={styles.subtitle}>Email</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Email(Optional)'
+                            placeholderTextColor='white'
+                            onChangeText={(location) => this.setState({location})} />
                     </View>
                     <TouchableOpacity
                             style={styles.next}
                             onPress={() =>
-                            this.props.navigation.navigate('')}
+                            this.props.navigation.navigate('Report4')}
                     >
                             <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: '20'}, {marginRight: 10}]}> NEXT</Text>
                     </TouchableOpacity>
