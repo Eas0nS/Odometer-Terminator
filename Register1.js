@@ -48,77 +48,77 @@ class Register1 extends React.Component {
       this.props.navigation.navigate('Login')
     }
 
-    render() {
-      return (
+  render() {
+    return (
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+      >
+        <Image
+          style = {styles.backgroundImage}
+          source = {require('./assets/bg.png')}
+        />
+        <Text style={styles.titleText}>Your Basic Info</Text>
         <KeyboardAvoidingView
-          style={styles.container}
+          style={styles.container2}
           behavior="padding"
         >
-          <Image
-            style = {styles.backgroundImage}
-            source = {require('./assets/bg.png')}
+          <Text style={styles.other_info}>Email Address*</Text>
+          <TextInput
+            value = {this.state.email}
+            keyboardType = 'default'
+            onChangeText={(email) => this.setState({ email })}
+            placeholder='12345@gmail.com'
+            style={styles.input}
           />
-          <Text style={styles.titleText}>Your Basic Info</Text>
-            <KeyboardAvoidingView
-              style={styles.container2}
-              behavior="padding"
-            >
-              <Text style={styles.other_info}>Email Address*</Text>
-              <TextInput
-                value = {this.state.email}
-                keyboardType = 'default'
-                onChangeText={(email) => this.setState({ email })}
-                placeholder='12345@gmail.com'
-                style={styles.input}
-              />
-              <Text style={styles.other_info}>Phone Number*</Text>
-              <TextInput
-                value = {this.state.phone}
-                keyboardType = 'default'
-                onChangeText={(phone) => this.setState({ phone })}
-                placeholder='123-456-7890'
-                style={styles.input}
-              />
-              <Text style={styles.other_info}>Address*</Text>
-              <TextInput
-                value = {this.state.address}
-                keyboardType = 'default'
-                onChangeText={(address) => this.setState({ address })}
-                placeholder='123 Badger St.'
-                style={styles.input}
-              />
-              <Text style={styles.other_info}>City*</Text>
-              <TextInput
-                value = {this.state.city}
-                keyboardType = 'default'
-                onChangeText={(city) => this.setState({ city })}
-                placeholder='Madison'
-                style={styles.input}
-              />
-              <Text style={styles.other_info}>Zip Code*</Text>
-              <TextInput
-                value = {this.state.zip}
-                keyboardType = 'default'
-                onChangeText={(zip) => this.setState({ zip })}
-                placeholder='12345'
-                style={styles.input}
-              />
-            </KeyboardAvoidingView>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={()=>this.props.navigation.navigate('Register2')}
-            >
-              <Text style={styles.buttonText}> Next </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={this.userRegistration}
-            >
-              <Text style={styles.buttonText}> Register </Text>
-            </TouchableOpacity>
-          </KeyboardAvoidingView>
-        );
-    }
+          <Text style={styles.other_info}>Phone Number*</Text>
+          <TextInput
+            value = {this.state.phone}
+            keyboardType = 'default'
+            onChangeText={(phone) => this.setState({ phone })}
+            placeholder='123-456-7890'
+            style={styles.input}
+          />
+          <Text style={styles.other_info}>Address*</Text>
+          <TextInput
+            value = {this.state.address}
+            keyboardType = 'default'
+            onChangeText={(address) => this.setState({ address })}
+            placeholder='123 Badger St.'
+            style={styles.input}
+          />
+          <Text style={styles.other_info}>City*</Text>
+          <TextInput
+            value = {this.state.city}
+            keyboardType = 'default'
+            onChangeText={(city) => this.setState({ city })}
+            placeholder='Madison'
+            style={styles.input}
+          />
+          <Text style={styles.other_info}>Zip Code*</Text>
+          <TextInput
+            value = {this.state.zip}
+            keyboardType = 'default'
+            onChangeText={(zip) => this.setState({ zip })}
+            placeholder='12345'
+            style={styles.input}
+          />
+        </KeyboardAvoidingView>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={()=>this.props.navigation.navigate('Register2')}
+        >
+          <Text style={styles.buttonText}> Next </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.userRegistration}
+        >
+          <Text style={styles.buttonText}> Register </Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

@@ -138,7 +138,7 @@ class Appointment extends React.Component {
                             onPress={() =>
                             this.props.navigation.navigate('Report3')}
                     >
-                            <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: '20'}, {marginRight: 10}]}> NEXT</Text>
+                            <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: 20}, {marginRight: 10}]}> NEXT</Text>
                     </TouchableOpacity>
                 </View>
                 <View>

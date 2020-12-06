@@ -20,6 +20,7 @@ import Claim from './Claim';
 import Report from './Report';
 import Report2 from './Report2';
 import Report3 from './Report3';
+import Report4 from './Report4';
 import CameraPage from './CameraPage';
 import EditPage from './EditPage';
 
@@ -112,6 +113,10 @@ class App extends React.Component {
           <Stack.Screen
             name="Report3"
             component={Report3}
+          />
+          <Stack.Screen
+            name="Report4"
+            component={Report4}
           />
           <Stack.Screen
             name="CameraPage"
