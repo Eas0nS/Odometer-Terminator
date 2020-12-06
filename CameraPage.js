@@ -50,11 +50,6 @@ class CameraPage extends React.Component {
       });
   }
 
-  // pickImage = async () => {
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.Images
-  //   });
-  // }
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -72,8 +67,6 @@ class CameraPage extends React.Component {
   render() {
     const { hasPermission, image } = this.state
     
-    
-
     if (hasPermission === null) {
       return <View />;
     } else if (hasPermission === false) {
