@@ -295,17 +295,6 @@ class CarStatus extends React.Component {
           </View>
         </View>
 
-        <View>
-
-          <TouchableOpacity
-            style={styles.ocrbutton}
-            onPress={() =>
-              this.props.navigation.navigate('CameraPage')}
-          >
-            <Text style={styles.editbuttontext}> Start OCR </Text>
-          </TouchableOpacity>
-          
-        </View>
        </ScrollView>
       </View> 
     );
@@ -341,18 +330,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 10,
     marginLeft: -80,
-  },
-  ocrbutton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#0ad48a',
-    width: 320,
-    height: 50,
-    paddingTop: 10,
-    borderWidth: 1,
-    borderRadius: 15,
-    marginBottom: 10,
-    marginTop: 10
   },
   editbutton: {
     alignItems: 'center',

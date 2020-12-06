@@ -15,7 +15,6 @@ import Contact from './Contact';
 import InsurancePlan from './InsurancePlan';
 import ReportAccident from './ReportAccident';
 import CustomButton from './CustomButton';
-import OCRPage from './OCRPage';
 import Claim from './Claim';
 import Report from './Report';
 import Report2 from './Report2';
@@ -89,12 +88,6 @@ class App extends React.Component {
           <Stack.Screen
             name="CustomButton"
             component={CustomButton}
-          />
-
-
-            <Stack.Screen
-            name="OCRPage"
-            component={OCRPage}
           />
 
           <Stack.Screen
