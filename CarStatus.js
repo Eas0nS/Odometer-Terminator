@@ -11,7 +11,7 @@ class CarStatus extends React.Component {
       brand: '',
       model: '',
       color: '',
-      mileage: '',
+      mileage: this.props.route.params.mileage,
       license_plate: '',
       modalVisible: false,
       TextInputDisableStatus: false,
