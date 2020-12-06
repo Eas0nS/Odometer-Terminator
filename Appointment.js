@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 class Appointment extends React.Component {
@@ -8,6 +8,7 @@ class Appointment extends React.Component {
     subject: '',
     description: '',
     filePath: {},
+    imagefile: ''
   }
 
   render() {
@@ -18,9 +19,8 @@ class Appointment extends React.Component {
         aspect: [4, 3],
         quality: 1,
       });
-  
       if (!result.cancelled) {
-        //setImage(result.uri);
+        this.setState({ imagefile: result.uri });
       }
     };
 
@@ -91,15 +91,10 @@ class Appointment extends React.Component {
                 Attachments
               </Text>
               <TouchableOpacity
-              style={styles.filebutton}
-              onPress={pickImage}>
+                style={styles.filebutton}
+                onPress={pickImage}
+              >
                 <Text style={styles.filetext}>Choose a file</Text>
-                {/* <Image 
-                  source = {{
-                  uri: image
-                  }}
-                  style = {{ width: 300, height: 300 }}
-                /> */}
               </TouchableOpacity>
             </View>
           </View>
@@ -132,9 +127,6 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth: 1,
     marginLeft: 15
-  },
-  scrollView: {
-    backgroundColor: 'pink',
   },
   submit: {
     color: 'white',
