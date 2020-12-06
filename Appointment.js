@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import CameraPage from './CameraPage.js';
-import {imagefile} from './CameraPage.js';
 
 class Appointment extends React.Component {
   state = {
@@ -10,11 +8,10 @@ class Appointment extends React.Component {
     subject: '',
     description: '',
     filePath: {},
-    // image: this.props.route.params.image
+    imagefile: ''
   }
 
   render() {
-    // const { image } = this.state
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -22,9 +19,8 @@ class Appointment extends React.Component {
         aspect: [4, 3],
         quality: 1,
       });
-  
       if (!result.cancelled) {
-        //setImage(result.uri);
+        this.setState({ imagefile: result.uri });
       }
     };
 
@@ -95,15 +91,10 @@ class Appointment extends React.Component {
                 Attachments
               </Text>
               <TouchableOpacity
-              style={styles.filebutton}
-              onPress={pickImage}>
+                style={styles.filebutton}
+                onPress={pickImage}
+              >
                 <Text style={styles.filetext}>Choose a file</Text>
-                {/* <Image 
-                  source = {{
-                  uri: image
-                  }}
-                  style = {{ width: 300, height: 300 }}
-                /> */}
               </TouchableOpacity>
             </View>
           </View>
@@ -136,9 +127,6 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth: 1,
     marginLeft: 15
-  },
-  scrollView: {
-    backgroundColor: 'pink',
   },
   submit: {
     color: 'white',

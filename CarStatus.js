@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert, TouchableOpacity,
    TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
+import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';  
 
 class CarStatus extends React.Component {
 
@@ -26,7 +27,13 @@ class CarStatus extends React.Component {
   }
   
   componentDidMount() {
- 
+
+    this.getCarStatus();
+
+  }
+
+  getCarStatus() {
+
     const { userID } = this.state;
     
     fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
@@ -43,16 +50,12 @@ class CarStatus extends React.Component {
 
         this.setState({brand: responseJson.brand,
                       model: responseJson.model,
-                      color: responseJson.color});
+                      color: responseJson.color,
+                      mileage: responseJson.mileage});
 
       }).catch((error) => {
         console.error(error);
-
       });
-  }
-
-  setModalVisible = (visible) => {
-    this.setState({ modalVisible: visible });
   }
 
   updateCarStatus() {
@@ -79,6 +82,10 @@ class CarStatus extends React.Component {
         }).catch((error) => {
           console.error(error);
         });
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
   }
 
   onPressButton = () => {  
@@ -112,7 +119,7 @@ class CarStatus extends React.Component {
   }
 
   onPressButton4 = () => {
-    this.props.navigation.navigate('CameraPage');
+    this.props.navigation.navigate('CameraPage', {userID: this.state.userID});
   }
 
   // Testing purpose only
@@ -295,17 +302,21 @@ class CarStatus extends React.Component {
           </View>
         </View>
 
-        <View>
-
-          <TouchableOpacity
-            style={styles.ocrbutton}
+        <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              backgroundColor: 'transparent',                  
+            }}
             onPress={() =>
-              this.props.navigation.navigate('CameraPage')}
-          >
-            <Text style={styles.editbuttontext}> Start OCR </Text>
-          </TouchableOpacity>
-          
-        </View>
+              this.getCarStatus()}
+        >
+          <FontAwesome
+            name="retweet"
+            style={{ color: "#fff", fontSize: 80}}
+          />
+          <Text style={styles.refresh}>Refresh</Text>
+        </TouchableOpacity>
+
        </ScrollView>
       </View> 
     );
@@ -341,18 +352,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 10,
     marginLeft: -80,
-  },
-  ocrbutton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#0ad48a',
-    width: 320,
-    height: 50,
-    paddingTop: 10,
-    borderWidth: 1,
-    borderRadius: 15,
-    marginBottom: 10,
-    marginTop: 10
   },
   editbutton: {
     alignItems: 'center',
@@ -404,6 +403,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     paddingLeft: 20,
+    fontSize: 20,
+    justifyContent: 'flex-start',
+  },
+  refresh:{
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 20,
     justifyContent: 'flex-start',
   },

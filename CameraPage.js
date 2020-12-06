@@ -11,6 +11,7 @@ class CameraPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      userID: this.props.route.params.userID,
       hasPermission: null,
       type: Camera.Constants.Type.back,
       imagefile: ''
@@ -43,18 +44,13 @@ class CameraPage extends React.Component {
         console.log('Album created!');
         console.log(uri);
         this.setState({ imagefile: uri });
-        this.props.navigation.navigate('EditPage', {image: uri });
+        this.props.navigation.navigate('EditPage', {userID: this.state.userID, image: uri });
       })
       .catch(error => {
         console.log('err', error);
       });
   }
 
-  // pickImage = async () => {
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.Images
-  //   });
-  // }
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -65,15 +61,13 @@ class CameraPage extends React.Component {
     
     if (!result.cancelled) {
       this.setState({ imagefile: result.uri });
-      this.props.navigation.navigate('EditPage', {image: result.uri})
+      this.props.navigation.navigate('EditPage', {userID: this.state.userID, image: result.uri})
     }
   };
 
   render() {
     const { hasPermission, image } = this.state
     
-    
-
     if (hasPermission === null) {
       return <View />;
     } else if (hasPermission === false) {
@@ -90,7 +84,7 @@ class CameraPage extends React.Component {
                 marginLeft: 20,
                 backgroundColor: 'transparent',                  
             }}
-            onPress={()=>this.props.navigation.navigate('Register2')}
+            onPress={()=>this.props.navigation.navigate('CarStatus')}
             >
               <FontAwesome
                 name="window-close"

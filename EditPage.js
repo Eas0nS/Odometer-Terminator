@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
-import CameraPage from './CameraPage.js';
-import {imagefile} from './CameraPage.js';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, 
+    TextInput, Platform, Image } from 'react-native';
 
 class EditPage extends React.Component {
-  state = {
-    image: this.props.route.params.image,
-    mileage: ''
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      userID: this.props.route.params.userID,
+      image: this.props.route.params.image,
+      mileage: ''
+    }
   }
 
   getMileage = async() => {
@@ -28,13 +32,38 @@ class EditPage extends React.Component {
     }).then((response) => response.json())
       .then((responseJson) => {
         this.setState({ mileage: responseJson.mileage});
-        console.log(this.state.mileage)
       })
       .catch((error) => {
         alert(JSON.stringify(this.state.image));
         console.error(error);
       });
   };
+
+  storeMileage = async() => {
+    const {userID} = this.state;
+    const {mileage} = this.state;
+  
+    fetch('http://localhost:8080/odometer_terminator/store_mileage.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userID: userID,
+          mileage: mileage,
+        })
+    }).then((response) => response.json())
+        .then(() => {
+        }).catch((error) => {
+          console.error(error);
+        });
+  }
+
+  onPressButton = () => {
+    this.storeMileage()
+    this.props.navigation.navigate('CarStatus')
+  }
 
   render() {
     const { image,mileage } = this.state;
@@ -49,27 +78,35 @@ class EditPage extends React.Component {
               source = {{
                 uri: image
               }}
-              style = {{ width: 335, height: 295,marginLeft:1, borderRadius: 8}}
+              style = {{ width: 335, height: 295, marginLeft:1, borderRadius: 8}}
             />
+          </View>
+
+          <Text style={[{color: 'white'},{fontSize: 20},{marginLeft: 15},{marginTop: 20},{marginBottom: 5}]}>
+            OCR Result:
+          </Text>
+          <View style={styles.container4}>
+            <Text style={[{color: 'white'},{fontSize: 18},{paddingTop: 10}]}>
+              {mileage}
+            </Text>
           </View>
 
           <View>
             <TouchableOpacity
-              style={styles.submitbutton}
+              style={styles.button}
               onPress={this.getMileage}
             >
               <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Submit </Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={[{color: 'white'},{fontSize: 20},{marginLeft: 15},{marginBottom: 5}]}>
-            OCR Results:
-          </Text>
-          <View style={styles.container4}>
-            
-            <Text style={[{color: 'white'},{fontSize: 18},{paddingTop: 5}]}>
-              {mileage}
-            </Text>
+          <View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this.onPressButton}
+            >
+              <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Back </Text>
+            </TouchableOpacity>
           </View>
 
         </View>
@@ -106,13 +143,13 @@ const styles = StyleSheet.create({
   },
   container4: {
     width: 340,
-    height: 300,
+    height: 50,
     backgroundColor:'#1d1d2a',
     borderColor: '#1d1d2a',
     borderRadius: 10,
     borderWidth: 2,
     marginLeft: 15,
-    marginBottom: 50,
+    marginBottom: 30,
   },
   scrollView: {
     backgroundColor: 'pink',
@@ -132,7 +169,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 15
   },
-  submitbutton: {
+  button: {
     alignItems: 'center',
     backgroundColor: '#0ad48a',
     borderColor: '#0ad48a',
@@ -140,47 +177,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
-    marginTop: 20,
     marginBottom: 20,
     marginLeft: 20
   },
-  input1: {
-    width: 300,
-    fontSize: 15,
-    height: 35,
-    borderRadius:7,
-    backgroundColor: 'white',
-    marginTop: 15,
-    marginLeft: 20,
-    marginBottom: 15,
-    padding: 5
-  },
-  input2: {
-    width: 300,
-    fontSize: 15,
-    height: 120,
-    borderRadius:7,
-    backgroundColor: 'white',
-    marginTop: 15,
-    marginLeft: 20,
-    marginBottom: 15,
-    padding: 5
-  },
-  filebutton: {
-    width: 300,
-    height: 120,
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginTop: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  filetext: {
-    color: '#0ad48a',
-    fontSize: 20,
-  }
 });
 
 export default EditPage;
