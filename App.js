@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import Register0 from './Register0';
 import Register1 from './Register1';
 import Register2 from './Register2';
+import Register3 from './Register3';
 import Personal from './Personal';
 import Appointment from './Appointment';
 import CarStatus from './CarStatus';
@@ -15,7 +16,6 @@ import Contact from './Contact';
 import InsurancePlan from './InsurancePlan';
 import ReportAccident from './ReportAccident';
 import CustomButton from './CustomButton';
-import OCRPage from './OCRPage';
 import Claim from './Claim';
 import Report from './Report';
 import Report2 from './Report2';
@@ -58,6 +58,11 @@ class App extends React.Component {
           />
 
           <Stack.Screen
+            name="Register3"
+            component={Register3}
+          />
+
+          <Stack.Screen
             name="Personal"
             component={Personal}
           />
@@ -90,12 +95,6 @@ class App extends React.Component {
           <Stack.Screen
             name="CustomButton"
             component={CustomButton}
-          />
-
-
-            <Stack.Screen
-            name="OCRPage"
-            component={OCRPage}
           />
 
           <Stack.Screen

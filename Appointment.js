@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import CameraPage from './CameraPage.js';
-import {imagefile} from './CameraPage.js';
 
 class Appointment extends React.Component {
   state = {
@@ -10,11 +8,9 @@ class Appointment extends React.Component {
     subject: '',
     description: '',
     filePath: {},
-    // image: this.props.route.params.image
   }
 
   render() {
-    // const { image } = this.state
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
