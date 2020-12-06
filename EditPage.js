@@ -3,9 +3,14 @@ import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity,
     TextInput, Platform, Image } from 'react-native';
 
 class EditPage extends React.Component {
-  state = {
-    image: this.props.route.params.image,
-    mileage: ''
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      userID: this.props.route.params.userID,
+      image: this.props.route.params.image,
+      mileage: ''
+    }
   }
 
   getMileage = async() => {
@@ -27,13 +32,38 @@ class EditPage extends React.Component {
     }).then((response) => response.json())
       .then((responseJson) => {
         this.setState({ mileage: responseJson.mileage});
-        console.log(this.state.mileage)
       })
       .catch((error) => {
         alert(JSON.stringify(this.state.image));
         console.error(error);
       });
   };
+
+  storeMileage = async() => {
+    const {userID} = this.state;
+    const {mileage} = this.state;
+  
+    fetch('http://localhost:8080/odometer_terminator/store_mileage.php', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userID: userID,
+          mileage: mileage,
+        })
+    }).then((response) => response.json())
+        .then(() => {
+        }).catch((error) => {
+          console.error(error);
+        });
+  }
+
+  onPressButton = () => {
+    this.storeMileage()
+    this.props.navigation.navigate('CarStatus')
+  }
 
   render() {
     const { image,mileage } = this.state;
@@ -73,8 +103,7 @@ class EditPage extends React.Component {
           <View>
             <TouchableOpacity
               style={styles.button}
-              onPress={() =>
-                this.props.navigation.navigate('CarStatus', {mileage:mileage})}
+              onPress={this.onPressButton}
             >
               <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Back </Text>
             </TouchableOpacity>
