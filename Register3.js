@@ -57,7 +57,7 @@ class Register2 extends React.Component {
                 { label: 'MasterCard', value: 'mastercard' },
                 { label: 'Amex', value: 'amex' },
               ]}
-          />
+            />
           </View>
           <Text style={styles.other_info}>Expiration Date*</Text>
           <TextInput
@@ -85,45 +85,44 @@ class Register2 extends React.Component {
           />
 
           </KeyboardAvoidingView>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <Text style={styles.modalText}>Success!</Text>
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                    onPress={() => {
-                      this.setModalVisible(!modalVisible);
-                      this.props.navigation.navigate('Login');
-                    }}
-                  >
-                    <Text style={styles.textStyle}>Close</Text>
-                  </TouchableHighlight>
-                </View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>Success!</Text>
+                <TouchableHighlight
+                  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                  onPress={() => {
+                    this.setModalVisible(!modalVisible);
+                    this.props.navigation.navigate('Login');
+                  }}
+                >
+                  <Text style={styles.textStyle}>Close</Text>
+                </TouchableHighlight>
               </View>
-            </Modal>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                  this.props.navigation.navigate('CameraPage')}
-                >
-                  <Text style={styles.buttonText}> Camera </Text>
-                </TouchableOpacity>  
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() =>
-                  this.props.navigation.navigate('OCRPage')}
-                >
-                  <Text style={styles.buttonText}> OCRPage </Text>
-                </TouchableOpacity>         
-               
-          </KeyboardAvoidingView>
+            </View>
+          </Modal>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              this.props.navigation.navigate('CameraPage')}
+          >
+            <Text style={styles.buttonText}> Camera </Text>
+          </TouchableOpacity>  
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              this.props.navigation.navigate('OCRPage')}
+          >
+            <Text style={styles.buttonText}> OCRPage </Text>
+          </TouchableOpacity>            
+      </KeyboardAvoidingView>
     );
   }
 }
