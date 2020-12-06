@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, Image, View, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 class Register2 extends React.Component {
