@@ -18,10 +18,9 @@ class Report4 extends React.Component {
  showAlert = () =>{
     Alert.alert(
         "Submitted!", "Type OK to return"
-        [
-            {text: "OK", onPress: () => this.props.navigation.navigate('Dashboard')}
-        ],
+        [{text: "OK"}],
       );
+    this.props.navigation.navigate('Dashboard')
  };
 
   render() {

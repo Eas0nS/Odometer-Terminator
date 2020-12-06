@@ -28,11 +28,7 @@ class InsurancePlan extends React.Component {
         TextInputDisableStatus8: false,
         TextInputDisableStatus9: false,
         TextInputDisableStatus10: false,
-        ButtonText : 'View',
-        ButtonText2 : '>',
-        ButtonText3 : '>',
-        ButtonText4 : '>',
-        ButtonText5 : '>',
+        ButtonText : '>',
 
         isModalVisible: false,
         isVisible: false,
@@ -787,12 +783,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#161620'
+    backgroundColor: '#161620',
   },
   container3: {
     flexDirection: "row",
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: 20,
   },
   editbutton: {
     alignItems: 'center',
