@@ -13,15 +13,15 @@ $json = file_get_contents('php://input');
 $obj = json_decode($json,true);
  
 $id = $obj['id'];
-$username = $obj['username']; 
 $email = $obj['email'];
 $phone = $obj['phone'];
 $address = $obj['address'];
 $city = $obj['city'];
+$state = $obj['state']; 
 $zip = $obj['zip'];
 
-$Sql_Query = "update User set username = '$username', email = '$email',
-             phone = '$phone', address = '$address', city = '$city',
+$Sql_Query = "update User set email = '$email', phone = '$phone', 
+             address = '$address', city = '$city', state = '$state', 
              zip = '$zip' where id = '$id' ";
  
 if(mysqli_query($con,$Sql_Query)){

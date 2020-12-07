@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, ScrollView, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, Image, View, Button, ScrollView, Alert, TouchableOpacity, TextInput, Modal} from 'react-native';
 
 class InsurancePlan extends React.Component {
 
@@ -7,16 +7,19 @@ class InsurancePlan extends React.Component {
     super(props)
     this.state = {
         id: this.props.route.params.id,
-        StateRequirement: 'Wisconsin',
-        Age: '25',
-        CarModel: 'Honda Civic',
-        Violations: '5 cases',
-        YearlyMileage: '12345',
-        CreditHistory: 'Overall Good',
-        DrivingRecord: '7 cases',
-        ZipCode: '50000',
-        MaritialStatus: 'Single',
-        Gender: 'Male',
+        city: '',
+        state_name: 'Wisconsin',
+        zip: '',
+        brand: '',
+        model: '',
+        mileage: '',
+        age: '',
+        violations: '5 cases',
+        credit_history: 'Overall Good',
+        driving_record: '7 cases',
+        maritial_status: '',
+        gender: '',
+
         modalVisible: false,
         TextInputDisableStatus: false,
         TextInputDisableStatus2: false,
@@ -43,18 +46,6 @@ class InsurancePlan extends React.Component {
         isVisible10: false,
         isVisible11: false,
         isVisible12: false,
-        
-        // username: '',
-        // phone: '',
-        // email: '',
-        // address: '',
-        city: '',
-        zip: '',
-        brand: '',
-        model: '',
-        color: '',
-        mileage: '',
-        license_plate: '',
 
      }
    }
@@ -70,21 +61,19 @@ class InsurancePlan extends React.Component {
       body: JSON.stringify({
         id: id,
       })
-  }).then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({
-        // username: responseJson.username,
-        // email: responseJson.email,
-        // phone: responseJson.phone,
-        // address: responseJson.address,
-        city: responseJson.city,
-        zip: responseJson.zip,
-      });
-    }).catch((error) => {
-      console.error(error);
-
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          city: responseJson.city,
+          state_name: responseJson.state,
+          zip: responseJson.zip,
+          gender: responseJson.gender,
+          age: responseJson.age,
+          maritial_status: responseJson.maritial_status,
+        });
+      }).catch((error) => {
+        console.error(error);
     });
-
 
     fetch('http://localhost:8080/odometer_terminator/user_carstatus.php', {
       method: 'POST',
@@ -95,22 +84,16 @@ class InsurancePlan extends React.Component {
       body: JSON.stringify({
         userID: id,
       })
-  }).then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({
-        brand: responseJson.brand,
-        model: responseJson.model,
-        color: responseJson.color,
-        mileage: responseJson.mileage,
-        license_plate: responseJson.license_plate,
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          brand: responseJson.brand,
+          model: responseJson.model,
+          mileage: responseJson.mileage,
       });
     }).catch((error) => {
       console.error(error);
-
     });
-
-
-
 
   }
 
@@ -151,7 +134,6 @@ class InsurancePlan extends React.Component {
   displayModal11(show){
     this.setState({isVisible11: show})
   }
-
   displayModal12(show){
     this.setState({isVisible12: show})
   }
@@ -166,95 +148,14 @@ class InsurancePlan extends React.Component {
       >
       <ScrollView>
       <View style={styles.top}>
-          {/* <Image
-            style= {styles.avatar}
-            source= {require('./assets/amfm.jpeg')}
-          /> */}
-
-          <TouchableOpacity
-              onPress={() =>
-                  this.props.navigation.navigate('Dashboard')}
-          >
           <Image
             style= {styles.avatar}
             source= {require('./assets/logo.png')}
           />
-
-          </TouchableOpacity>
       </View>
 
-      <KeyboardAvoidingView
-          style={styles.container3}
-          behavior="padding"
-        >
+      <Text style={styles.titleText}>{'\n'}Insurance Plan</Text>
 
-        <Text style={styles.titleText}>{'\n'}Insurance Plan</Text>
-
-        <KeyboardAvoidingView>
-        <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-        <KeyboardAvoidingView style={styles.centeredView}>
-        <KeyboardAvoidingView style={styles.modalView}>
-        <KeyboardAvoidingView style={styles.inline}>
-                    <TextInput
-                      value = {this.state.StateRequirement}
-                      keyboardType = 'default'
-                      onChangeText={(StateRequirement) => this.setState({ StateRequirement })}
-                      placeholder='StateRequirement'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-
-                    <TextInput
-                      value = {this.state.Age}
-                      keyboardType = 'default'
-                      width = {100}
-                      onChangeText={(Age) => this.setState({ Age })}
-                      placeholder='Age'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-        </KeyboardAvoidingView>
-
-        <KeyboardAvoidingView>
-                    <TextInput
-                      value = {this.state.CarModel}
-                      keyboardType = 'default'
-                      onChangeText={(CarModel) => this.setState({ CarModel })}
-                      placeholder='CarModel'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-        </KeyboardAvoidingView>
-
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#0ad48a", borderColor: "#0ad48a", width: 70, height: 40, paddingLeft: 15, borderRadius: 20, }}
-                    onPress={() => {
-                      this.setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Text style={{fontSize: 15, fontWeight : 'bold', color: 'white'}}>Save</Text>
-                  </TouchableHighlight>
-
-        </KeyboardAvoidingView>
-
-        </KeyboardAvoidingView>
-
-        </Modal>
-
-        </KeyboardAvoidingView>
-
-        </KeyboardAvoidingView>
-        
         <View
           style={styles.container2}
           behavior="padding"
@@ -264,9 +165,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus}
-              value = {this.state.StateRequirement}
+              value = {this.state.state_name}
               keyboardType = 'default'
-              onChangeText={(StateRequirement) => this.setState({ StateRequirement })}
+              onChangeText={(state_name) => this.setState({ state_name })}
             />
             
             <Modal
@@ -403,9 +304,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus3 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus3}
-              value = {this.state.Violations}
+              value = {this.state.violations}
               keyboardType = 'default'
-              onChangeText={(Violations) => this.setState({ Violations })}
+              onChangeText={(violations) => this.setState({ violations })}
             />
 
             <Modal
@@ -439,14 +340,14 @@ class InsurancePlan extends React.Component {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.other_info}>Yearly Mileage</Text>
+          <Text style={styles.other_info}>Mileage</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus4 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus4}
-              value = {this.state.YearlyMileage}
+              value = {this.state.mileage}
               keyboardType = 'default'
-              onChangeText={(YearlyMileage) => this.setState({ YearlyMileage })}
+              onChangeText={(mileage) => this.setState({ mileage })}
             />
             <Modal
             animationType = {"slide"}
@@ -483,9 +384,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus5 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus5}
-              value = {this.state.CreditHistory}
+              value = {this.state.credit_history}
               keyboardType = 'default'
-              onChangeText={(CreditHistory) => this.setState({ CreditHistory })}
+              onChangeText={(credit_history) => this.setState({ credit_history })}
             />
             <Modal
             animationType = {"slide"}
@@ -522,9 +423,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus6 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus6}
-              value = {this.state.DrivingRecord}
+              value = {this.state.driving_record}
               keyboardType = 'default'
-              onChangeText={(DrivingRecord) => this.setState({ DrivingRecord })}
+              onChangeText={(driving_record) => this.setState({ driving_record })}
             />
 
             <Modal
@@ -565,9 +466,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus7 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus7}
-              value = {this.state.MaritialStatus}
+              value = {this.state.maritial_status}
               keyboardType = 'default'
-              onChangeText={(MaritialStatus) => this.setState({ MaritialStatus })}
+              onChangeText={(maritial_status) => this.setState({ maritial_status })}
             />
 
             <Modal
@@ -606,9 +507,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus8 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus8}
-              value = {this.state.Age}
+              value = {this.state.age}
               keyboardType = 'default'
-              onChangeText={(Age) => this.setState({ Age })}
+              onChangeText={(age) => this.setState({ age })}
             />
 
             <Modal
@@ -647,9 +548,9 @@ class InsurancePlan extends React.Component {
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus9 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus9}
-              value = {this.state.Gender}
+              value = {this.state.gender}
               keyboardType = 'default'
-              onChangeText={(Gender) => this.setState({ Gender })}
+              onChangeText={(gender) => this.setState({ gender })}
             />
 
             <Modal
@@ -731,7 +632,7 @@ class InsurancePlan extends React.Component {
 
         <Text style={styles.other_info}>Your Insurance Fee</Text>
         <View
-          style={styles.container4}
+          style={styles.container3}
           behavior="padding"
         >
         <Text style={styles.other_info2}>$1200.00</Text>
@@ -739,7 +640,7 @@ class InsurancePlan extends React.Component {
 
         <Text style={styles.other_info}>Complete Report</Text>
         <View
-          style={styles.container4}
+          style={styles.container3}
           behavior="padding"
         >
         <Modal
@@ -749,13 +650,11 @@ class InsurancePlan extends React.Component {
             onRequestClose={() => {
               Alert.alert('Modal has now been closed.');
             }}>
-
             <Image 
               source={require('./assets/logo.png')}
               style = { styles.image }/>
               <Text style = { styles.text }>
                   TBD</Text>
-
               <Text 
                 style={styles.closeText}
                 onPress={() => {
@@ -785,11 +684,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#161620',
   },
+  container2: {
+    backgroundColor: '#1d1d2a',
+    borderColor: '#1d1d2a',
+    borderLeftColor: '#0ad48a',
+    borderLeftWidth: 10,
+    justifyContent: 'center',
+    opacity: 0.8,
+    width: 330,
+    height: 880,
+    borderRadius: 10,
+    borderWidth: 1,
+    marginLeft: 35,
+    marginBottom: 15,
+    paddingLeft: 15
+  },
   container3: {
-    flexDirection: "row",
+    backgroundColor: '#1d1d2a',
+    borderColor: '#1d1d2a',
+    borderLeftColor: '#0ad48a',
+    borderLeftWidth: 10,
+    justifyContent: 'center',
+    opacity: 0.8,
+    width: 330,
+    height: 100,
+    borderRadius: 10,
+    borderWidth: 1,
+    marginLeft: 35,
+    marginTop: 10,
+    marginBottom: 15,
+    paddingLeft: 10
+  },
+  smallcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    width: 250,
+    height: 35,
     marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 5,
+    borderRadius: 10,
   },
   editbutton: {
     alignItems: 'center',
@@ -803,97 +737,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: -80,
   },
-  ButtonText:{
-    color: 'black',
-    fontSize: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  changeButton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#242433',
-    width: 65,
-    height: 30,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 20,
-    marginLeft: 140,
-    marginTop: 10,
-  },
-  closebutton: {
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    borderColor: 'orange',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
-  },
-  container2: {
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    borderLeftColor: '#0ad48a',
-    borderLeftWidth: 10,
-    justifyContent: 'center',
-    opacity: 0.8,
-    width: 330,
-    height: 880,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 10
-  },
-
-  container4: {
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    borderLeftColor: '#0ad48a',
-    borderLeftWidth: 10,
-    justifyContent: 'center',
-    opacity: 0.8,
-    width: 330,
-    height: 100,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 10
-  },
-  smallcontainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 250,
-    height: 35,
-    marginLeft: 30,
-    marginTop: 10,
-    marginBottom: 5,
-    borderRadius: 10,
-    paddingLeft: -10,
-  },
-  backgroundImage:{
-    position: 'absolute',
-    justifyContent: 'center',
-    top: null,
-    left: null,
-    bottom: null,
-    right: null,
-    opacity: 0.8,
-  },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   titleText:{
     color: 'white',
     fontWeight: 'bold',
     fontSize: 40,
-    marginTop: -10,
+    marginTop: -40,
     textAlign: 'left',
     marginBottom: 20,
     marginRight: 140
@@ -920,12 +768,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     justifyContent: 'flex-start',
   },
-  input_info:{
-    color: 'white',
-    paddingLeft: 10,
-    fontSize: 20,
-    justifyContent: 'flex-start',
-  },
   button: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
@@ -943,68 +785,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input1: {
-    width: 140,
-    fontSize: 15,
-    height: 40,
-    padding: 10,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    marginBottom: 7,
-    marginRight: 7
-  },
-  input2: {
-    width: 287,
-    fontSize: 15,
-    height: 40,
-    padding: 10,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    marginBottom: 7,
-    marginRight: 7
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    width: 350,
-    margin: 20,
-    backgroundColor: "#202030",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  inline: {
-    width: 250,
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   TextInputStyle: {  
     textAlign: 'center',
     width: 235,
@@ -1017,18 +797,17 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   avatar: {
-    width: "100%",
+    width: "60%",
     height: 130,
     alignItems: 'center',
     justifyContent: 'center',
-    // marginLeft: 30,
+    marginLeft: 80,
     marginTop: 20,
   },
   editbuttontext:{
     color: 'white',
     fontSize: 14,
     fontWeight: 'bold',
-
   },
   editbutton: {
     alignItems: 'center',
@@ -1042,7 +821,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10
   },
-
   button: {
     display: 'flex',
     height: 60,
@@ -1059,25 +837,6 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 25,
   },
-  closeButton: {
-    display: 'flex',
-    height: 60,
-    borderRadius: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FF3974',
-    shadowColor: '#2AC062',
-    shadowOpacity: 0.5,
-    shadowOffset: { 
-      height: 10, 
-      width: 0 
-    },
-    shadowRadius: 25,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 22,
-  },
   image: {
     marginTop: 50,
     marginBottom: 10,
@@ -1089,7 +848,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     padding: 40,
   },
-
   closeText: {
     fontSize: 24,
     color: '#00479e',

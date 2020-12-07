@@ -146,88 +146,8 @@ class CarStatus extends React.Component {
         behavior="padding"
       >
        <ScrollView>
-        <KeyboardAvoidingView
-          style={styles.container3}
-          behavior="padding"
-        >
-          <Text style={styles.titleText}>Car Status</Text>
-          <KeyboardAvoidingView>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <KeyboardAvoidingView style={styles.centeredView}>
-                <KeyboardAvoidingView style={styles.modalView}>
-                  <KeyboardAvoidingView style={styles.inline}>
-                    <TextInput
-                      value = {this.state.brand}
-                      keyboardType = 'default'
-                      onChangeText={(brand) => this.setState({ brand })}
-                      placeholder='Car Brand'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                    <TextInput
-                      value = {this.state.color}
-                      keyboardType = 'default'
-                      width = {100}
-                      onChangeText={(color) => this.setState({ color })}
-                      placeholder='Car Color'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                  </KeyboardAvoidingView>
-                  <KeyboardAvoidingView>
-                    <TextInput
-                      value = {this.state.model}
-                      keyboardType = 'default'
-                      onChangeText={(model) => this.setState({ model })}
-                      placeholder='Car Model'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.mileage}
-                      keyboardType = 'default'
-                      onChangeText={(mileage) => this.setState({ mileage })}
-                      placeholder='Oil Milage'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.license_plate}
-                      keyboardType = 'default'
-                      onChangeText={(license_plate) => this.setState({ license_plate })}
-                      placeholder='License Plate Number'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                  </KeyboardAvoidingView>
-                  
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#0ad48a", borderColor: "#0ad48a", width: 70, height: 40, paddingLeft: 15, borderRadius: 20, }}
-                    onPress={() => {
-                      this.setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Text style={{fontSize: 15, fontWeight : 'bold', color: 'white'}}>Save</Text>
-                  </TouchableHighlight>
-                </KeyboardAvoidingView>
-              </KeyboardAvoidingView>
-            </Modal>
-            
-          </KeyboardAvoidingView>
-        </KeyboardAvoidingView>
-        
+      
+        <Text style={styles.titleText}>Car Status</Text>
         <View
           style={styles.container2}
           behavior="padding"
@@ -330,41 +250,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#161620'
   },
-  container3: {
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  editbuttontext:{
-    color: 'white',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  closebutton: {
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    borderColor: 'orange',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
-  },
-  editbutton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#0ad48a',
-    width: 40,
-    height: 40,
-    paddingTop: 10,
-    borderWidth: 1,
-    borderRadius: 15,
-    marginLeft: 10,
-    marginBottom: 10
-  },
   container2: {
     backgroundColor: '#1d1d2a',
     borderColor: '#1d1d2a',
@@ -389,6 +274,24 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 10,
     paddingLeft: -10,
+  },
+  editbuttontext:{
+    color: 'white',
+    fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editbutton: {
+    alignItems: 'center',
+    backgroundColor: '#0ad48a',
+    borderColor: '#0ad48a',
+    width: 40,
+    height: 40,
+    paddingTop: 10,
+    borderWidth: 1,
+    borderRadius: 15,
+    marginLeft: 10,
+    marginBottom: 10
   },
   titleText:{
     color: 'white',
@@ -434,64 +337,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input1: {
-    width: 140,
-    fontSize: 15,
-    height: 40,
-    padding: 10,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    marginBottom: 7,
-    marginRight: 7
-  },
-  input2: {
-    width: 287,
-    fontSize: 15,
-    height: 40,
-    padding: 10,
-    borderRadius:10,
-    borderWidth: 1,
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    marginBottom: 7,
-    marginRight: 7
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    width: 350,
-    margin: 20,
-    backgroundColor: "#202030",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  inline: {
-    width: 250,
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   TextInputStyle: {  
     textAlign: 'center',

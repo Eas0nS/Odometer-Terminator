@@ -12,20 +12,21 @@ class Personal extends React.Component {
         email: '',
         address: '',
         city: '',
+        state_name: '',
         zip: '',
         modalVisible: false,
-        TextInputDisableStatus: false,
         TextInputDisableStatus2: false,
         TextInputDisableStatus3: false,
         TextInputDisableStatus4: false,
         TextInputDisableStatus5: false,
         TextInputDisableStatus6: false,
-        ButtonText : '>',
+        TextInputDisableStatus7: false,
         ButtonText2 : '>',
         ButtonText3 : '>',
         ButtonText4 : '>',
         ButtonText5 : '>',
         ButtonText6 : '>',
+        ButtonText7 : '>',
      }
    }
 
@@ -49,6 +50,7 @@ class Personal extends React.Component {
                       phone: responseJson.phone,
                       address: responseJson.address,
                       city: responseJson.city,
+                      state_name: responseJson.state,
                       zip: responseJson.zip});
 
       }).catch((error) => {
@@ -64,11 +66,11 @@ class Personal extends React.Component {
   updatePersonalInfo() {
     
     const {id} = this.state;
-    const {username} = this.state;
     const {email} = this.state;
     const {phone} = this.state;
     const {address} = this.state;
     const {city} = this.state;
+    const {state_name} = this.state;
     const {zip} = this.state;
   
     fetch('http://localhost:8080/odometer_terminator/user_personal_update.php', {
@@ -79,11 +81,11 @@ class Personal extends React.Component {
         },
         body: JSON.stringify({
           id: id,
-          username: username, 
           email: email,
           phone: phone,
           address: address,
           city: city,
+          state: state_name,
           zip: zip,
         })
     }).then((response) => response.json())
@@ -91,16 +93,6 @@ class Personal extends React.Component {
         }).catch((error) => {
           console.error(error);
         });
-  }
-
-  onPressButton1 = () => {  
-    this.setState({ TextInputDisableStatus: !this.state.TextInputDisableStatus });
-    if (this.state.ButtonText == '>') {
-      this.setState({ ButtonText : '✓' })
-    } else {
-      this.setState({ ButtonText : '>' })
-    }
-    this.updatePersonalInfo()
   }
 
   onPressButton2 = () => {  
@@ -153,6 +145,16 @@ class Personal extends React.Component {
     this.updatePersonalInfo()
   }
 
+  onPressButton7 = () => {  
+    this.setState({ TextInputDisableStatus7: !this.state.TextInputDisableStatus7 });
+    if (this.state.ButtonText7 == '>') {
+      this.setState({ ButtonText7 : '✓' })
+    } else {
+      this.setState({ ButtonText7 : '>' })
+    }
+    this.updatePersonalInfo()
+  }
+
   render() {
     const { modalVisible } = this.state;
     return (
@@ -172,120 +174,23 @@ class Personal extends React.Component {
                   this.props.navigation.navigate('Dashboard')}
             >
               <Text style={styles.changeButtonText}>Change </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
-          
-        <KeyboardAvoidingView
-          style={styles.container3}
-          behavior="padding"
-        >
-          <Text style={styles.titleText}>Personl Account</Text>
-          <KeyboardAvoidingView>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <KeyboardAvoidingView style={styles.centeredView}>
-                <KeyboardAvoidingView style={styles.modalView}>
-                  <KeyboardAvoidingView style={styles.inline}>
-                    <TextInput
-                      value = {this.state.username}
-                      keyboardType = 'default'
-                      onChangeText={(username) => this.setState({ username })}
-                      placeholder='Username'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                    <TextInput
-                      value = {this.state.email}
-                      keyboardType = 'default'
-                      width = {100}
-                      onChangeText={(email) => this.setState({ email })}
-                      placeholder='Email'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                  </KeyboardAvoidingView>
-                  <KeyboardAvoidingView>
-                    <TextInput
-                      value = {this.state.phone}
-                      keyboardType = 'default'
-                      onChangeText={(phone) => this.setState({ phone })}
-                      placeholder='Phone'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.address}
-                      keyboardType = 'default'
-                      onChangeText={(address) => this.setState({ address })}
-                      placeholder='Address'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.city}
-                      keyboardType = 'default'
-                      onChangeText={(city) => this.setState({ city })}
-                      placeholder='City'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                    <TextInput
-                      value = {this.state.zip}
-                      keyboardType = 'default'
-                      onChangeText={(zip) => this.setState({ zip })}
-                      placeholder='Zip Code'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                  </KeyboardAvoidingView>
-                  
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#0ad48a", borderColor: "#0ad48a", width: 70, height: 40, paddingLeft: 15, borderRadius: 20, }}
-                    onPress={() => {
-                      this.setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Text style={{fontSize: 15, fontWeight : 'bold', color: 'white'}}>Save</Text>
-                  </TouchableHighlight>
-                </KeyboardAvoidingView>
-              </KeyboardAvoidingView>
-            </Modal>
-          </KeyboardAvoidingView>
-        </KeyboardAvoidingView>
-        
+       
+        <Text style={styles.titleText}>Personl Account</Text>
+
+        <Text style={styles.username_info}>Username:</Text>
+          <View style={[styles.username_container, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.UsernameInputStyle]}
+              value = {this.state.username}
+              onChangeText={(username) => this.setState({ username })}
+            />
+          </View>
         <View
           style={styles.container2}
           behavior="padding"
         >
-          <Text style={styles.other_info}>Username</Text>
-          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
-            <TextInput  
-              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus ? 'grey' : '#161620' }]}
-              editable={this.state.TextInputDisableStatus}
-              value = {this.state.username}
-              keyboardType = 'default'
-              onChangeText={(username) => this.setState({ username })}
-            />
-            <TouchableOpacity
-              style={styles.editbutton}
-              onPress={this.onPressButton1}
-            >
-              <Text style={styles.editbuttontext}> {this.state.ButtonText} </Text>
-            </TouchableOpacity>
-          </View>
-
           <Text style={styles.other_info}>Email</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
@@ -354,20 +259,37 @@ class Personal extends React.Component {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.other_info}>Zip Code</Text>
+          <Text style={styles.other_info}>State</Text>
           <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
             <TextInput  
               style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus6 ? 'grey' : '#161620' }]}
               editable={this.state.TextInputDisableStatus6}
-              value = {this.state.zip}
+              value = {this.state.state_name}
               keyboardType = 'default'
-              onChangeText={(zip) => this.setState({ zip })}
+              onChangeText={(state_name) => this.setState({ state_name })}
             />
             <TouchableOpacity
               style={styles.editbutton}
               onPress={this.onPressButton6}
             >
               <Text style={styles.editbuttontext}> {this.state.ButtonText6} </Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.other_info}>Zip Code</Text>
+          <View style={[styles.smallcontainer, {flexDirection: "row"}]}>
+            <TextInput  
+              style={[styles.TextInputStyle, { backgroundColor: this.state.TextInputDisableStatus7 ? 'grey' : '#161620' }]}
+              editable={this.state.TextInputDisableStatus7}
+              value = {this.state.zip}
+              keyboardType = 'default'
+              onChangeText={(zip) => this.setState({ zip })}
+            />
+            <TouchableOpacity
+              style={styles.editbutton}
+              onPress={this.onPressButton7}
+            >
+              <Text style={styles.editbuttontext}> {this.state.ButtonText7} </Text>
             </TouchableOpacity>
           </View>
 
@@ -444,8 +366,17 @@ const styles = StyleSheet.create({
     height: 430,
     borderRadius: 10,
     borderWidth: 1,
+    marginTop: 35,
     marginBottom: 15,
-    paddingLeft: 10
+    paddingLeft: 10,
+  },
+  username_container: {
+    alignItems: 'flex-end',
+    width: 200,
+    height: 15,
+    marginLeft: 30,
+    marginTop: 10,
+    marginBottom: -30,
   },
   smallcontainer: {
     alignItems: 'center',
@@ -482,24 +413,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 140
   },
-  contact_info:{
-    paddingLeft: 40,
-    paddingTop: 10,
-    paddingBottom: 5,
-    fontFamily: 'Courier',
+  username_info:{
+    color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 23,
   },
   other_info:{
     color: 'white',
     fontWeight: 'bold',
     paddingLeft: 20,
-    fontSize: 20,
-    justifyContent: 'flex-start',
-  },
-  input_info:{
-    color: 'white',
-    paddingLeft: 10,
     fontSize: 20,
     justifyContent: 'flex-start',
   },
@@ -544,43 +466,14 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     marginRight: 7
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    width: 350,
-    margin: 20,
-    backgroundColor: "#202030",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  inline: {
-    width: 250,
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
+  UsernameInputStyle: {
+    textAlign: 'right',
+    width: 180,
+    height: 55,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: 'white'
   },
   TextInputStyle: {  
     textAlign: 'center',

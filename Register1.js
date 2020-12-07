@@ -11,42 +11,25 @@ class Register1 extends React.Component {
       phone: '',
       address: '',
       city: '',
+      state_name: '',
       zip:'',
     }
   }
 
-  userRegistration = () =>{
+  naviagteUser = () => {
     const {username} = this.state;
-    const {password} = this.state;   
-    const {email} = this.state;
-    const {phone} = this.state;
-    const {address} = this.state;
-    const {city} = this.state;
+    const {password} = this.state; 
+    const {email} = this.state; 
+    const {phone} = this.state; 
+    const {address} = this.state; 
+    const {city} = this.state; 
+    const {state_name} = this.state;
     const {zip} = this.state;
-  
-    fetch('http://localhost:8080/odometer_terminator/user_registration.php', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: username, 
-        password: password,
-        email: email,
-        phone: phone,
-        address: address,
-        city: city,
-        zip: zip
-      })
-      }).then((response) => response.json())
-          .then((responseJson) => {
-            Alert.alert(responseJson);   
-          }).catch((error) => {
-            console.error(error);
-          });
-      this.props.navigation.navigate('Login')
-    }
+    this.props.navigation.navigate('Register2', 
+        {username: username, password: password, email: email, 
+         phone: phone, address: address, city: city, 
+         state_name: state_name, zip: zip})
+  }
 
   render() {
     return (
@@ -95,6 +78,14 @@ class Register1 extends React.Component {
             placeholder='Madison'
             style={styles.input}
           />
+          <Text style={styles.other_info}>State*</Text>
+          <TextInput
+            value = {this.state.state_name}
+            keyboardType = 'default'
+            onChangeText={(state_name) => this.setState({ state_name })}
+            placeholder='Wisconsin'
+            style={styles.input}
+          />
           <Text style={styles.other_info}>Zip Code*</Text>
           <TextInput
             value = {this.state.zip}
@@ -106,15 +97,15 @@ class Register1 extends React.Component {
         </KeyboardAvoidingView>
         <TouchableOpacity
           style={styles.button}
-          onPress={()=>this.props.navigation.navigate('Register2')}
+          onPress={this.naviagteUser}
         >
           <Text style={styles.buttonText}> Next </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={this.userRegistration}
+          onPress={()=>this.props.navigation.navigate('Register0')}
         >
-          <Text style={styles.buttonText}> Register </Text>
+          <Text style={styles.buttonText}> Back </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );
@@ -133,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.7,
     width: 330,
-    height: 390,
+    height: 450,
     borderRadius:30,
     borderWidth: 1,
     marginBottom: 15,

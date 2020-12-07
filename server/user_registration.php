@@ -20,7 +20,11 @@ $email = $obj['email'];
 $phone = $obj['phone'];
 $address = $obj['address'];
 $city = $obj['city'];
+$state = $obj['state'];
 $zip = $obj['zip'];
+$gender = $obj['gender'];
+$age = $obj['age'];
+$maritial_status = $obj['maritial_status'];
 
 // Checking username is empty or not
 $username = trim($username);
@@ -63,8 +67,8 @@ if (isset($username) === true && $username === ''){
 
 } else{
     // Creating SQL query and insert the record into MySQL database table.
-    $Sql_Query = "insert into User (username,password,email,phone,address,city,zip) values 
-        ('$username','$password','$email','$phone','$address','$city','$zip')";
+    $Sql_Query = "insert into User (username,password,email,phone,address,city,state,zip,gender,age,maritial_status) values 
+        ('$username','$password','$email','$phone','$address','$city','$state','$zip','$gender','$age','$maritial_status')";
   
     if(mysqli_query($con,$Sql_Query)){
   

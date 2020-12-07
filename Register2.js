@@ -1,17 +1,65 @@
 import React from 'react';
-import { StyleSheet, Text, Image, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Alert, Text, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
 class Register1 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      state_name: '',
+      username: this.props.route.params.username,
+      password: this.props.route.params.password,
+      email: this.props.route.params.email,
+      phone: this.props.route.params.phone,
+      address: this.props.route.params.address,
+      city: this.props.route.params.city,
+      state_name: this.props.route.params.state_name,
+      zip: this.props.route.params.zip,
       gender: '',
       age: '',
       maritial_status: '',
-      violation:'',
     }
   }
+
+  userRegistration = () =>{
+    const {username} = this.state;
+    const {password} = this.state;   
+    const {email} = this.state;
+    const {phone} = this.state;
+    const {address} = this.state;
+    const {city} = this.state;
+    const {state_name} = this.state;
+    const {zip} = this.state;
+    const {gender} = this.state;
+    const {age} = this.state;
+    const {maritial_status} = this.state;
+  
+    fetch('http://localhost:8080/odometer_terminator/user_registration.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username, 
+        password: password,
+        email: email,
+        phone: phone,
+        address: address,
+        state: state_name,
+        city: city,
+        zip: zip,
+        gender: gender,
+        age: age,
+        maritial_status: maritial_status,
+      })
+      }).then((response) => response.json())
+          .then((responseJson) => {
+            Alert.alert(responseJson);   
+          }).catch((error) => {
+            console.error(error);
+          });
+      this.props.navigation.navigate('Login')
+    }
 
   render() {
     return (
@@ -23,25 +71,22 @@ class Register1 extends React.Component {
           style = {styles.backgroundImage}
           source = {require('./assets/bg.png')}
         />
-        <Text style={styles.titleText}>Your Basic Info</Text>
+        <Text style={styles.titleText}>Your Demographic Info</Text>
         <KeyboardAvoidingView
           style={styles.container2}
           behavior="padding"
         >
-          <Text style={styles.other_info}>State*</Text>
-          <TextInput
-            value = {this.state.state_name}
-            keyboardType = 'default'
-            onChangeText={(state_name) => this.setState({ state_name })}
-            style={styles.input}
-          />
           <Text style={styles.other_info}>Gender*</Text>
-          <TextInput
-            value = {this.state.gender}
-            keyboardType = 'default'
-            onChangeText={(gender) => this.setState({ gender })}
-            style={styles.input}
-          />
+          <View style={styles.input}>
+            <RNPickerSelect
+              style={styles.other_info}
+              onValueChange={(gender) => this.setState({ gender })}
+              items={[
+                { label: 'Male', value: 'male' },
+                { label: 'Female', value: 'female' },
+              ]}
+            />
+          </View>
           <Text style={styles.other_info}>Age*</Text>
           <TextInput
             value = {this.state.age}
@@ -50,18 +95,22 @@ class Register1 extends React.Component {
             style={styles.input}
           />
           <Text style={styles.other_info}>Maritial Status*</Text>
-          <TextInput
-            value = {this.state.maritial_status}
-            keyboardType = 'default'
-            onChangeText={(maritial_status) => this.setState({ maritial_status })}
-            style={styles.input}
-          />
+          <View style={styles.input}>
+            <RNPickerSelect
+              style={styles.other_info}
+              onValueChange={(maritial_status) => this.setState({ maritial_status })}
+              items={[
+                { label: 'Single', value: 'single' },
+                { label: 'Married', value: 'married' },
+              ]}
+            />
+          </View>
         </KeyboardAvoidingView>
         <TouchableOpacity
           style={styles.button}
-          onPress={()=>this.props.navigation.navigate('Register3')}
+          onPress={this.userRegistration}
         >
-          <Text style={styles.buttonText}> Next </Text>
+          <Text style={styles.buttonText}> Register </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -86,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 0.7,
     width: 330,
-    height: 390,
+    height: 300,
     borderRadius:30,
     borderWidth: 1,
     marginBottom: 15,
@@ -107,7 +156,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
     textAlign: 'left',
     marginBottom: 20,
-    marginRight: 140
+    marginRight: 100
   },
   other_info:{
     paddingLeft: 40,
