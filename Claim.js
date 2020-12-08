@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 class Appointment extends React.Component {
@@ -31,6 +31,10 @@ class Appointment extends React.Component {
       <ScrollView
         style={styles.container}
       >
+        <Image 
+            style= {styles.backgroundImage}
+            source= {require('./assets/newBG3.png')}
+        />
         <View>
           <View style={styles.container2}>
             <Text style={styles.claim}>
@@ -120,6 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 25,
     marginTop: 30,
+    opacity: 0.8
   },
   container3: {
     flexDirection: 'column',
@@ -127,6 +132,7 @@ const styles = StyleSheet.create({
     width: 415,
     height: 230,
     marginTop: 10,
+    opacity: 0.8
   },
   scrollView: {
     backgroundColor: 'pink',
@@ -199,6 +205,15 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 15,
     padding: 5
+  },
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width:"100%",
+    height: 810
   },
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Alert, TouchableOpacity,
+import { StyleSheet, Text, Image, View, ScrollView, Alert, TouchableOpacity,
    TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
 import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';  
 
@@ -145,6 +145,10 @@ class CarStatus extends React.Component {
         style={styles.container}
         behavior="padding"
       >
+        <Image 
+            style= {styles.backgroundImage}
+            source= {require('./assets/newBG3.png')}
+        />
        <ScrollView>
       
         <Text style={styles.titleText}>Car Status</Text>
@@ -216,10 +220,6 @@ class CarStatus extends React.Component {
               <Text style={styles.editbuttontext}> {this.state.ButtonText4} </Text>
             </TouchableOpacity>
           </View>
-          <Text style={styles.other_info}>License Plate Number</Text>
-          <View style={styles.smallcontainer}>
-            <Text style={styles.input_info}>{this.state.license_plate}</Text>
-          </View>
         </View>
 
         <TouchableOpacity
@@ -244,8 +244,16 @@ class CarStatus extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width:"100%",
+    height: 810
+  },
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#161620'
@@ -256,7 +264,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#0ad48a',
     borderLeftWidth: 10,
     justifyContent: 'center',
-    opacity: 0.7,
     width: 330,
     height: 390,
     borderRadius:10,

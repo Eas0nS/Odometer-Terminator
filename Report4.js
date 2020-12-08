@@ -46,6 +46,10 @@ class Report4 extends React.Component {
       <ScrollView
         style={styles.container}
       >
+        <Image 
+            style= {styles.backgroundImage}
+            source= {require('./assets/newBG3.png')}
+        />
         <View>
           <Text style={[{color: 'white'}, {marginTop: 50}, {marginLeft: 60}, {fontWeight: 'bold'}, {fontSize: 25}]}>
               Review Your Information
@@ -171,6 +175,7 @@ const styles = StyleSheet.create({
     width: 415,
     height: 370,
     marginTop: 20,
+    opacity: 0.8
   },
   scrollView: {
     backgroundColor: 'pink',
@@ -230,8 +235,17 @@ const styles = StyleSheet.create({
     height: 50,
     paddingTop: 10,
     // marginLeft: 20,
-    marginTop: 30,
- }
+    marginTop: 70,
+ },
+ backgroundImage:{
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  width:"100%",
+  height: 810
+},
 });
 
 export default Report4;

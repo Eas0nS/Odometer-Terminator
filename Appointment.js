@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 class Appointment extends React.Component {
@@ -25,9 +25,14 @@ class Appointment extends React.Component {
     };
 
     return (
+      
       <ScrollView
         style={styles.container}
       >
+        <Image 
+           style= {styles.backgroundImage}
+           source= {require('./assets/newBG3.png')}
+         />
         <View>
           <Text style={styles.submit}>
             Submit a request
@@ -121,12 +126,22 @@ const styles = StyleSheet.create({
   container2: {
     backgroundColor: '#1d1d2a',
     borderColor: '#1d1d2a',
-    opacity: 0.9,
+    opacity: 1,
     width: 340,
     height: 680,
     borderRadius:10,
     borderWidth: 1,
     marginLeft: 15
+  },
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 1,
+    width:"100%",
+    height:"100%"
   },
   submit: {
     color: 'white',
