@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 25,
     marginTop: 30,
-    opacity: 0.9
+    opacity: 1
   },
   container3: {
     flexDirection: 'column',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     width: 415,
     height: 230,
     marginTop: 10,
-    opacity: 0.9
+    opacity: 1
   },
   scrollView: {
     backgroundColor: 'pink',
