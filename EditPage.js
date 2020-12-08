@@ -68,6 +68,10 @@ class EditPage extends React.Component {
     const { image,mileage } = this.state;
     return (
       <ScrollView style={styles.container}>
+        <Image 
+           style= {styles.backgroundImage}
+           source= {require('./assets/newBG3.png')}
+         />
         <View>
           <Text style={styles.submit}>
           OCR
@@ -139,6 +143,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginLeft: 15,
     marginBottom: 30,
+  },
+  backgroundImage:{
+    position: 'absolute',
+    opacity: 1,
+    width:"100%",
+    height:"120%"
   },
   submit: {
     color: 'white',
