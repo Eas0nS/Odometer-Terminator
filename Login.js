@@ -1,14 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, Image, Button, View, Alert, TouchableOpacity, TextInput, Dimensions, } from 'react-native';
 
-// const { width, height } = Dimensions.get("window");
-
-// const background = require("./assets/first.png");
-// const mark = require("./assets/thrid.png");
-// const lockIcon = require("./assets/second.png");
-// const personIcon = require("./assets/fourth.png");
-
-
 class Login extends React.Component {
 
 
@@ -50,51 +42,6 @@ class Login extends React.Component {
   
   render() {
     return (
-      
-      // <View style={styles.container}>
-      //   <Image 
-      //     style= {styles.backgroundImage}
-      //     source= {require('./assets/newBG3.png')}
-      //   />
-      //   {/* <Text style={styles.titleText}>Welcome to</Text>
-      //   <Text style={styles.titleText}>Odometer Terminator</Text> */}
-      //   <Image
-      //     style={{ width: "100%", height: 120, top:-110 }}
-      //     source={require('./assets/logo.png')}
-      //   />
-
-      //   <Text style={styles.logo}>Odometer Terminator</Text>
-
-
-      //   <TextInput
-      //     keyboardType = 'default'
-      //     onChangeText={(username) => this.setState({ username })}
-      //     placeholder='username'
-      //     placeholderTextColor = 'white'
-      //     style={styles.input}
-      //   />
-      //   <TextInput
-      //     onChangeText={(password) => this.setState({ password })}
-      //     placeholder={'password'}
-      //     secureTextEntry={true}
-      //     placeholderTextColor = 'white'
-      //     style={styles.input}
-      //   />
-      //   <TouchableOpacity
-      //     style={styles.button}
-      //     onPress={this.userLogin}
-      //   >
-      //     <Text style={styles.buttonText}> Login </Text>
-      //   </TouchableOpacity>
-      //   <TouchableOpacity
-      //     style={styles.button}
-      //     onPress={() =>
-      //        this.props.navigation.navigate('Register0')}
-      //   >
-      //     <Text style={styles.buttonText}> Register </Text>
-      //   </TouchableOpacity> 
-      // </View>
-
 
       <View style={styles.container}>
         <Image 
@@ -103,12 +50,9 @@ class Login extends React.Component {
          />
 
         <Image
-           style={{ width: "100%", height: 190, top:-110 }}
-           source={require('./assets/OD.png')}
+           style={{ width: "70%", height: 230, top:0, }}
+           source={require('./assets/OD3.png')}
          />
-
-        <Text style={styles.logo}>Odometer Terminator</Text>
-
 
         <View style={styles.inputContainer}>
           <Image style={[styles.icon, styles.inputIcon]} source={{uri: "https://img.icons8.com/ios-glyphs/30/000000/name.png"}}/>
@@ -138,27 +82,8 @@ class Login extends React.Component {
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Register0')} style={[styles.buttonContainer, styles.loginButton]}>
           <Text style={styles.loginText}>Register</Text>
         </TouchableOpacity>
-        
-
-        {/* <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]}>
-          <View style={styles.socialButtonContent}>
-            <Image style={styles.icon} source={{uri: 'https://png.icons8.com/facebook/androidL/40/FFFFFF'}}/>
-            <Text style={styles.loginText}>Continue with facebook</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[styles.buttonContainer, styles.googleButton]}>
-          <View style={styles.socialButtonContent}>
-            <Image style={styles.icon} source={{uri: 'https://png.icons8.com/google/androidL/40/FFFFFF'}}/>
-            <Text style={styles.loginText}>Sign in with google</Text>
-          </View>
-        </TouchableOpacity> */}
+  
       </View>
-
-
-      
-      
-
     );
   }
 }
@@ -247,11 +172,6 @@ const styles = StyleSheet.create({
     top: -100,
   },
 
-
-
-
-
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -321,7 +241,6 @@ const styles = StyleSheet.create({
     marginRight:5
   }, 
   
-
   button: {
     display: 'flex',
     height: 60,
