@@ -707,7 +707,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#0ad48a',
     borderLeftWidth: 10,
     justifyContent: 'center',
-    opacity: 0.8,
     width: 330,
     height: 880,
     borderRadius: 10,
@@ -722,7 +721,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#0ad48a',
     borderLeftWidth: 10,
     justifyContent: 'center',
-    opacity: 0.8,
     width: 330,
     height: 100,
     borderRadius: 10,
@@ -761,7 +759,7 @@ const styles = StyleSheet.create({
     marginTop: -40,
     textAlign: 'left',
     marginBottom: 20,
-    marginRight: 140
+    marginRight: 110
   },
   contact_info:{
     paddingLeft: 40,
