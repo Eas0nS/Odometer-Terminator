@@ -41,16 +41,16 @@ class Register0 extends React.Component {
           style={styles.input}
         />
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={this.naviagteUser}
         >
-          <Text style={styles.buttonText}> Next </Text>
+          <Text style={styles.loginText}> Next </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={()=>this.props.navigation.navigate('Login')}
         >
-          <Text style={styles.buttonText}> Back </Text>
+          <Text style={styles.loginText}> Back </Text>
         </TouchableOpacity> 
       </View>
     );
@@ -108,6 +108,32 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     marginBottom: 20
   },
+
+  buttonContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+    width:200,
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: 'white',
+  
+  },
+  loginButton: {
+    backgroundColor: '#3498db',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'white',
+  },
+
+  loginText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+
 });
 
 export default Register0;
