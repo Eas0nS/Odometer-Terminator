@@ -162,6 +162,10 @@ class Personal extends React.Component {
         style={styles.container}
         behavior="padding"
       >
+       <Image 
+          style= {styles.backgroundImage}
+          source= {require('./assets/newBG3.png')}
+        />
        <ScrollView>
         <View style={styles.top}>
           <Image
@@ -301,6 +305,16 @@ class Personal extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.8,
+    width:"100%",
+    height: 810,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -361,12 +375,11 @@ const styles = StyleSheet.create({
     borderLeftColor: '#0ad48a',
     borderLeftWidth: 10,
     justifyContent: 'center',
-    opacity: 0.8,
     width: 330,
     height: 430,
     borderRadius: 10,
     borderWidth: 1,
-    marginTop: 35,
+    marginTop: 30,
     marginBottom: 15,
     paddingLeft: 10,
   },
@@ -384,19 +397,10 @@ const styles = StyleSheet.create({
     width: 250,
     height: 35,
     marginLeft: 30,
-    marginTop: 10,
+    marginTop: 6,
     marginBottom: 5,
     borderRadius: 10,
     paddingLeft: -10,
-  },
-  backgroundImage:{
-    position: 'absolute',
-    justifyContent: 'center',
-    top: null,
-    left: null,
-    bottom: null,
-    right: null,
-    opacity: 0.8,
   },
   logo:{
     width: 300,
