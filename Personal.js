@@ -177,7 +177,7 @@ class Personal extends React.Component {
           </TouchableOpacity>
         </View>
        
-        <Text style={styles.titleText}>Personl Account</Text>
+        <Text style={styles.titleText}>Personal Account</Text>
 
         <Text style={styles.username_info}>Username:</Text>
           <View style={[styles.username_container, {flexDirection: "row"}]}>
