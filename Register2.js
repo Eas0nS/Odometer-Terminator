@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
     textAlign: 'left',
     marginBottom: 20,
-    marginRight: 100
+    marginLeft: -40
   },
   other_info:{
     paddingLeft: 40,
@@ -164,21 +164,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   button: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'powderblue',
-    width: 200,
-    height: 44,
-    padding: 10,
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
     borderWidth: 1,
     borderColor: 'white',
-    borderRadius: 25,
-    marginBottom: 10,
+    backgroundColor: '#3498db',
   },
   buttonText:{
-    fontFamily: 'Courier',
     fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    color: 'white',
+    fontWeight: 'bold',
   },
   input: {
     marginLeft: 40,
@@ -192,6 +192,28 @@ const styles = StyleSheet.create({
     marginBottom: 7,
     marginTop: 7,
   },
+  buttonContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+    width:300,
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  loginButton: {
+    backgroundColor: '#3498db',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'white',
+  },
+  loginText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold', 
+  }
 });
 
 export default Register1;
