@@ -107,7 +107,7 @@ class Appointment extends React.Component {
             <TouchableOpacity
               style={styles.submitbutton}
               onPress={() =>
-                this.props.navigation.navigate('Register2')}
+                this.props.navigation.navigate('Dashboard')}
             >
               <Text style={[{color: 'white'},{fontSize: 25},{alignItems:'center'},{paddingTop: 5}]}> Submit </Text>
             </TouchableOpacity>
