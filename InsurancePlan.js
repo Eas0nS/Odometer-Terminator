@@ -146,6 +146,12 @@ class InsurancePlan extends React.Component {
         style={styles.container}
         behavior="padding"
       >
+
+          <Image 
+           style= {styles.backgroundImage}
+           source= {require('./assets/newBG3.png')}
+         />
+
       <ScrollView>
       <View style={styles.top}>
           <Image
@@ -678,6 +684,17 @@ class InsurancePlan extends React.Component {
 
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 1,
+    width:"100%",
+    height:"100%"
+  },
+  
   container: {
     flex: 1,
     alignItems: 'center',
