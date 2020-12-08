@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     right: 0,
     opacity: 0.8,
     width:"100%",
-    height: 730
+    height: 810
   },
   container: {
     flexDirection: 'column',
@@ -183,8 +183,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 10,
   },
-  
-  
   buttonText:{
     fontFamily: 'Courier',
     fontSize: 18,
@@ -198,12 +196,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
-    marginTop: 20,
+    marginTop: 50,
   },
   middle:{
     flex: 2,
   },
-
   buttonContainer: {
     height:45,
     flexDirection: 'row',
@@ -214,23 +211,18 @@ const styles = StyleSheet.create({
     borderRadius:30,
     borderWidth: 1,
     borderColor: 'white',
-  
   },
   loginButton: {
     backgroundColor: '#3498db',
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'white',
-
   },
-
   loginText: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
-    
   },
-
   button_bot: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
@@ -244,7 +236,6 @@ const styles = StyleSheet.create({
     borderRadius:30,
     backgroundColor: '#3498db',
   },
-
   button_contact: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
@@ -258,7 +249,6 @@ const styles = StyleSheet.create({
     marginTop: 100,
     borderRadius:30,
     backgroundColor: '#3498db',
-
   },
 
 });
