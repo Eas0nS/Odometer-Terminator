@@ -76,67 +76,72 @@ class Dashboard extends React.Component {
       <View style={styles.container}>
         <Image 
             style= {styles.backgroundImage}
-            source= {require('./assets/bg2.png')}
+            source= {require('./assets/newBG3.png')}
         />
         <View style ={styles.middle}>
         <Image
           style={styles.logo}
-          source={require('./assets/logo.png')}
+          source={require('./assets/OD3.png')}
         />
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={() => {
             const{ id } = this.state;
             this.props.navigation.navigate('Personal', {id:id});
           }}
         >
-        <Text style={styles.buttonText}> Personal Account </Text>
+        <Text style={styles.loginText}> Personal Account </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={() => {
             const{ id } = this.state;
             this.props.navigation.navigate('CarStatus', {id:id});
           }}
         >
-        <Text style={styles.buttonText}> Car Status </Text>
+        <Text style={styles.loginText}> Car Status </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={() => {
             const{ id } = this.state;
              this.props.navigation.navigate('InsurancePlan', {id:id})}}
         >
-        <Text style={styles.buttonText}> Insurance Plan </Text>
+        <Text style={styles.loginText}> Insurance Plan </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={() =>
              this.props.navigation.navigate('Appointment')}
         >
-        <Text style={styles.buttonText}> Schedule Appointment </Text>
+        <Text style={styles.loginText}> Schedule Appointment </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.buttonContainer, styles.loginButton]}
           onPress={() =>
              this.props.navigation.navigate('Claim')}
         >
-        <Text style={styles.buttonText}> Report Accident </Text>
+        <Text style={styles.loginText}> Report Accident </Text>
         </TouchableOpacity>
         <View style={{ flexDirection: 'row' }}>
+       
         <TouchableOpacity
           style={styles.button_bot}
           onPress={() =>
              this.props.navigation.navigate('Login')}
         >
-        <Text style={styles.buttonText}> Logout </Text>
+        <Text style={styles.loginText}> Logout </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button_contact}
           onPress={() =>
              this.props.navigation.navigate('Contact')}
         >
-        <Text style={styles.buttonText}> Contact us </Text>
+        <Text style={styles.loginText}> Contact us </Text>
         </TouchableOpacity>
        </View> 
        </View>  
@@ -152,7 +157,9 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    opacity: 0.8
+    opacity: 0.8,
+    width:"100%",
+    height: 730
   },
   container: {
     flexDirection: 'column',
@@ -176,6 +183,54 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 10,
   },
+  
+  
+  buttonText:{
+    fontFamily: 'Courier',
+    fontSize: 18,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo:{
+    width: 300,
+    height: 180,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    marginTop: 20,
+  },
+  middle:{
+    flex: 2,
+  },
+
+  buttonContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+    width:300,
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: 'white',
+  
+  },
+  loginButton: {
+    backgroundColor: '#3498db',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'white',
+
+  },
+
+  loginText: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    
+  },
+
   button_bot: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
@@ -186,7 +241,10 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     marginRight: 15,
     marginTop: 100,
+    borderRadius:30,
+    backgroundColor: '#3498db',
   },
+
   button_contact: {
     alignItems: 'center',
     backgroundColor: 'powderblue',
@@ -198,25 +256,11 @@ const styles = StyleSheet.create({
     marginLeft: 35, 
     marginRight: 5,
     marginTop: 100,
+    borderRadius:30,
+    backgroundColor: '#3498db',
+
   },
-  buttonText:{
-    fontFamily: 'Courier',
-    fontSize: 18,
-    fontWeight: 'bold',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-    marginTop: 60,
-  },
-  middle:{
-    flex: 2,
-  },
+
 });
 
 export default Dashboard;
