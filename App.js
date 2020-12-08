@@ -14,7 +14,6 @@ import Appointment from './Appointment';
 import CarStatus from './CarStatus';
 import Contact from './Contact';
 import InsurancePlan from './InsurancePlan';
-import ReportAccident from './ReportAccident';
 import CustomButton from './CustomButton';
 import Claim from './Claim';
 import Report from './Report';
@@ -85,11 +84,6 @@ class App extends React.Component {
           <Stack.Screen
             name="InsurancePlan"
             component={InsurancePlan}
-          />
-
-          <Stack.Screen
-            name="ReportAccident"
-            component={ReportAccident}
           />
 
           <Stack.Screen

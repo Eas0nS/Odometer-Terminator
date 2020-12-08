@@ -82,6 +82,10 @@ class Appointment extends React.Component {
             <ScrollView
                 style={styles.container}
             >
+            <Image 
+                style= {styles.backgroundImage}
+                source= {require('./assets/newBG3.png')}
+            />
                 <View>
                     <Text style={[{ color: 'white' }, { marginTop: 50 }, { marginLeft: 20 }, { fontWeight: 'bold' }, { fontSize: 25 }]}>
                         When did the incident happen?
@@ -161,6 +165,7 @@ const styles = StyleSheet.create({
         width: 415,
         height: 180,
         marginTop: 50,
+        opacity: 0.9
     },
     container3: {
         flexDirection: 'column',
@@ -168,6 +173,7 @@ const styles = StyleSheet.create({
         width: 415,
         height: 200,
         marginTop: 50,
+        opacity: 0.9
     },
     scrollView: {
         backgroundColor: 'pink',
@@ -225,8 +231,17 @@ const styles = StyleSheet.create({
         height: 50,
         paddingTop: 10,
         // marginLeft: 20,
-        marginTop: 30,
-    }
+        marginTop: 50,
+    },
+    backgroundImage:{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        width:"100%",
+        height: 810
+      },
 });
 
 export default Appointment;
