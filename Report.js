@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     width: 415,
     height: 300,
     marginTop: 50,
-    opacity: 0.8
+    opacity: 0.9
   },
   scrollView: {
     backgroundColor: 'pink',
