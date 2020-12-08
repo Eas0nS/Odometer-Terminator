@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, 
-    TextInput, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 class EditPage extends React.Component {
 
@@ -123,16 +122,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#161620'
   },
-  container2: {
-    backgroundColor: '#1d1d2a',
-    borderColor: '#1d1d2a',
-    opacity: 0.9,
-    width: 340,
-    height: 680,
-    borderRadius:10,
-    borderWidth: 1,
-    marginLeft: 15
-  },
   container3: {
     width: 340,
     height: 300,
@@ -151,9 +140,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginBottom: 30,
   },
-  scrollView: {
-    backgroundColor: 'pink',
-  },
   submit: {
     color: 'white',
     fontWeight: 'bold',
@@ -162,12 +148,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 20,
     marginBottom: 25
-  },
-  subtitle: {
-    color: 'white',
-    fontSize: 20,
-    marginLeft: 20,
-    marginTop: 15
   },
   button: {
     alignItems: 'center',

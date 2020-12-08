@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, TextInput, Platform, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Platform } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
-import { FontAwesome, Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';  
+import { FontAwesome, Ionicons } from '@expo/vector-icons';  
 
 class CameraPage extends React.Component {
   
@@ -41,8 +41,6 @@ class CameraPage extends React.Component {
     console.log('Button Pressed');
     MediaLibrary.createAlbumAsync('Expo', asset)
       .then(() => {
-        console.log('Album created!');
-        console.log(uri);
         this.setState({ imagefile: uri });
         this.props.navigation.navigate('EditPage', {userID: this.state.userID, image: uri });
       })
@@ -116,7 +114,6 @@ class CameraPage extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        
       );
     }
   }
