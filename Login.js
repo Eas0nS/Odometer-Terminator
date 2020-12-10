@@ -3,7 +3,6 @@ import { StyleSheet, Text, Image, Button, View, Alert, TouchableOpacity, TextInp
 
 class Login extends React.Component {
 
-
   constructor(props) {
     super(props)
     this.state = {
@@ -11,6 +10,7 @@ class Login extends React.Component {
       password: "",
     }
   }
+
   userLogin = () =>{
  
     const { username }  = this.state ;
@@ -88,7 +88,6 @@ class Login extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   backgroundImage:{
     position: 'absolute',
@@ -142,7 +141,6 @@ const styles = StyleSheet.create({
     backgroundColor: "gray",
     opacity:0.9
   },
-  /// 
   inputView:{
     width:"80%",
     backgroundColor:"#465881",
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     padding:20
   },
-
   input2: {
     width: 200,
     height: 44,
@@ -161,16 +158,13 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     marginBottom: 10,
   },
-
   logo:{
     fontFamily: 'Arial',
     fontWeight:"bold",
     fontSize:20,
     color:"white",
-    // marginBottom:20
     top: -100,
   },
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -239,7 +233,7 @@ const styles = StyleSheet.create({
   },
   socialIcon:{
     color: "#FFFFFF",
-    marginRight:5
+    marginRight: 5
   }, 
   
   button: {
