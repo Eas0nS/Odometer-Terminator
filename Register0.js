@@ -41,16 +41,16 @@ class Register0 extends React.Component {
           style={styles.input}
         />
         <TouchableOpacity
-          style={[styles.buttonContainer, styles.loginButton]}
+          style={[styles.buttonContainer, styles.button]}
           onPress={this.naviagteUser}
         >
-          <Text style={styles.loginText}> Next </Text>
+          <Text style={styles.buttonText}> Next </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.buttonContainer, styles.loginButton]}
+          style={[styles.buttonContainer, styles.button]}
           onPress={()=>this.props.navigation.navigate('Login')}
         >
-          <Text style={styles.loginText}> Back </Text>
+          <Text style={styles.buttonText}> Back </Text>
         </TouchableOpacity> 
       </View>
     );
@@ -80,23 +80,6 @@ const styles = StyleSheet.create({
     bottom: null,
     right: null,
   },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'powderblue',
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  buttonText:{
-    fontFamily: 'Courier',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   input: {
     width: 200,
     fontFamily: 'Courier',
@@ -107,7 +90,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     marginBottom: 20
   },
-
   buttonContainer: {
     height:45,
     flexDirection: 'row',
@@ -118,16 +100,14 @@ const styles = StyleSheet.create({
     borderRadius:30,
     borderWidth: 1,
     borderColor: 'white',
-  
   },
-  loginButton: {
+  button: {
     backgroundColor: '#3498db',
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'white',
   },
-
-  loginText: {
+  buttonText: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',

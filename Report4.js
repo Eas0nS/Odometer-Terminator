@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, ScrollView, TouchableOpacity, TextInput, Platform, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
 
 /**
  * Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" 
@@ -24,24 +24,6 @@ class Report4 extends React.Component {
  };
 
   render() {
-
-    const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-  
-    console.log(result);
-  
-    if (!result.cancelled) {
-        setImage(result.uri);
-      }
-    };
-
-    
-
     return (
       <ScrollView
         style={styles.container}
@@ -151,10 +133,10 @@ class Report4 extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-                            style={styles.next}
-                            onPress={() => this.showAlert(this.props.navigation)}
+              style={styles.next}
+              onPress={() => this.showAlert(this.props.navigation)}
             >
-                <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: '20'}, {marginRight: 10}]}> SUBMIT CLAIM</Text>
+              <Text style={[{color: 'white'}, {fontWeight: 'bold'}, {fontSize: '20'}, {marginRight: 10}]}> SUBMIT CLAIM</Text>
             </TouchableOpacity>
 
           </View>
@@ -165,6 +147,15 @@ class Report4 extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: '100%',
+    height: 810
+  },
   container: {
     flex: 1,
     backgroundColor: '#161620'
@@ -176,9 +167,6 @@ const styles = StyleSheet.create({
     height: 370,
     marginTop: 20,
     opacity: 0.9
-  },
-  scrollView: {
-    backgroundColor: 'pink',
   },
   list: {
       flexDirection: 'row',
@@ -205,14 +193,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
-  claim: {
-    color: 'white',
-    fontSize: 30,
-    textAlign: 'left',
-    marginLeft: 15,
-    marginTop: 15,
-    marginBottom: 15
-  },
   subtitle: {
     color: 'white',
     fontSize: 18,
@@ -221,7 +201,6 @@ const styles = StyleSheet.create({
   avatar: {
     width: 30,
     height: 30,
-    // alignItems: 'center',
     marginLeft: 0,
     marginRight: 30,
     flex: 1,
@@ -234,18 +213,8 @@ const styles = StyleSheet.create({
     width: 420,
     height: 50,
     paddingTop: 10,
-    // marginLeft: 20,
     marginTop: 70,
- },
- backgroundImage:{
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-  width:"100%",
-  height: 810
-},
+  },
 });
 
 export default Report4;

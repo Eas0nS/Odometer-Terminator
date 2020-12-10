@@ -694,7 +694,6 @@ const styles = StyleSheet.create({
     width:"100%",
     height:"100%"
   },
-  
   container: {
     flex: 1,
     alignItems: 'center',
@@ -760,14 +759,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 20,
     marginRight: 110
-  },
-  contact_info:{
-    paddingLeft: 40,
-    paddingTop: 10,
-    paddingBottom: 5,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
-    fontSize: 18,
   },
   other_info:{
     color: 'white',
@@ -868,8 +859,6 @@ const styles = StyleSheet.create({
     color: '#00479e',
     textAlign: 'center',
   }
-
 });
-
 
 export default InsurancePlan;

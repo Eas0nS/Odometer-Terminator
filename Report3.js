@@ -1,7 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, ScrollView, TouchableOpacity, TextInput, Platform } from 'react-native';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import moment from 'moment';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, TextInput, } from 'react-native';
 
 /**
  * Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" 
@@ -17,22 +15,6 @@ class Report3 extends React.Component {
     }
 
     render() {
-
-        const pickImage = async () => {
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
-
-            console.log(result);
-
-            if (!result.cancelled) {
-                setImage(result.uri);
-            }
-        };
-
         return (
             <ScrollView
                 style={styles.container}
@@ -92,6 +74,15 @@ class Report3 extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    backgroundImage:{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        width: '100%',
+        height: 810
+    },
     container: {
         flex: 1,
         backgroundColor: '#161620'
@@ -112,33 +103,15 @@ const styles = StyleSheet.create({
         marginTop: 50,
         opacity: 0.9
     },
-    scrollView: {
-        backgroundColor: 'pink',
-    },
-    sideText: {
-        color: 'white',
-        fontWeight: 'bold',
-        flex: 1,
-    },
-    claim: {
-        color: 'white',
-        fontSize: 30,
-        textAlign: 'left',
-        marginLeft: 15,
-        marginTop: 15,
-        marginBottom: 15
-    },
     subtitle: {
         color: 'grey',
         fontSize: 18,
         marginLeft: 15,
         marginTop: 10,
-        // marginBottom: 10,
     },
     dateText: {
         color: 'white',
         fontSize: 18,
-        // marginLeft: 10,
     },
     button: {
         borderBottomColor: 'white',
@@ -167,18 +140,8 @@ const styles = StyleSheet.create({
         width: 420,
         height: 50,
         paddingTop: 10,
-        // marginLeft: 20,
         marginTop: 50,
     },
-    backgroundImage:{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        width:"100%",
-        height: 810
-      },
 });
 
 export default Report3;

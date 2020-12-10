@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, Button, View, Alert, TouchableOpacity, TextInput, Dimensions, } from 'react-native';
+import { StyleSheet, Text, Image, View, Alert, TouchableOpacity, TextInput, } from 'react-native';
 
 class Login extends React.Component {
 
@@ -11,8 +11,8 @@ class Login extends React.Component {
     }
   }
 
-  userLogin = () =>{
- 
+  userLogin = () => {
+
     const { username }  = this.state ;
     const { password }  = this.state ;
     
@@ -42,7 +42,6 @@ class Login extends React.Component {
   
   render() {
     return (
-
       <View style={styles.container}>
         <Image 
            style= {styles.backgroundImage}
@@ -59,9 +58,7 @@ class Login extends React.Component {
           <TextInput style={styles.inputs}
               keyboardType = 'default'
               onChangeText={(username) => this.setState({ username })}
-
               placeholder="username"
-              // keyboardType="email-address"
               underlineColorAndroid='transparent'/>
         </View>
         
@@ -73,7 +70,6 @@ class Login extends React.Component {
               secureTextEntry={true}
               underlineColorAndroid='transparent'/>
         </View>
-     
 
         <TouchableOpacity onPress={this.userLogin} style={[styles.buttonContainer, styles.loginButton]}>
           <Text style={styles.loginText}>Login</Text>
@@ -98,66 +94,6 @@ const styles = StyleSheet.create({
     width:"100%",
     height:"100%"
   },
-  container: {
-    flex: 1,
-    fontFamily: 'Arial',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titleText:{
-    fontFamily: 'Arial',
-    fontWeight: 'bold',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'powderblue',
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  buttonText:{
-    fontFamily: 'Arial',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: 200,
-    fontFamily: 'Arial',
-    fontSize: 20,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    marginBottom:10,
-    top: -60,
-    backgroundColor: "gray",
-    opacity:0.9
-  },
-  inputView:{
-    width:"80%",
-    backgroundColor:"#465881",
-    borderRadius:25,
-    height:50,
-    marginBottom:20,
-    justifyContent:"center",
-    padding:20
-  },
-  input2: {
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'black',
-    marginBottom: 10,
-  },
   logo:{
     fontFamily: 'Arial',
     fontWeight:"bold",
@@ -181,6 +117,34 @@ const styles = StyleSheet.create({
       marginBottom:15,
       flexDirection: 'row',
       alignItems:'center'
+  },
+  titleText:{
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    width: 200,
+    fontFamily: 'Arial',
+    fontSize: 20,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginBottom:10,
+    top: -60,
+    backgroundColor: "gray",
+    opacity:0.9
+  },
+  input2: {
+    width: 200,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginBottom: 10,
   },
   inputs:{
       height:45,
@@ -210,32 +174,11 @@ const styles = StyleSheet.create({
   loginButton: {
     backgroundColor: '#3498db',
   },
-  fabookButton: {
-    backgroundColor: "#3b5998",
-  },
-  googleButton: {
-    backgroundColor: "#ff0000",
-  },
   loginText: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
   },
-  restoreButtonContainer:{
-    width:250,
-    marginBottom:15,
-    alignItems: 'flex-end'
-  },
-  socialButtonContent:{
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center', 
-  },
-  socialIcon:{
-    color: "#FFFFFF",
-    marginRight: 5
-  }, 
-  
   button: {
     display: 'flex',
     height: 60,
@@ -252,7 +195,6 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 25,
   },
-    
-  });
+});
 
 export default Login;

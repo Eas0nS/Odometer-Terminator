@@ -16,9 +16,7 @@ class Dashboard extends React.Component {
   componentDidMount() {
     // componentDidMount runs immediately after
     // redirected to this Dashboard page
-
     this.getUserID();
-
   }
 
   getUserID() {
@@ -26,7 +24,7 @@ class Dashboard extends React.Component {
     // Gets the userID from username
     // The userID is further passed into pages
     // like Personal Account, Car Status...
-
+    
     const { username } = this.state;
     
     fetch('http://localhost:8080/odometer_terminator/user_dashboard.php', {
@@ -44,13 +42,11 @@ class Dashboard extends React.Component {
       }).catch((error) => {
         console.error(error);
       });
-
   }
 
   insertCarRecord() {
     // Insert a new car record into table Car
     // with the corresponding userID
-
     const { id } = this.state;
 
     fetch('http://localhost:8080/odometer_terminator/user_dashboard_car.php', {
@@ -67,7 +63,6 @@ class Dashboard extends React.Component {
       }).catch((error) => {
         console.error(error);
       });
-
   }
 
   render() {
@@ -249,7 +244,6 @@ const styles = StyleSheet.create({
     borderRadius:30,
     backgroundColor: '#3498db',
   },
-
 });
 
 export default Dashboard;

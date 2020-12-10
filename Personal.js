@@ -31,7 +31,7 @@ class Personal extends React.Component {
    }
 
   componentDidMount() {
- 
+
     const { id } = this.state;
     
     fetch('http://localhost:8080/odometer_terminator/user_personal.php', {
@@ -321,54 +321,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#161620'
   },
-  container3: {
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  editbutton: {
-    alignItems: 'center',
-    backgroundColor: '#242433',
-    borderColor: '#242433',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
-  },
-  changeButtonText:{
-    color: 'black',
-    fontSize: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  changeButton: {
-    alignItems: 'center',
-    backgroundColor: '#0ad48a',
-    borderColor: '#242433',
-    width: 65,
-    height: 30,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 20,
-    marginLeft: 140,
-    marginTop: 10,
-  },
-  closebutton: {
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    borderColor: 'orange',
-    width: 75,
-    height: 40,
-    padding: 7,
-    borderWidth: 1,
-    borderRadius: 20,
-    marginBottom: 10,
-    marginLeft: -80,
-  },
   container2: {
     backgroundColor: '#1d1d2a',
     borderColor: '#1d1d2a',
@@ -402,11 +354,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: -10,
   },
-  logo:{
-    width: 300,
-    height: 150,
-    justifyContent: 'center',
+  changeButtonText:{
+    color: 'black',
+    fontSize: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  changeButton: {
+    alignItems: 'center',
+    backgroundColor: '#0ad48a',
+    borderColor: '#242433',
+    width: 65,
+    height: 30,
+    padding: 7,
+    borderWidth: 1,
+    borderRadius: 20,
+    marginBottom: 20,
+    marginLeft: 140,
+    marginTop: 10,
   },
   titleText:{
     color: 'white',

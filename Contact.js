@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, Image, View, TouchableOpacity, TextInput, TouchableHighlight } from 'react-native';
 
 class Contact extends React.Component {
   state = {
@@ -53,76 +53,12 @@ class Contact extends React.Component {
         style={styles.container}
         behavior="padding"
       >
-
         <Image 
             style= {styles.backgroundImage}
             source= {require('./assets/newBG3.png')}
         />
 
-        <KeyboardAvoidingView
-          style={styles.container1}
-          behavior="padding"
-        >
-          <Text style={styles.titleText}>Contact us</Text>
-          <KeyboardAvoidingView>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <KeyboardAvoidingView style={styles.centeredView}>
-                <KeyboardAvoidingView style={styles.modalView}>
-                  <KeyboardAvoidingView style={styles.inline}>
-                    <TextInput
-                      value = {this.state.agent}
-                      keyboardType = 'default'
-                      onChangeText={(agent) => this.setState({ agent })}
-                      placeholder='Car Brand'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                    <TextInput
-                      value = {this.state.feedback}
-                      keyboardType = 'default'
-                      width = {100}
-                      onChangeText={(feedback) => this.setState({ feedback })}
-                      placeholder='Car Color'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input1}
-                    />
-                  </KeyboardAvoidingView>
-                  <KeyboardAvoidingView>
-                    <TextInput
-                      value = {this.state.phone}
-                      keyboardType = 'default'
-                      onChangeText={(phone) => this.setState({ phone })}
-                      placeholder='Car Model'
-                      placeholderTextColor='white'
-                      color='white'
-                      style={styles.input2}
-                    />
-                  </KeyboardAvoidingView>
-                  
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#0ad48a", borderColor: "#0ad48a", width: 70, height: 40, paddingLeft: 15, borderRadius: 20, }}
-                    onPress={() => {
-                      this.setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Text style={{fontSize: 15, fontWeight : 'bold', color: 'white'}}>Save</Text>
-                  </TouchableHighlight>
-                </KeyboardAvoidingView>
-              </KeyboardAvoidingView>
-            </Modal>
-            
-          </KeyboardAvoidingView>
-        </KeyboardAvoidingView>
-
+        <Text style={styles.titleText}>Contact us</Text>
         <View
           style={styles.container2}
           behavior="padding"
@@ -204,10 +140,9 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    width:"100%",
-    height:"100%"
+    width: '100%',
+    height: '100%'
   },
-  
   container: {
     flex: 1,
     alignItems: 'center',
@@ -342,34 +277,6 @@ const styles = StyleSheet.create({
     borderColor: '#1d1d2a',
     marginBottom: 7,
     marginRight: 7
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    width: 350,
-    margin: 20,
-    backgroundColor: "#202030",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-  },
-  inline: {
-    width: 250,
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   TextInputStyle: {  
     textAlign: 'center',
