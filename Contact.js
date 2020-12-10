@@ -296,23 +296,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 140
   },
-  contact_info:{
-    paddingLeft: 40,
-    paddingTop: 10,
-    paddingBottom: 5,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
   other_info:{
     color: 'white',
     paddingLeft: 20,
-    fontSize: 20,
-    justifyContent: 'flex-start',
-  },
-  input_info:{
-    color: 'white',
-    paddingLeft: 10,
     fontSize: 20,
     justifyContent: 'flex-start',
   },
