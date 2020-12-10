@@ -23,7 +23,7 @@ class Register0 extends React.Component {
       <View style={styles.container}>
         <Image
           style= {styles.backgroundImage}
-          source= {require('./assets/bg.png')}
+          source= {require('./assets/newBG3.png')}
         />
         <Text style={styles.titleText}>Register Your Odometer Terminator Account...</Text>
         <TextInput
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     left: null,
     bottom: null,
     right: null,
-    opacity: 1.0,
   },
   button: {
     alignItems: 'center',

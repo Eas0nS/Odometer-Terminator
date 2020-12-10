@@ -39,7 +39,7 @@ class Register1 extends React.Component {
       >
         <Image
           style = {styles.backgroundImage}
-          source = {require('./assets/bg.png')}
+          source = {require('./assets/newBG3.png')}
         />
         <Text style={styles.titleText}>Your Basic Info</Text>
         <KeyboardAvoidingView
@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
     left: null,
     bottom: null,
     right: null,
-    opacity: 0.8,
   },
   titleText:{
     fontFamily: 'Courier',

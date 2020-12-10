@@ -22,7 +22,7 @@ class EditPage extends React.Component {
     let body_form = new FormData();
     body_form.append('image', file);
 
-    fetch('http://18.204.130.183:8000/mock', {
+    fetch('http://18.204.130.183:8000/odometer', {
       method: 'POST',
       headers: {
         "Content-Type": "multipart/form-data"
